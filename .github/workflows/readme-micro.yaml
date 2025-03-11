@@ -18,4 +18,4 @@ jobs:
         uses: readmeio/readme-micro@v2
         
         with:
-          readme-micro: "'**/*.{yaml,yml,json}' --key=${{ secrets.HITPAY_TEST_SECRET }}"
+          readme-micro: "'**/*.{yaml,yml,json}' --key=${{ secrets.README_MICRO_SECRET }}"
