@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: HitPay APIs Specification
+  title: HitPay APIs Specification Test
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
