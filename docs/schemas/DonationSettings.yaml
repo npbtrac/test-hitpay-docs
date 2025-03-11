@@ -1,0 +1,41 @@
+type: object
+properties:
+  welcome_message:
+    type: string
+    example: Donate to ABC Charity
+  closing_message:
+    type: string
+    example: Thank you for your donation
+  quicksale_amounts:
+    type: array
+    items:
+      type: number
+    example: [5, 10, 20, 50]
+  custom_amount_enabled:
+    type: boolean
+    example: true
+  promotional_material:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+      caption:
+        type: string
+      url:
+        type: string
+        format: uri
+      other_dimensions:
+        type: array
+  show_customer_form:
+    type: boolean
+    example: true
+  show_order_form:
+    type: boolean
+    example: true
+  text_color:
+    type: string
+    example: "#000000"
+  background_color:
+    type: string
+    example: "#FFFFFF"

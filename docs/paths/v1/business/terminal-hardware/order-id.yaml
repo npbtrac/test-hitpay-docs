@@ -1,0 +1,26 @@
+get:
+  tags:
+    - Terminal Order
+  summary: Get terminal hardware order details
+  description: Get terminal hardware order details
+  operationId: GetTerminalHardwareOrderDetails
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/TerminalHardwareOrder.yaml'
+    '404':
+      description: 'Not Found'

@@ -1,0 +1,28 @@
+get:
+  tags:
+    - Feature
+  summary: Get feature waitlist by feature id
+  description: Get feature waitlist by feature id
+  operationId: GetFeatureWaitlistByFeatureId
+  parameters:
+    - name: feature_id
+      in: path
+      schema:
+        type: string
+        format: uuid
+      required: true
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/FeatureWaitlist.yaml'
+    '404':
+      description: 'Not Found'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

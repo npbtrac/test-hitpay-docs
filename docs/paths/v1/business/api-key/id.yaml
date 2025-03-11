@@ -1,0 +1,20 @@
+delete:
+  tags:
+    - Business API Key
+  summary: Delete a Business API Key
+  description: Remove a Business API Key from a business.
+  operationId: DeleteBusinessApiKey
+  parameters:
+    - $ref: "../../../../parameters/BusinessId.yaml"
+    - $ref: "../../../../parameters/ApiKeyId.yaml"
+  responses:
+    "200":
+      description: "Successfully deleted Business API Key"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true

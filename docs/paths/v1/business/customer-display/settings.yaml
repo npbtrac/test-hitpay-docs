@@ -1,0 +1,72 @@
+post:
+  tags:
+    - Customer Display
+  summary: Update settings
+  description: Update customer display settings
+  operationId: UpdateCustomerDisplaySettings
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            logo:
+              type: string
+              format: binary
+              description: Logo image. Max 10MB.
+            welcome_message:
+              type: string
+              description: Maximum 500 characters.
+            promotional_material:
+              type: string
+              format: binary
+              description: Promotional material. Max 10MB.
+            location_id:
+              type: string
+              format: uuid
+              description: Location ID
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/CustomerDisplaySetting.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not Found'
+
+get:
+  tags:
+    - Customer Display
+  summary: Get settings
+  description: Get customer display settings
+  operationId: GetCustomerDisplaySettings
+  security:
+    - cdmAuth: []
+  parameters:
+    - name: business_id
+      required: true
+      in: path
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/CustomerDisplaySetting.yaml'
+    '404':
+      description: 'Not Found'

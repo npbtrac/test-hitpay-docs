@@ -1,0 +1,55 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+    example: "Feature Name"
+  description:
+    type: string
+    example: "Feature Description"
+  code:
+    type: string
+    example: "feature_code"
+  status:
+    type: string
+    enum:
+      - in_development
+      - available
+    example: "in_development"
+  eligibility_rules:
+    type: array
+    items:
+      type: object
+      properties:
+        country:
+          type: array
+          items:
+            type: string
+          example: ["us"]
+  auto_approval_rules:
+    type: array
+    items:
+      type: object
+      properties:
+        country:
+          type: array
+          items:
+            type: string
+          example: ["us"]
+        business_type:
+          type: string
+          enum:
+            - individual
+            - company
+            - partner
+          example: "individual"
+  created_at:
+    type: string
+    format: date-time
+    example: "2021-01-01T00:00:00Z"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2021-01-01T00:00:00Z"

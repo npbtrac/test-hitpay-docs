@@ -1,0 +1,39 @@
+Product:
+  $ref: "./Product.yaml"
+ProductCategory:
+  $ref: "./ProductCategory.yaml"
+Order:
+  $ref: "./Order.yaml"
+OrderLineItem:
+  $ref: "./OrderLineItem.yaml"
+DonationSettings:
+  $ref: "./DonationSettings.yaml"
+CustomerDisplayOrder:
+  $ref: "./CustomerDisplayOrder.yaml"
+CustomerDisplaySetting:
+  $ref: "./CustomerDisplaySetting.yaml"
+CustomerDisplayDevice:
+  $ref: "./CustomerDisplayDevice.yaml"
+IntegrationConnection:
+  $ref: "./IntegrationConnection.yaml"
+TerminalHardwareSKU:
+  $ref: "./TerminalHardwareSKU.yaml"
+TerminalShippingMethod:
+  $ref: "./TerminalShippingMethod.yaml"
+TerminalHardwareOrder:
+  $ref: "./TerminalHardwareOrder.yaml"
+Customer:
+  $ref: "./Customer.yaml"
+Location:
+  $ref: "./Location.yaml"
+Image:
+  $ref: "./Image.yaml"
+Error:
+  $ref: "./Error.yaml"
+MethodLogo:
+  $ref: "./MethodLogo.yaml"
+Integration:
+  $ref: "./Integration.yaml"
+GetOnboarding:
+  $ref: "./GetOnboarding.yaml"
+

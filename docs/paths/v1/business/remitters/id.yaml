@@ -1,0 +1,30 @@
+get:
+  tags:
+    - Remitters
+  summary: Get remitter details
+  description: Get remitter details
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/Id.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Remitter.yaml'
+    '404':
+      description: 'Not found'
+delete:
+  tags:
+    - Remitters
+  summary: Delete remitter
+  description: Delete remitter
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/Id.yaml'
+  responses:
+    '204':
+      description: Successful operation
+    '404':
+      description: 'Not found'

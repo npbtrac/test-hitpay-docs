@@ -1,0 +1,24 @@
+put:
+  tags:
+    - Business Images
+  summary: Mark the upload process for a Business Image completed
+  description: Mark the upload process for a Business Image completed
+  operationId: CompleteUpload
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: business_image_id
+      in: path
+      required: true
+      description: The unique identifier for a business image
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

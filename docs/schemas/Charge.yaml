@@ -1,0 +1,84 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "9aa01532-9785-4f2a-bf81-26b45a1df7f6"
+  business_id:
+    type: string
+    format: uuid
+    example: "9130c422-bf97-4bd1-b370-07a3a6f40708"
+  channel:
+    type: string
+    enum: [payment_gateway, other_channel]
+    example: "payment_gateway"
+  customer_id:
+    type: string
+    format: uuid
+    example: "9194a61e-4dcd-4bb5-a0ff-2bbea5bccf23"
+  status:
+    type: string
+    enum: [partially_refunded, other_status]
+    example: "partially_refunded"
+  customer:
+    $ref: './Customer.yaml'
+  currency:
+    type: string
+    example: "sgd"
+  amount:
+    type: number
+    example: 325
+  refunded_amount:
+    type: number
+    example: 25
+  refunded_at:
+    type: string
+    format: date-time
+    example: "2023-11-29T13:05:47+08:00"
+  fixed_fee:
+    type: number
+    example: 0.3
+  discount_fee:
+    type: number
+    example: 2.11
+  discount_fee_rate:
+    type: number
+    example: 0.65
+  failed_reason:
+    type: [string, "null"]
+  remark:
+    type: string
+    example: "Order #5196"
+  payment_intents:
+    type: array
+    items: {}
+    example: []
+  payment_request_id:
+    type: string
+    example: "9aa01531-a417-4952-8019-cf9d86d0c976"
+  payment_provider:
+    $ref: './PaymentProvider.yaml'
+  created_at:
+    type: string
+    format: date-time
+    example: "2023-11-16T16:30:10+08:00"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2023-11-29T13:05:48+08:00"
+  closed_at:
+    type: string
+    format: date-time
+    example: "2023-11-16T16:30:20+08:00"
+  location_id:
+    type: [string, "null"]
+    format: uuid
+  location:
+    type: [object, "null"]
+  business_user_id:
+    type: [string, "null"]
+    format: uuid
+  business_user_display:
+    type: [string, "null"]
+  terminal_id:
+    type: [string, "null"]

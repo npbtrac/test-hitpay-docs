@@ -1,0 +1,90 @@
+get:
+  tags:
+  - Recurring Billing
+  summary: 03. Get saved card details
+  description: '[https://www.notion.so/hitpay/Recurring-Billing-APIs-13ac32375f754b78a26a643647beefd8](https://www.notion.so/hitpay/Recurring-Billing-APIs-13ac32375f754b78a26a643647beefd8)'
+  operationId: 03GetSavedCardDetails
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  responses:
+    '200':
+      description: ''
+put:
+  tags:
+  - Recurring Billing
+  summary: 03. Update charge the saved card
+  description: 03. Update charge the saved card
+  operationId: 03UpdateChargeTheSavedCard
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: string
+              example: '{{amount}}'
+            currency:
+              type: string
+              example: SGD
+            customer_email:
+              type: string
+              example: danangxp@gmail.com
+            customer_name:
+              type: string
+              example: Customer_Name.
+            description:
+              type: string
+              example: Description_Update_${{$timestamp}}
+            name:
+              type: string
+              example: Update_Name_{{$timestamp}}
+            payment_methods[]:
+              type: string
+              example: card
+            redirect_url:
+              type: string
+              example: https://www.google.com
+            webhook:
+              type: string
+              example: https://webhook.site/64da3fed-cd82-49cc-a368-a9ede02441aa
+        example:
+          amount: '{{amount}}'
+          currency: SGD
+          customer_email: danangxp@gmail.com
+          customer_name: Customer_Name.
+          description: Description_Update_${{$timestamp}}
+          name: Update_Name_{{$timestamp}}
+          payment_methods[]: card
+          redirect_url: https://www.google.com
+          webhook: https://webhook.site/64da3fed-cd82-49cc-a368-a9ede02441aa
+  responses:
+    '200':
+      description: ''
+parameters:
+- name: recurring_billing_id
+  in: path
+  required: true
+  schema:
+    type: string
+    example: '{{recurring_billing_id}}'

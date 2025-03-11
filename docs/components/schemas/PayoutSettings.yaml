@@ -1,0 +1,20 @@
+type: object
+properties:
+  enabled:
+    type: boolean
+    description: Indicates if the payout is enabled or not
+  auto_payout:
+    type: boolean
+    description: Indicates if the payout is set to automatic
+  payout_frequency:
+    type: string
+    enum: [ "daily", "weekly" ]
+    description: Indicates the frequency of payouts
+  payout_day:
+    type: string
+    enum: [ "mon", "tue", "wed", "thu", "fri", "sat", "sun" ]
+    description: (nullable) Day of the week for payouts (only when payout_frequency = "weekly")
+  payout_time:
+    type: string
+    pattern: '^(?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)$'
+    description: (nullable) Time of day (HH:mm:ss) for payouts (only when payout_frequency = "daily")

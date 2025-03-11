@@ -1,0 +1,49 @@
+post:
+  summary: Mark Invoice as Paid
+  operationId: markInvoiceAsPaid
+  tags:
+    - Invoices
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: b_invoice
+      required: true
+      in: path
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            is_full_payment:
+              type: boolean
+              description: If invoice doesn't allow partial payments, this field should be true. If invoice allows partials, then if false is passed, the first unpaid request will be marked as paid
+            payment_date:
+              type: [string, "null"]
+              format: date
+              example: 2023-01-01
+            payment_method:
+              type: string
+              enum:
+                - cash
+  responses:
+    '200':
+      description: Invoice has been marked as paid
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+    '404':
+      description: 'Not found'
+    '422':
+        description: 'Unprocessable Entity'
+        content:
+          application/json:
+            schema:
+              $ref: '../../../../schemas/Error.yaml'

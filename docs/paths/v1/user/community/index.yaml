@@ -1,0 +1,19 @@
+get:
+  tags:
+    - Community
+  summary: Get Community
+  description: Get bettermode community embed
+  operationId: GetCommunity
+  responses:
+    '200':
+      description: "Successfully"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              iframe_url:
+                type: string
+                example: "https://community.bettermode.com/embed/9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+
+              

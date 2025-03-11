@@ -1,0 +1,57 @@
+  get:
+    summary: Get an Invoice by ID
+    operationId: getInvoiceById
+    tags:
+      - Invoices
+    parameters:
+      - $ref: '../../../../parameters/BusinessId.yaml'
+      - name: b_invoice
+        required: true
+        in: path
+        schema:
+          type: string
+          format: uuid
+
+    responses:
+      '200':
+        description: Invoice data retrieved successfully
+        content:
+          application/json:
+            schema:
+              $ref: '../../../../schemas/Invoice.yaml'
+      '404':
+        description: 'Not found'
+
+  put:
+    summary: Update an Invoice by ID
+    operationId: updateInvoiceById
+    tags:
+      - Invoices
+    parameters:
+      - $ref: '../../../../parameters/BusinessId.yaml'
+      - name: b_invoice
+        required: true
+        in: path
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Invoice.yaml'
+    responses:
+      '200':
+        description: 'Successfully'
+        content:
+          application/json:
+            schema:
+              $ref: '../../../../schemas/Invoice.yaml'
+      '404':
+        description: 'Not found'
+      '422':
+        description: 'Unprocessable Entity'
+        content:
+          application/json:
+            schema:
+              $ref: '../../../../schemas/Error.yaml'

@@ -1,0 +1,54 @@
+type: string
+description: Payment method code. Actual acceptable methods may vary depending on business country and business itself.
+enum:
+  - card
+  - fpx
+  - alipay
+  - wechat
+  - card_present
+  - paynow_online
+  - grabpay
+  - grabpay_direct
+  - grabpay_paylater
+  - shopee_pay
+  - shopback
+  - giro
+  - affirm
+  - afterpay_clearpay
+  - upay_online
+  - upay_instapay
+  - upay_pchc
+  - upay_gcash
+  - upay_bayd
+  - upay_ecpy
+  - upay_plwn
+  - gcash
+  - atome
+  - billease
+  - fave_sgqr
+  - fave_duit
+  - doku_card
+  - doku_doku_ewallet
+  - doku_shopeepay_ewallet
+  - doku_bca_va
+  - doku_bni_va
+  - doku_bri_va
+  - doku_bsm_va
+  - doku_cimb_va
+  - doku_danamon_va
+  - doku_doku_va
+  - doku_mandiri_va
+  - doku_permata_va
+  - doku_akulaku_p2p
+  - doku_indodana_p2p
+  - doku_bri_direct_debit
+  - doku_alfa_o2o
+  - doku_kredivo_p2p
+  - doku_qris
+  - azupay_payid
+  - xpay_card
+  - airwallex_va
+  - qrph
+
+
+

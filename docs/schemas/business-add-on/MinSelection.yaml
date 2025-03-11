@@ -1,0 +1,5 @@
+type: integer
+format: int32
+description: The minimum selection for the Add-on
+minimum: 1
+example: 4

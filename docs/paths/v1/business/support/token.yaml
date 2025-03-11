@@ -1,0 +1,35 @@
+get:
+  tags:
+    - Support
+  summary: Get Support Chat Token
+  description: Token for access to support chat
+  operationId: GetSupportChatToken
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              access_token:
+                type: string
+                example: 'O4TJi8H6HbuRsLDOETsdWZozCHd3uObnw5e0yLW9ALfokA1KBzdXNp264PfRyQqJNY2iHxJ1irjAGCG6HF8UOppkA0rhhsa55z8j'
+              expires_at:
+                type: string
+                example: '2025-02-06T06:13:06.970702Z'
+              url:
+                type: string
+                example: 'https://dashboard.hitpay.com/business/98567029-f559-49f9-916b-042a4255b32a/support-chat?token=tnWw1z3o3VNiK4Pieam6NdLOJVIXshi9R9zZ0FTx9j843gFICb82XHzoNyhJwTqwWJkURE9IlZD4eFpR0lOptA5zZuSBJaesgk87'
+    '401':
+      description: 'Unauthorized'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: 'Unauthenticated'

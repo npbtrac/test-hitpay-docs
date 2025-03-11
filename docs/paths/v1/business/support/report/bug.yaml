@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Support
+  summary: Report Bug
+  description: Report Bug
+  operationId: reportBug
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            title:
+              type: string
+              example: 'BUG'
+            description:
+              type: string
+              example: 'test description'
+            file:
+              type: string
+              example: 'image.png'
+            is_critical:
+              type: boolean
+              example: 'true'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/support/SupportReport.yaml'

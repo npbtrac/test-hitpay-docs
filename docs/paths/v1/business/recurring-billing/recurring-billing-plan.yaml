@@ -1,0 +1,134 @@
+get:
+  tags:
+  - Recurring Billing
+  summary: 03. Get recurring billing details
+  description: '[https://www.notion.so/hitpay/Recurring-Billing-APIs-13ac32375f754b78a26a643647beefd8](https://www.notion.so/hitpay/Recurring-Billing-APIs-13ac32375f754b78a26a643647beefd8)'
+  operationId: 03GetRecurringBillingDetails
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+  responses:
+    '200':
+      description: ''
+
+put:
+  tags:
+  - Recurring Billing
+  summary: 03.Update recurring billing
+  description: 03.Update recurring billing
+  operationId: 03UpdateRecurringBilling
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: string
+              example: '9'
+            customer_email:
+              type: string
+              example: DANANGXP+13@gmail.com
+            customer_name:
+              type: string
+              example: Quy
+            cycle:
+              type: string
+              example: custom
+            cycle_frequency:
+              type: string
+              example: week
+            cycle_repeat:
+              type: string
+              example: '7'
+            description:
+              type: string
+              example: description_{{$timestamp}}
+            name:
+              type: string
+              example: Name_Update_{{$timestamp}}
+            plan_id:
+              type: string
+              example: '{{plan_id}}'
+            redirect_url:
+              type: string
+              example: https://examaple.com/completed111
+            reference:
+              type: string
+              example: ''
+            save_card:
+              type: string
+              example: 'false'
+            send_email:
+              type: string
+              example: 'true'
+            start_date:
+              type: string
+              example: '{{start_date}}'
+            webhook:
+              type: string
+              example: https://webhoo.site/tes
+        example:
+          amount: '9'
+          customer_email: DANANGXP+13@gmail.com
+          customer_name: Quy
+          cycle: custom
+          cycle_frequency: week
+          cycle_repeat: '7'
+          description: description_{{$timestamp}}
+          name: Name_Update_{{$timestamp}}
+          plan_id: '{{plan_id}}'
+          redirect_url: https://examaple.com/completed111
+          reference: ''
+          save_card: 'false'
+          send_email: 'true'
+          start_date: '{{start_date}}'
+          webhook: https://webhoo.site/tes
+  responses:
+    '200':
+      description: ''
+
+delete:
+  tags:
+  - Recurring Billing
+  summary: 05. Delete a recurring billing detail
+  description: 05. Delete a recurring billing detail
+  operationId: 05DeleteARecurringBillingDetail
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  responses:
+    '200':
+      description: ''
+parameters:
+- name: business_recurring_plans_id
+  in: path
+  required: true
+  schema:
+    type: string

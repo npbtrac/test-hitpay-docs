@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Transfers
+  summary: Get transfers overview (statistics)
+  description: Sum of transferred amount in home currency on a monthly basis
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: currency
+      in: query
+      schema:
+        type: [string, "null"]
+        example: "sgd"
+    - name: created_at_from
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+    - name: created_at_to
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+                  example: "2023-11"
+                amount:
+                  type: number
+                  example: 100.15

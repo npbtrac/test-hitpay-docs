@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Wallet Balances
+  summary: View Supported Exchange Currencies
+  description: View Supported Exchange Currencies
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+              pattern: '^([a-z]{3})$'
+              minLength: 3
+              maxLength: 3
+              description: 3-letter ISO 4217 currency code
+              example: "sgd"

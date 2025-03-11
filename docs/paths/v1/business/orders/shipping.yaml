@@ -1,0 +1,65 @@
+put:
+  tags:
+    - Order
+  summary: Update order shipping details
+  description: Update order shipping details
+  operationId: UpdateOrderShippingDetails
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            shipping_method:
+              type: string
+              format: uuid
+              description: 'Shipping ID'
+            shipping_address:
+              type: object
+              properties:
+                street:
+                  type: string
+                  example: '123 Main St'
+                city:
+                  type: string
+                  example: 'Anytown'
+                state:
+                  type: string
+                  example: 'CA'
+                postal_code:
+                  type: string
+                  example: '12345'
+                country:
+                  type: string
+                  example: 'US'
+            date_slot:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+                  example: '2024-01-01'
+                times:
+                  type: array
+                  description: 'Array of time slots. Each time slot is a string in the format "HH:MM AM/PM"'
+                  example: ['09:00 AM', '10:00 AM']
+                  items:
+                    type: string
+                    pattern: "^(0[1-9]|1[0-2]):[0-5]\\d (AM|PM)$"
+                    description: "Time in HH:mm A format (12-hour)"
+                    example: "02:30 PM"
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'

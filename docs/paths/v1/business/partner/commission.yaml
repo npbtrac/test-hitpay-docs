@@ -1,0 +1,42 @@
+get:
+  tags: 
+    - Partner
+  summary: Get partner commission
+  description : Get partner commission
+  operationId: GetPartnerCommission
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: per_page
+      in: query
+      schema:
+        type: integer
+        default: 25
+        enum:
+          - 5
+          - 10
+          - 25
+          - 50
+          - 100
+    - name: keywords
+      in: query
+      schema:
+        type: string
+        description: Search by business name and email
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/PartnerCommission.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

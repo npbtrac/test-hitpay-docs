@@ -1,0 +1,108 @@
+get:
+  tags:
+    - Business Add-ons
+  summary: List Business Add-ons
+  description: List Business Add-ons
+  operationId: ListBusinessAddOns
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/listing/PaginationPage.yaml'
+    - $ref: '../../../../parameters/listing/PaginationPerPage.yaml'
+    - $ref: '../../../../parameters/listing/ProductId.yaml'
+    - $ref: '../../../../parameters/listing/ExcludeProductIds.yaml'
+    - $ref: '../../../../parameters/listing/Keywords.yaml'
+      
+  responses:
+    '200':
+      description: A list of Business Add-ons with pagination parameters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                $ref: '../../../../parameters/responses/listing-links.yaml'
+              meta:
+                $ref: '../../../../parameters/responses/listing-meta.yaml'
+              data:
+                type: array
+                items:
+                  type: object
+                  $ref: '../../../../schemas/BusinessAddOn.yaml'
+    '422':
+      $ref: '../../../../parameters/responses/422.yaml'
+
+post:
+  summary: Create a Business Add-on
+  description: Create a Business Add-on with params from the request payload
+
+
+
+    It validates the following rules
+
+
+    - `name` must be at least 3 chars
+
+    - Number of items of `option_values` must have the correct value for `min_selection` and `max_selection` of the add-on when `is_required` is `true` and `option_type` is `checkbox`
+  operationId: createBusinessAddOn
+  tags:
+    - Business Add-ons
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              allOf:
+              - $ref: '../../../../schemas/business-add-on/Name.yaml'
+                required: true
+            option_type:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/OptionType.yaml'
+                  required: true
+            option_values:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/OptionValues.yaml'
+                  required: true
+            min_selection:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/MinSelection.yaml'
+            max_selection:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/MaxSelection.yaml'
+            is_required:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/IsRequired.yaml'
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  pivot:
+                    type: object
+                    properties:
+                      business_product_id:
+                        type: string
+                        format: uuid
+                        example: "9c5408fa-ba77-4e74-adc7-6b48029809f4"
+                      order_weight:
+                        type: integer
+                        example: 12
+                  
+  responses:
+    '201':
+      description: 'Successfully done'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/BusinessAddOn.yaml'
+              
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

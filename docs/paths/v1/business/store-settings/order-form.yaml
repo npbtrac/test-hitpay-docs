@@ -1,0 +1,90 @@
+put:
+  tags:
+    - Store Settings
+  summary: Order Form Settings
+  description: Update Order Form Settings
+  operationId: UpdateOrderFormSettings
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            phone:
+              type: object
+              properties:
+                include:
+                  type: boolean
+                required:
+                  type: boolean
+            remarks:
+              type: object
+              properties:
+                include:
+                  type: boolean
+                required:
+                  type: boolean
+            name:
+              type: object
+              properties:
+                deleted:
+                  type: boolean
+                include:
+                  type: boolean
+                required:
+                  type: boolean
+                title:
+                  type: string
+                type:
+                  type: string
+            age:
+              type: object
+              properties:
+                deleted:
+                  type: boolean
+                include:
+                  type: boolean
+                required:
+                  type: boolean
+                title:
+                  type: string
+                type:
+                  type: string
+            custom_field:
+              type: object
+              properties:
+                deleted:
+                  type: boolean
+                include:
+                  type: boolean
+                required:
+                  type: boolean
+                title:
+                  type: string
+                type:
+                  type: string
+                options:
+                  type: array
+                  items:
+                    type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              business:
+                type: object
+              store_settings:
+                type: object
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

@@ -1,0 +1,23 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+    example: John Doe
+  phone_number:
+    type: string
+    example: 6567463879
+  phone_number_country_code:
+    type: string
+    example: 65
+  email:
+    type: string
+    format: email
+    example: customer@domain.com
+  remark:
+    type: string
+    example: Customer remark
+  address:
+   $ref: './Address.yaml'

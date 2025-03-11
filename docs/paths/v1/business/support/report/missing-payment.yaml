@@ -1,0 +1,36 @@
+post:
+  tags:
+    - Support
+  summary: Report Missing Payment
+  description: Report Missing Payment
+  operationId: reportMissingPayment
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            payment_method:
+              type: string
+              example: 'payment_method'
+            payment_date:
+              type: string
+              example: '2024-09-05'
+            name_or_email:
+              type: string
+              example: 'test@test.com'
+            file:
+              type: string
+              example: 'image.png'
+            additional_details:
+              type: string
+              example: 'details'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/support/SupportReport.yaml'

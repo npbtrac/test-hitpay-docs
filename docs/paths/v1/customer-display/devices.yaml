@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Customer Display
+  summary: Add device
+  description: Add customer display device
+  operationId: AddCustomerDisplayDevice
+  security: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            device_id:
+              type: string
+            device_name:
+              type: string
+              example: "Barista's iPhone"
+            device_model:
+              type: string
+              example: "iPhone 12"
+          required:
+            - device_id
+            - device_name
+            - device_model
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../schemas/CustomerDisplayDevice.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../schemas/Error.yaml'

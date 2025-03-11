@@ -1,0 +1,99 @@
+get:
+  tags:
+    - Feature
+  summary: Get feature list
+  description: Get feature list
+  operationId: GetFeatureList
+  parameters:
+    - name: per_page
+      in: query
+      schema:
+        type: integer
+        default: 10
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/Feature.yaml'
+    '404':
+      description: 'Not Found'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+post:
+  tags:
+    - Feature
+  summary: Create a new feature
+  description: Create a new feature
+  operationId: CreateFeature
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "Feature Name"
+            description:
+              type: string
+              example: "Feature Description"
+            code:
+              type: string
+              example: "feature_code"
+            eligibility_rules:
+              type: array
+              items:
+                type: object
+                properties:
+                  country:
+                    type: array
+                    items:
+                      type: string
+                    example: ["us"]
+            auto_approval_rules:
+              type: array
+              items:
+                type: object
+                properties:
+                  country:
+                    type: array
+                    items:
+                      type: string
+                    example: ["us"]
+                  business_type:
+                    type: string
+                    enum:
+                      - individual
+                      - company
+                      - partner
+                    example: "individual"
+  responses:
+    '201':
+      description: 'Successfully created'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Feature.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

@@ -1,0 +1,51 @@
+post:
+  summary: Export Invoices
+  operationId: exportInvoices
+  tags:
+    - Invoices
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: b_invoice
+      required: true
+      in: path
+      description: The unique identifier of the invoice
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            starts_at:
+              type: string
+              format: date
+              description: Invoice date from
+              example: 2020-01-01
+            ends_at:
+              type: string
+              format: date
+              description: Invoice date to
+              example: 2023-01-01
+            status:
+              type: string
+              description: Invoice status
+              enum:
+                - All
+                - Sent
+                - Overdue
+                - Paid
+  responses:
+    '200':
+      description: Invoice export csv sent successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+    '404':
+      description: 'Not found'

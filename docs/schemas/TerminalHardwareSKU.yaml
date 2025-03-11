@@ -1,0 +1,40 @@
+type: object
+properties:
+  id:
+    type: string
+    example: thsku_M8vLdalNJ0bS2I
+  title:
+    type: string
+    example: BBPOS WisePad 3
+  subtitle:
+    type: string
+    example: HitPay Bluetooth Terminal
+  image:
+    type: string
+    format: uri
+    example: https://s3.ap-southeast-1.amazonaws.com/hitpayapp.com/letter/images/Hitpay-WisePad3.png
+  amount:
+    type: number
+    example: 28000
+  country:
+    type: string
+    example: MY
+  currency:
+    type: string
+    example: myr
+  max_per_order:
+    type: number
+    example: 5
+  product_type:
+    type: string
+    enum:
+      - stripe_m2
+      - bbpos_wisepos_e
+      - bbpos_wisepos_e_dock
+      - simulated_wisepos_e
+      - bbpos_wisepad_3
+  features:
+    type: array
+  link:
+    type: string
+    format: uri

@@ -1,0 +1,137 @@
+post:
+  tags:
+    - Order
+  summary: Create order
+  description: Create order
+  operationId: CreateOrder
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            channel:
+              type: string
+              description: Order channel
+              enum:
+                - point_of_sale
+                - quick_sale
+            amount:
+              type: number
+              description: Order amount
+              example: 100
+            currency:
+              type: string
+              description: 3-letter ISO 4217 currency code
+              example: sgd
+            version:
+              type: string
+              description: Order version
+              example: '2.0'
+              enum:
+                - '2.0'
+                - '1.0'
+            remark:
+              type: string
+              description: Order remark
+              example: Order remark
+            location_id:
+              type: string
+              format: uuid
+              description: Location id
+            customer_id:
+              type: string
+              format: uuid
+              description: Customer id
+            customer_pickup:
+              type: boolean
+              description: Customer pickup
+              example: true
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+get:
+  tags:
+    - Order
+  summary: Get list of orders (Deprecated)
+  description: Get list of orders
+  operationId: GetListOrdersDeprecated
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: per_page
+      in: query
+      schema:
+        type: integer
+        default: 10
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    - name: keywords
+      in: query
+      schema:
+        type: string
+        description: Search by name
+    - name: statuses
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - completed
+            - pending
+            - sent
+            - draft
+            - expired
+            - canceled
+        description: Filter by statuses
+    - name: dateFrom
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date from
+    - name: dateTo
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date to
+    - name: channels
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - point_of_sale
+            - quick_sale
+            - store_checkout
+        description: Filter by channels
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/Order.yaml'

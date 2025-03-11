@@ -1,0 +1,42 @@
+get:
+  summary: List all webhook events
+  operationId: listWebhookEvents
+  tags:
+    - Webhook Events
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/WebhookEvent.yaml'
+
+post:
+  summary: Create a webhook event
+  operationId: createWebhookEvent
+  tags:
+    - Webhook Events
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../schemas/WebhookEventPayload.yaml'
+  responses:
+    '201':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/WebhookEvent.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

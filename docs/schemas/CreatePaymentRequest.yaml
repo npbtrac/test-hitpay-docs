@@ -1,0 +1,89 @@
+type: object
+required:
+  - currency
+properties:
+  name:
+    type: string
+  email:
+    type: string
+    format: email
+  phone:
+    type: string
+    format: phone
+  amount:
+    type: number
+    example: 100
+  currency:
+    type: string
+    maxLength: 3
+    example: SGD
+  is_currency_editable:
+    type: boolean
+  payment_methods:    
+    type: array
+    items:
+      $ref: './PaymentMethod.yaml'
+  purpose:
+    type: string
+    maxLength: 255
+  redirect_url:
+    type: string
+    format: uri
+    maxLength: 1028
+  webhook:
+    type: string
+    format: uri
+  failed_webhook:
+    type: string
+    format: uri
+  reference_number:
+    type: string
+    maxLength: 255
+  send_sms:
+    type: boolean
+  send_email:
+    type: boolean
+  allow_repeated_payments:
+    type: boolean
+  expiry_date:
+    type: string
+    format: date-time
+  expires_after:
+    type: string
+    format: date-time
+  channel:
+    type: string
+  business_id:
+    type: string
+    format: uuid
+  add_admin_fee:
+    type: boolean
+  address:
+    type: object
+    required:
+      - line1
+      - city
+      - state
+      - country
+      - postal_code
+    properties:
+      line1:
+        type: string
+      line2:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      state:
+        type: string
+      postal_code:
+        type: string
+  line_items:
+    type: array
+    items:
+      $ref: './LineItems.yaml'
+
+  generate_qr:
+    type: boolean
+    description: Only valid for paynow_online, qrph_netbank, doku_qris and shopee_pay if generate_qr was true

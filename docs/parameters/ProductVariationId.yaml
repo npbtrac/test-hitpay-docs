@@ -1,0 +1,7 @@
+name: product_variation_id
+in: path
+description: The unique identifier of the Product Variation
+required: true
+schema:
+  type: string
+  format: uuid

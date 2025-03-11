@@ -1,0 +1,118 @@
+post:
+  tags:
+    - Terminal Order
+  summary: Create terminal hardware order
+  description: Create terminal hardware order
+  operationId: CreateTerminalHardwareOrder
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            hardware_order_items:
+              type: array
+              items:
+                type: object
+                properties:
+                  terminal_hardware_sku:
+                    type: string
+                    example: thsku_M8vLdalNJ0bS2I
+                  quantity:
+                    type: number
+                    example: 1
+            shipping:
+              type: object
+              properties:
+                address:
+                  type: object
+                  properties:
+                    country:
+                      type: string
+                      example: MY
+                    line1:
+                      type: string
+                      example: Menara DBKL 1
+                    line2:
+                      type: string
+                      example: Jalan Raja Laut
+                    postal_code:
+                      type: string
+                      example: '50350'
+                    city:
+                      type: string
+                      example: Kuala Lumpur
+                    state:
+                      type: string
+                      example: Kuala Lumpur
+                email:
+                  type: string
+                  format: email
+                  example: merchant@hit-pay.com
+                name:
+                  type: string
+                phone:
+                  type: string
+                  example: 60123456789
+            shipping_method:
+              type: string
+              description: The terminal shipping method ID
+              example: thsm_MfuTNNHLbhXoKu
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/TerminalHardwareOrder.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not Found'
+
+get:
+  tags:
+    - Terminal Order
+  summary: Get list of terminal hardware orders
+  description: Get list of terminal hardware orders
+  operationId: GetListTerminalHardwareOrders
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: limit
+      in: query
+      schema:
+        type: integer
+        default: 10
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/TerminalHardwareOrder.yaml'
+    '404':
+      description: 'Not Found'

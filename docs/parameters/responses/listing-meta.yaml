@@ -1,0 +1,39 @@
+type: object
+description: meta values for listing operations
+properties:
+  current_page:
+    type: number
+    description: the current page number
+  per_page:
+    type: number
+    description: the number of items for show for the current listing response
+  from:
+    type: number
+    description: the index that current listing page starts
+  to:
+    type: number
+    description: the index that current listing page ends
+  total:
+    type: number
+    description: the total of items found that match current listing filter
+  last_page:
+    type: number
+    description: the number that represents the last page of the listing according to the current `per_page` and filter
+  path:
+    type: string
+    description: the base listing url that doesn't contain params
+  links:
+    type: array
+    description: the array of pagination link
+    items:
+      type: object
+      properties: 
+        url:
+          type: string
+          description: the url of the panigated link
+        label:
+          type: string
+          description: label for this link
+        active:
+          type: boolean
+          description: is the current link the active page or not

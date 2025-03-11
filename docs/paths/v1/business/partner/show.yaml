@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Partner
+  summary: Get partner details
+  description: Get partner details
+  operationId: GetPartnerDetails
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/BusinessPartner.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

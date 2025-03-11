@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Security
+  summary: Generate auth secret code
+  description: Generate auth secret code
+  operationId: GenerateAuthSecretCode
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  secret:
+                    type: object
+                    properties:
+                      string:
+                        type: string
+                        example: 'QWERTYUIJHGFGHJ'
+                      qr_code:
+                        type: string
+                        example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...'
+                      
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../../schemas/Error.yaml'

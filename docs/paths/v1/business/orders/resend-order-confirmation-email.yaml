@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Order
+  summary: Send order receipt
+  description: Send order receipt
+  operationId: SendOrderReceipt
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Customer message.
+            email:
+              type: string
+              format: email
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'

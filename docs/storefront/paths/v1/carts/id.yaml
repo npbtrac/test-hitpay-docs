@@ -1,0 +1,213 @@
+get:
+  tags:
+    - Carts
+  summary: Show cart details
+  description: Show all the details of the cart
+  operationId: ShowCartDetails
+  parameters:
+    - name: cart_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              $ref: '../../../schemas/Cart.yaml'
+    '400':
+      description: 'Bad Request'
+
+post:
+  tags:
+    - Carts
+  summary: Add Product/Variation with add-ons to cart
+  description: Add Product/Variation with add-ons to cart
+
+
+
+    It validates the following rules
+
+
+    - If `variation_id` exists, it ignores `product_id` and validates if the variation exists, is published or not.
+
+    - If `product_id` exists, it ignores `variation_id` and validates if the product exists, is published or not.
+
+    - `product_id`/`variation_id` must be from the business on the online store.
+
+    - `quantity` must be in the correct range for `min_order_quantity` and `max_order_quantity`.
+
+    - `quantity` must be the correct value for Product/Variation inventory for the Online Store (default location).
+
+    - `product_add_ons.*.id` must be from the business on the online store and linked to the added product/variation.
+
+    - `product_add_ons.*.id` must present if it is required
+
+    - Number of items of `product_add_ons.*.option_values` must have the correct value for `min_selection` and `max_selection` of the add-on when `is_required` is `true` and `option_type` is `checkbox`.
+
+    - `product_add_ons.*.option_values` must be the subset of the add-on `option_values` in the DB. If `option_type` = text, we would not care about `option_value` values as they are custom values from the customers.
+
+    All quantity validations are based on the total quantity added to the cart (not the request quantity).
+  operationId: AddProductVariationToCart
+  parameters:
+    - name: cart_id
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            variation_id:
+              type: string
+              format: uuid
+              description: The Id of the variation to be added to the cart.
+              
+                Required if `product_id` is not provided
+              example: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
+            product_id:
+              type: string
+              format: uuid
+              description: The Id of the product to be added to the cart.
+              
+                Required if `variation_id` is not provided
+              example: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
+            quantity:
+              type: integer
+              required: true
+              minimum: 1
+              maximum: 999999
+              description: The quantity of the product/variation to be added to the cart
+              example: 1
+            remark:
+              type: string
+              maxLength: 255
+              description: The remark of the product/variation to be added in the line item, nullable
+              example: 'For birthday present'
+            product_add_ons:
+              type: array
+              items:
+                $ref: '../../../schemas/CartProductAddOn.yaml'
+              description: The add-ons of the product/variation to be added to the cart, nullable
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              $ref: '../../../schemas/Cart.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+
+put:
+  tags:
+    - Carts
+  summary: Update Cart Product Item in the cart
+  description: Update Product/Variation in the cart via `cart_product_item_id`
+
+
+
+    It validates the following rules
+
+
+    - `cart_product_item_id` must exists in the cart.
+
+    - `quantity` must be the correct value that the updated quantity in the cart must qualify all quantity validations for the AddProductVariationToCart operation
+  operationId: UpdateCartProductItem
+  parameters:
+    - name: cart_id
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            cart_product_item_id:
+              type: string
+              description: The Id of the Cart Product Item in the cart.
+              required: true
+            quantity:
+              type: integer
+              required: true
+              description: The quantity of the Cart Product Item to be updated in the cart
+              example: 1
+            remark:
+              type: string
+              max: 255
+              description: The remark of the Cart Product Item to be updated in the cart, nullable
+              example: 'For birthday present'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              $ref: '../../../schemas/Cart.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+
+delete:
+  tags:
+    - Carts
+  summary: Delete cart product item from the cart
+  description: Remove Product/Variation in the cart via `cart_product_item_id`
+
+
+
+    It validates the following rules
+
+
+    - `cart_product_item_id` must exists in the cart.
+  operationId: RemoveCartProductItem
+  parameters:
+    - name: cart_id
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            cart_product_item_id:
+              type: string
+              description: The Id of the Cart Product Item in the cart.
+              required: true
+  responses:
+    '204':
+      description: 'No content'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

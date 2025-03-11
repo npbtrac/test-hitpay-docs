@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Wallet Balances
+  summary: Exchange Funds
+  description: Exchange Funds
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            source_amount:
+              type: [number, "null"]
+              example: 1
+            target_currency:
+              type: string
+              pattern: '^([a-z]{3})$'
+              minLength: 3
+              maxLength: 3
+              description: 3-letter ISO 4217 currency code
+              example: "sgd"
+            target_amount:
+              type: [number, "null"]
+              example: 1
+  responses:
+    '204':
+      description: Successful operation
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

@@ -1,0 +1,30 @@
+put:
+  summary: Activate/Deactivate a Shipping method by ID
+  operationId: deactivateShippingById
+  tags:
+    - Shipping
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: shipping_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            activate:
+              type: [boolean, "null"]
+  responses:
+    '200':
+      description: Shipping method has been activated/deactivated
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Shipping.yaml'
+    '404':
+      description: 'Not found'

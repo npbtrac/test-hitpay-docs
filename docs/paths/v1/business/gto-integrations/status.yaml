@@ -1,0 +1,43 @@
+post:
+  tags:
+    - GTO Integrations
+  summary: Update GTO Integration by ID
+  description: Update a GTO Integration by ID
+  operationId: UpdateGtoIntegrationStatusById
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: integration_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              enum:
+                - active
+                - inactive
+              example: "active"
+          required:
+            - status
+  responses:
+    '200':
+      description: Successful 
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/GtoIntegration.yaml'
+    '422':
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

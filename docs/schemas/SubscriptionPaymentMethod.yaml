@@ -1,0 +1,33 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: 9b868785-4024-44ed-aa1f-21b6e9ac92b5
+  method_type:
+    type: string
+    enum: ["card"]
+    example: "card"
+    description: Payment method type
+  card_brand:
+    type: string
+    example: MasterCard
+    description: Card brand
+  card_expiry_month:
+    type: integer
+    minimum: 1
+    maximum: 12
+    example: 10
+    description: Card expiry month
+  card_expiry_year:
+    type: integer
+    example: 2027
+    description: Card expiry month
+  card_last4:
+    type: integer
+    example: 1234
+    description: Card number last 4 digits
+  is_default:
+    type: boolean
+    example: true
+    description: Is default payment method for the business

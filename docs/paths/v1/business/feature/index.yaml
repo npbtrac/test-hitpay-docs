@@ -1,0 +1,43 @@
+get:
+  tags: 
+    - Business Feature
+  summary: List all features for a business
+  description: List all features for a business with status waitlist, requested, granted, revoked
+  operationId: ListAllFeaturesForABusiness
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    feature_code:
+                      type: string
+                    status:
+                      type: string
+                      enum:
+                        - waitlist
+                        - requested
+                        - granted
+                        - revoked
+                      example: "waitlist"
+                    feature_status:
+                      type: string
+                      enum:
+                        - in_development
+                        - available
+                      example: "in_development"
+    '404':
+      description: 'Not Found'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

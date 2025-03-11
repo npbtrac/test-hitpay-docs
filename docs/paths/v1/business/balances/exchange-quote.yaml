@@ -1,0 +1,59 @@
+post:
+  tags:
+    - Wallet Balances
+  summary: Exchange Quote
+  description: Exchange Quote
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            source_amount:
+              type: [number, "null"]
+              example: 1
+            target_currency:
+              type: string
+              pattern: '^([a-z]{3})$'
+              minLength: 3
+              maxLength: 3
+              description: 3-letter ISO 4217 currency code
+              example: "sgd"
+            target_amount:
+              type: [number, "null"]
+              example: 1
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              source_amount:
+                type: integer
+                example: 100
+              source_currency:
+                type: string
+                example: "sgd"
+              exchange_rate:
+                type: number
+                format: float
+                example: 1.0000
+              target_amount:
+                type: integer
+                example: 99
+              target_currency:
+                type: string
+                example: "sgd"
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

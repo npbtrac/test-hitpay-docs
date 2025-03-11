@@ -1,0 +1,20 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Id of the add on
+  name:
+    type: string
+    description: Name of the add on
+  option_values:
+    type: array
+    items:
+      type: object
+      properties:
+        option_value: 
+          type: string
+          description: Option value of the add on
+        option_price:
+          type: number
+          description: Price of the add on option value, decimal value, nullable

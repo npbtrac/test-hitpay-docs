@@ -1,0 +1,18 @@
+type: object
+properties:
+  name:
+    type: string
+  methods:
+    type: array
+    items:
+      type: string
+example:
+  name: "api_shopify"
+  methods:
+    - upay_instapay
+    - upay_ecpy
+
+
+
+
+

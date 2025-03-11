@@ -1,0 +1,31 @@
+post:
+  tags:
+    - Order Logs
+  summary: Add Order Log
+  description: Add an order log for an order
+  operationId: AddOrderLog
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/OrderId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required: 
+            -  message
+          properties:
+            message:
+              type: string
+              description: content of the order log
+              example: Order Log content to be logged is here
+  responses:
+    '200':
+      description: 'Successfully'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

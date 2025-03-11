@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Terminal Order
+  summary: Cancel terminal hardware order
+  description: Cancel terminal hardware order
+  operationId: CancelTerminalHardwareOrder
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not Found'

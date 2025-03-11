@@ -1,0 +1,93 @@
+get:
+  tags:
+  - Subscription Plan
+  summary: 02. Get all subscription plan
+  description: 02. Get all subscription plan
+  operationId: 02GetAllSubscriptionPlan
+  parameters:
+  - name: perPage
+    in: query
+    schema:
+      type: string
+      example: '100'
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  responses:
+    '200':
+      description: ''
+
+post:
+  tags:
+  - Subscription Plan
+  summary: 01. Create a subscription plan
+  description: 01. Create a subscription plan
+  operationId: 01CreateASubscriptionPlan
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: string
+              example: '{{amount}}'
+            currency:
+              type: string
+              example: 'SGD '
+            cycle:
+              type: string
+              example: '{{cycle}}'
+            cycle_frequency:
+              type: string
+              example: '{{cycle_frequency}}'
+            cycle_repeat:
+              type: string
+              example: '{{cycle_repeat}}'
+            description:
+              type: string
+              example: New_Description_{{$timestamp}}
+            name:
+              type: string
+              example: Subscription-plan_new_{{$timestamp}}
+            price:
+              type: string
+              example: '{{amount}}'
+            redirect_url:
+              type: string
+              example: https://www.google.com
+            reference:
+              type: string
+              example: Reference1993
+        example:
+          amount: '{{amount}}'
+          currency: 'SGD '
+          cycle: '{{cycle}}'
+          cycle_frequency: '{{cycle_frequency}}'
+          cycle_repeat: '{{cycle_repeat}}'
+          description: New_Description_{{$timestamp}}
+          name: Subscription-plan_new_{{$timestamp}}
+          price: '{{amount}}'
+          redirect_url: https://www.google.com
+          reference: Reference1993
+  responses:
+    '200':
+      description: ''

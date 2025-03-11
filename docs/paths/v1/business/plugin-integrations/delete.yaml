@@ -1,0 +1,12 @@
+tags:
+  - Integrations
+summary: Delete integration
+description: Delete specified integration
+parameters:
+  - $ref: '../../../../parameters/BusinessId.yaml'
+  - $ref: '../../../../parameters/IntegrationId.yaml'
+responses:
+  '200':
+    description: Successful response
+  '404':
+    description: Wrong business or integration id

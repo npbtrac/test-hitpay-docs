@@ -1,0 +1,211 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  charge:
+    type: object
+    properties:
+      status:
+        type: string
+        description: Status of the Charge
+      channel:
+        type: string
+        description: Channel of the product
+        example: api_link
+      reference:
+        type: string
+        format: uuid
+        description: payment request reference
+      order_id:
+        type: [string, "null"]
+        description: order id if exists
+      customer_email:
+        type: string
+        format: email
+        description: Customer email address attached to the charge
+      currency:
+        type: string
+        description: 3-letter ISO 4217 currency code
+        example: sgd
+      home_currency:
+        type: string
+        description: 3-letter ISO 4217 currency code
+        example: sgd
+      amount:
+        type: number
+        description: Amount of the charge
+      amount_without_fees:
+        type: number
+        description: Amount of the charge without admin fees
+      exchange_rate:
+        type: [string, "null"]
+      fixed_fee:
+        type: number
+        example: 0
+      discount_fee:
+        type: number
+        example: 0
+      discount_fee_rate:
+        type: number
+        example: 0
+      refunded_amount:
+        type: number
+        example: 0
+      business:
+        type: object
+        properties:
+          user_id:
+            type: [string, "null"]
+            format: uuid
+            description: Business user id
+          user_display:
+            type: [string, "null"]
+            description: Business user name or email
+          location:
+            type: [string, "null"]
+            description: Name of the location
+            example: Main Store
+      notes:
+        type: [string, "null"]
+        description: A remark note about the charge
+      relatable_id:
+        type: [string, "null"]
+        description: The relatable model id
+      relatable_type:
+        type: [string, "null"]
+        description: The relatable model type
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+      closed_at:
+        type: string
+        description: Completed at timestamp
+        format: date-time
+  payment_method:
+    type: object
+    properties:
+      code:
+        type: string
+        example: stripe_sg
+      display_logo:
+        type: object
+        properties:
+          sm:
+            description: Small image
+            example: https://api.hit-pay.com/icons/methods/sm/card.png
+            type: string
+          md:
+            description: Medium image
+            example: https://api.hit-pay.com/icons/methods/md/card.png
+            type: string
+          lg:
+            description: large image
+            example: https://api.hit-pay.com/icons/methods/lg/card.png
+            type: string
+          svg:
+            type: string
+            example: https://api.hit-pay.com/icons/methods/svg/card.svg
+      provider_reference:
+        type: [string, "null"]
+        description: Provider charge id
+        example: ch_3Of1djAMHowMCIhZ0k2F61yb
+      type:
+        type: [string, "null"]
+        description: Payment provider charge type
+        example: charge
+      method:
+        type: string
+        description: Payment provider charge method
+        example: paynow
+      details:
+        type: [object, "null"]
+        description: Card details
+        properties:
+          brand:
+            type: string
+            example: Visa
+          last4:
+            type: string
+            example: 4242
+          country_code:
+            type: string
+            example: US
+          country:
+            type: string
+  payment_request:
+    $ref: './PaymentLink.yaml'
+  customer:
+    type: object
+    properties:
+      name:
+        type: [string, "null"]
+      email:
+        type: string
+      phone_number:
+        type: string
+      phone_number_country_code:
+        type: [string, "null"]
+        description: Phone country code
+        example: 65
+      address:
+        type: object
+        properties:
+          street:
+            type: [string, "null"]
+            example: 123 Main St
+          city:
+            type: [string, "null"]
+            example: San Francisco
+          state:
+            type: [string, "null"]
+            example: CA
+          country:
+            type: [string, "null"]
+            example: US
+          postal_code:
+            type: [string, "null"]
+            example: 94105
+  refunds:
+    type: [array, "null"]
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 9b43d213-4047-4182-bd71-43a7a3471fec
+        refunded_by:
+          type: string
+          example: Ban Korh
+        payment_id:
+          type: string
+          format: uuid
+          description: Charge id
+          example: 9b3b83df-7eff-44a4-92b5-c1b9099b00cb
+        amount_refunded:
+          type: number
+          example: 10
+        total_amount:
+          type: number
+          example: 15
+        currency:
+          type: string
+          example: sgd
+        status:
+          type: string
+          example: succeeded
+        payment_method:
+          type: string
+          example: card
+        created_at:
+          type: string
+          format: date-time
+          example: 2024-02-06T01:58:15
+  webhook_logs:
+    type: [array, "null"]
+    items:
+      $ref: './RequestLog.yaml'

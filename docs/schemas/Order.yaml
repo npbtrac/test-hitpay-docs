@@ -1,0 +1,133 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  order_display_number:
+    type: number
+    description: Order display number
+    example: 4321
+  channel:
+    type: string
+    description: Channel of the order
+    enum:
+      - point_of_sale
+      - quick_sale
+  version:
+    type: string
+    description: Version of the order
+    example: '2.0'
+    enum:
+      - '1.0'
+      - '2.0'
+  location:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+      name:
+        type: string
+        example: Main Store
+  business_user_id:
+    type: string
+    example: 34
+  customer_id:
+    type: string
+    format: uuid
+  customer:
+    type: object
+    properties:
+      name:
+        type: string
+        example: John Doe
+      phone_number:
+        type: string
+        example: 6567463879
+      email:
+        type: string
+        format: email
+        example: customer@domain.com
+      address:
+        type: object
+        properties:
+          street:
+            type: string
+            example: 123 Main St
+          city:
+            type: string
+            example: San Francisco
+          state:
+            type: string
+            example: CA
+          country:
+            type: string
+            example: US
+          postal_code:
+            type: string
+            example: 94105
+  customer_pickup:
+    type: boolean
+    description: Is the order for customer pickup
+    example: true
+  line_items:
+    type: array
+    items:
+      $ref: './OrderLineItem.yaml'
+  amount:
+    type: number
+    format: float
+    description: Total amount of the order
+    example: 12.00
+  subtotal:
+    type: number
+    format: float
+    description: Subtotal amount of the order
+    example: 10.00
+  currency:
+    type: string
+    description: 3-letter ISO 4217 currency code
+    example: sgd
+  status:
+    type: string
+    description: Status of the order
+    enum:
+      - draft
+      - requires_point_of_sales_action
+      - requires_payment_method
+      - requires_business_action
+      - requires_customer_action
+      - completed
+      - cancelled
+      - expired
+  payment_status:
+    type: string
+    description: Payment status of the order
+    enum:
+      - paid
+      - canceled
+      - refunded
+      - partially_refunded
+      - awaiting_payment
+  remark:
+    type: string
+    description: Remark of the order
+    example: Order remark
+  qr_code_data:
+    type: object
+    properties:
+      qr_code:
+        type: string
+        description: QR code content for qr-code endpoint
+      qr_code_expiry:
+        type: string
+        description: QR code expire date
+  closed_at:
+    type: string
+    format: date-time
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time

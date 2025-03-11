@@ -1,0 +1,323 @@
+post:
+  tags:
+    - Order
+  summary: Create order
+  description: Create order
+  operationId: CreateOrder
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            channel:
+              type: string
+              description: Order channel
+              enum:
+                - point_of_sale
+                - quick_sale
+            amount:
+              type: number
+              description: Order amount
+              example: 100
+            currency:
+              type: string
+              description: 3-letter ISO 4217 currency code
+              example: sgd
+            remark:
+              type: string
+              description: Order remark
+              example: Order remark
+            location_id:
+              type: string
+              format: uuid
+              description: Location id
+            source:
+              type: string
+              description: Order source
+              enum:
+                - kiosk_quick_collect
+                - kiosk_point_of_sale
+                - mobile_quick_collect
+                - mobile_quick_sale
+                - mobile_point_of_sale
+                - web_quick_sale
+                - web_point_of_sale
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+get:
+  tags:
+    - Order
+  summary: Get list of orders
+  description: Get list of orders
+  operationId: GetListOrders
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: per_page
+      in: query
+      schema:
+        type: integer
+        default: 10
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    - name: statuses
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - completed
+            - pending
+            - sent
+            - draft
+            - expired
+            - canceled
+        description: Filter by statuses
+    - name: fulfilment_types
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - in_store
+            - shipping
+            - pickup
+            - online
+        description: Filter by fulfilment types
+    - name: fulfilment_statuses
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - payment_in_progress
+            - pending
+            - completed
+            - canceled
+        description: Filter by fulfilment statuses
+    - name: payment_statuses
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - paid
+            - canceled
+            - refunded
+            - partially_refunded
+            - awaiting_payment
+        description: Filter by payment statuses
+    - name: channels
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - point_of_sale
+            - quick_sale
+            - store_checkout
+        description: Filter by channels
+    - name: user_ids
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          format: number
+        description: Filter by business user id
+    - name: location_ids
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          format: uuid
+        description: Filter by location id
+    - name: amount_from
+      in: query
+      schema:
+        type: number
+        description: Filter by amount from
+    - name: amount_to
+      in: query
+      schema:
+        type: number
+        description: Filter by amount to
+    - name: date_from
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date from
+    - name: date_to
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date to
+    - name: keywords
+      in: query
+      schema:
+        type: string
+        description: Search by order remark or customer email or order_display_number or customer name
+    - name: sort_by
+      in: query
+      schema:
+        type: string
+        description: Sort by
+        enum:
+          - created_at
+          - slot_datetime
+    - name: sort_by_direction
+      in: query
+      schema:
+        type: string
+        description: Sort direction
+        enum:
+          - asc
+          - desc
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    order_display_number:
+                      type: number
+                      description: Order display number
+                      example: 4321
+                    channel:
+                      type: string
+                      description: Channel of the order
+                      enum:
+                        - point_of_sale
+                        - quick_sale
+                    remark:
+                      type: string
+                      description: Order remark
+                      example: Order remark
+                    customer_name:
+                      type: string
+                      description: Customer name
+                      example: John Doe
+                    customer_email:
+                      type: string
+                      format: email
+                      description: Customer email
+                      example: john@domain.com
+                    customer_phone_number:
+                      type: string
+                      description: Customer phone number
+                      example: 6567463879
+                    executor:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        display_name:
+                          type: string
+                          example: Cashier 1
+                        email:
+                          type: string
+                          format: email
+                          example: cashier1@domain.com
+                    location:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                          example: Main Store
+                        address:
+                          type: string
+                          example: 123 Main St, San Francisco
+                    line_items:
+                      type: array
+                      items:
+                        $ref: '../../../../schemas/OrderLineItem.yaml'
+                    amount:
+                      type: number
+                      format: float
+                      example: 100.00
+                    currency:
+                      type: string
+                      description: 3-letter ISO 4217 currency code
+                      example: sgd
+                    status:
+                      type: string
+                      enum:
+                        - completed
+                        - pending
+                        - sent
+                        - draft
+                        - expired
+                        - canceled
+                    fulfilment_type:
+                      type: string
+                      enum:
+                        - in_store
+                        - shipping
+                        - pickup
+                    fulfilment_status:
+                      type: string
+                      enum:
+                        - pending_shipping
+                        - pending_pickup
+                        - completed_shipped
+                        - completed_pickup
+                        - completed_delivered
+                        - canceled
+                        - payment_in_progress
+                        - waiting_for_customer
+                    payment_status:
+                      type: string
+                      enum:
+                        - paid
+                        - canceled
+                        - refunded
+                        - partially_refunded
+                        - awaiting_payment
+                    closed_at:
+                      type: string
+                      format: date-time
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time

@@ -1,0 +1,31 @@
+post:
+  tags:
+    - Wallet Balances
+  summary: Move funds between wallets
+  description: Swap funds between "available" and "reserved" wallets
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: payment_provider
+      in: path
+      description: Payment Provider Code
+      required: true
+      schema:
+        type: string
+        example: hitpay
+    - $ref: '../../../../parameters/Currency.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ['from_available', 'to_available']
+              example: 'from_available'
+            amount:
+              type: number
+              example: 100
+  responses:
+    204:
+      description: Successful operation

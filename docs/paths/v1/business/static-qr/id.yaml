@@ -1,0 +1,132 @@
+get:
+  tags:
+    - Business Static QR Code
+  summary: Get a static QR code
+  description: Retrieve a specific static QR code for a business.
+  operationId: GetStaticQRCode
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440001"
+      description: "UUID of the business"
+    - name: static_qr_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440004"
+      description: "UUID of the static QR code"
+  responses:
+    '200':
+      description: 'Successfully retrieved static QR code'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/StaticQr.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+put:
+  tags:
+    - Business Static QR Code
+  summary: Update a static QR code
+  description: Update an existing static QR code for a business.
+  operationId: UpdateStaticQRCode
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440001"
+      description: "UUID of the business to update a QR code for"
+    - name: static_qr_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440004"
+      description: "UUID of the static QR code to update"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "Updated QR Code Name"
+            device_id:
+              type: [string, "null"]
+              format: uuid
+              example: "550e8400-e29b-41d4-a716-446655440002"
+            location_id:
+              type: [string, "null"]
+              format: uuid
+              example: "550e8400-e29b-41d4-a716-446655440003"
+  responses:
+    '200':
+      description: 'Successfully updated static QR code'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/StaticQr.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+delete:
+  tags:
+    - Business Static QR Code
+  summary: Delete a static QR code
+  description: Remove a static QR code from a business.
+  operationId: DeleteStaticQRCode
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440001"
+      description: "UUID of the business to delete a QR code from"
+    - name: static_qr_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440004"
+      description: "UUID of the static QR code to delete"
+  responses:
+    '200':
+      description: 'Successfully deleted static QR code'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Static QR deleted successfully."
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

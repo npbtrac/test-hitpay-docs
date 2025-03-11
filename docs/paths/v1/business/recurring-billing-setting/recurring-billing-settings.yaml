@@ -1,0 +1,140 @@
+get:
+  tags:
+    - Recurring Billing settings
+  summary: Setting for recurring billing
+  description: Setting for recurring billing
+  operationId: settingsForRecurringBilling
+  responses:
+    '200':
+      description: 'Ok'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status_after_retrying:
+                type: string
+                example: inactive
+                description: Status of recurring billing after a specific attempt
+              renewal_reminders:
+                type: bool
+
+post:
+  tags:
+    - Create recurring Billing settings
+  summary: Create settings for recurring billing
+  description: Settings for recurring billing status and status changing logic
+  operationId: createSettingsRecurringBilling
+  parameters:
+    - name: X-BUSINESS-API-KEY
+      in: header
+      schema:
+        type: string
+        example: '{{api_key}}'
+    - name: X-Requested-With
+      in: header
+      schema:
+        type: string
+        example: XMLHttpRequest
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            status_after_retrying:
+              type: string
+              example: inactive
+              description: Status of recurring billing after a specific attempt
+              required: true
+            renewal_reminders:
+              type: bool
+              require: true
+        example:
+          status_after_retrying: inactive
+          renewal_reminders: true
+  responses:
+    '201':
+      description: 'Created'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status_after_retrying:
+                type: string
+                example: inactive
+                description: Status of recurring billing after a specific attempt
+              renewal_reminders:
+                type: bool
+
+put:
+  tags:
+    - Update recurring Billing settings
+  summary: Update recurring Billing settings
+  description: Update recurring Billing settings
+  operationId: updateSettingsRecurringBilling
+  parameters:
+    - name: X-BUSINESS-API-KEY
+      in: header
+      schema:
+        type: string
+        example: '{{api_key}}'
+    - name: X-Requested-With
+      in: header
+      schema:
+        type: string
+        example: XMLHttpRequest
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            status_after_retrying:
+              type: string
+              example: inactive
+              description: Status of recurring billing after a specific attempt
+              required: true
+            renewal_reminders:
+              type: bool
+              required: true
+        example:
+          status_after_retrying: inactive
+          renewal_reminders: true
+  responses:
+    '201':
+      description: 'Created'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status_after_retrying:
+                type: string
+                example: inactive
+                description: Status of recurring billing after a specific attempt
+              renewal_reminders:
+                type: bool
+
+delete:
+  tags:
+    - Delete recurring Billing
+  summary: Delete recurring Billing
+  description: Delete recurring Billing
+  operationId: deleteRecurringBillingSettings
+  parameters:
+    - name: X-BUSINESS-API-KEY
+      in: header
+      schema:
+        type: string
+        example: '{{api_key}}'
+    - name: X-Requested-With
+      in: header
+      schema:
+        type: string
+        example: XMLHttpRequest
+
+  responses:
+    '201':
+      message: 'Ok'

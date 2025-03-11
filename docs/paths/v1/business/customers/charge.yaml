@@ -1,0 +1,46 @@
+get:
+  summary: List all Customer charges
+  operationId: listCustomerCharges
+  tags:
+    - Customers
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: customer_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: per_page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+    - name: status
+      in: query
+      schema:
+        type: string
+        enum:
+          - canceled
+          - failed
+          - refunded
+          - partially_refunded
+          - requires_customer_action
+          - requires_payment_method
+          - succeeded
+          - succeeded_manually
+          - void
+          - pending
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/Charge.yaml'
+    '404':
+      description: 'Not found'

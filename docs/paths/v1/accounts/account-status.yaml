@@ -1,0 +1,37 @@
+get:
+  summary: Get account status
+  description: Get account status
+
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              bank_account_status:
+                type: string
+                description: Bank status
+                example: pending
+              verification:
+                type: object
+                properties:
+                  overall_status:
+                    type: string
+                    example: pending
+                  owner_verification:
+                    type: string
+                    example: not_required
+                  business_verification:
+                    type: string
+                    example: pending
+              payment_providers:
+                type: object
+                properties:
+                  dbs_sg:
+                    type: object
+                    properties:
+                      setup_status:
+                        type: string
+                        example: completed

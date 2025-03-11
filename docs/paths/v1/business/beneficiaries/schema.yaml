@@ -1,0 +1,108 @@
+post:
+  tags:
+    - Beneficiaries
+  summary: Get Form Schema
+  description: |
+    This API returns a dynamic schema that depends on the values of certain parameters. 
+    The schema contains the fields and validation rules for each payment scenario. 
+    A payment scenario is a combination of these parameters: is_external, country, transfer_method, currency, holder_type. 
+    To get the final schema, you need to submit the field values and re-render the form multiple times until all the fields are completed. 
+    For example, if you submit only the country parameter, the API will return a schema with the fields for country and transfer_method. 
+    If you submit the country and transfer_method parameters, the API will return a schema with the fields for country, transfer_method, currency, and so on.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            is_external:
+              type: boolean
+              description: true - for external beneficiaries, false - for own bank accounts (used for daily wallet payouts)
+              example: true
+            country:
+              type: string
+              pattern: '^([a-z]{2})$'
+              minLength: 2
+              maxLength: 2
+              description: 2-letter ISO 3166-1 country code
+              example: "sg"
+            currency:
+              type: string
+              pattern: '^([a-z]{3})$'
+              minLength: 3
+              maxLength: 3
+              description: 3-letter ISO 4217 currency code
+              example: "sgd"
+            transfer_method:
+              type: string
+              enum: [local, swift]
+              example: "local"
+            holder_type:
+              type: string
+              enum: [individual, company]
+              example: "company"
+            form_fields: ## TODO: Taras to recheck this
+              type: object
+              description: "Form fields for user input, dynamically structured based on selected parameters."
+              anyOf:
+                - type: object
+                  required: [key, title, required, type, value]
+                  properties:
+                    key:
+                      type: string
+                    title:
+                      type: string
+                    required:
+                      type: boolean
+                    type:
+                      type: string
+                      enum: [input, password, email]
+                    value:
+                      type: string
+                - type: object
+                  required: [key, title, required, type, options, value]
+                  properties:
+                    key:
+                      type: string
+                    title:
+                      type: string
+                    required:
+                      type: boolean
+                    type:
+                      type: string
+                      enum: [select]
+                    options:
+                      type: array
+                      items:
+                        type: string
+                    value:
+                      type: string
+                - type: object
+                  required: [key, title, required, type, fields]
+                  properties:
+                    key:
+                      type: string
+                    title:
+                      type: string
+                    required:
+                      type: boolean
+                    type:
+                      type: string
+                      enum: [object]
+                    fields:
+                      type: object
+  responses:
+    '200':
+      description: A successful response
+      content:
+        application/json:
+          schema:
+            $ref: './components/schemas/ApiResponse.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

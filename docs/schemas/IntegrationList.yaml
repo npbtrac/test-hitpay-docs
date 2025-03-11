@@ -1,0 +1,29 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    created_at:
+      type: string
+    updated_at:
+      type: string
+    method_names:
+      type: array
+      items:
+        type: object
+        properties:
+          method:
+            $ref: '../schemas/PaymentMethod.yaml'
+          display_name:
+            type: string
+          sm:
+            type: string
+            description: Small method logo in PNG
+          md:
+            type: string
+            description: Medium method logo in PNG
+
+

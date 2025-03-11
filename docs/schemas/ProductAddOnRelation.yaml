@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    $ref: './common/Id.yaml'
+  business_product_id:
+    $ref: './common/ProductId.yaml'
+  business_add_on_id:
+    $ref: './common/AddOnId.yaml'
+  order_weight:
+    $ref: './business-add-on/OrderWeight.yaml'
+  is_required:
+    $ref: './business-add-on/IsRequired.yaml'

@@ -1,0 +1,42 @@
+post:
+  tags:
+    - Customer Display
+  summary: Pair the device
+  description: Pair the customer display device
+  operationId: PairCustomerDisplayDevice
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            pairing_code:
+              type: string
+            pos_device_id:
+              type: string
+              description: The unique identifier of the POS device
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/CustomerDisplayDevice.yaml'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

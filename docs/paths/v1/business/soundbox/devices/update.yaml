@@ -1,0 +1,51 @@
+put:
+  tags:
+    - SoundboxDevices
+  summary: Update a soundbox device
+  description: Update a soundbox device's label
+  operationId: UpdateSoundboxDevice
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - name: soundbox_device_id
+      in: path
+      schema:
+        type: string
+        format: uuid
+      required: true
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required: 
+            - label
+          properties:
+            label:
+              type: string
+              description: Label
+              example: "Downturn High Street Store"
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/SoundboxDevice.yaml'
+
+delete:
+  tags:
+    - SoundboxDevices
+  summary: Delete a soundbox device
+  description: Delete a soundbox device
+  operationId: DeleteSoundboxDevice
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - name: soundbox_device_id
+      in: path
+      schema:
+        type: string
+        format: uuid
+      required: true
+  responses:
+    '204':
+      description: 'Successfully'

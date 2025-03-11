@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "9b868785-4024-44ed-aa1f-21b6e9ac92b5"
+  code:
+    type: string
+    description: Unique feature code identifier
+    example: "store.whatsapp_form"
+  name:
+    type: string
+    description: Feature name
+    example: Store WhatsApp Form
+  hierarchy:
+    type: integer
+    description: Hierarchy of the feature - the larger the number the higher premium the feature
+    example: 2

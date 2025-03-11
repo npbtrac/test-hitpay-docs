@@ -1,0 +1,18 @@
+post:
+  tags:
+    - Store Design
+  summary: Publish Theme
+  description: Publish Online Store Theme
+  operationId: PublishTheme
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+    '404':
+      description: 'Not Found'

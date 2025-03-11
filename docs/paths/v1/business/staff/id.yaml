@@ -1,0 +1,20 @@
+get:
+  summary: View detail of staff
+  operationId: viewStaff
+  tags:
+    - Staff
+  parameters:
+    - $ref: '../../../../parameters/UserId.yaml'
+  responses:
+    '200':
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Staff.yaml'
+    '400':
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

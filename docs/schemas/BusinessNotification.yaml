@@ -1,0 +1,15 @@
+type: object
+properties:
+  business_id:
+    type: string
+    format: uuid
+    description: Business ID
+    example: 9b100ee9-f363-4284-93ec-103243609cca
+  event:
+    type: string
+    description: Event name
+    example: customer_receipt
+  channel:
+    type: string
+    description: Channel name
+    example: email

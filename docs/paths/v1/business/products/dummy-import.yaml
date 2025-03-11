@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Product
+  summary: Product dummy import
+  description: Product dummy import
+  operationId: ProductDummyImport
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            force:
+              type: boolean
+              description: By default, only import dummy products if no products are already present.
+              default: false
+  responses:
+    '204':
+      description: 'Successfully'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

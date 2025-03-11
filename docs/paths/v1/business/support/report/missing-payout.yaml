@@ -1,0 +1,27 @@
+post:
+  tags:
+    - Support
+  summary: Report Missing Payout
+  description: Report Missing Payout
+  operationId: reportMissingPayout
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            date:
+              type: string
+              example: '2024-09-05'
+            additional_details:
+              type: string
+              example: 'test description'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/support/SupportReport.yaml'

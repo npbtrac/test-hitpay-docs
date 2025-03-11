@@ -1,0 +1,127 @@
+get:
+  tags:
+    - Feature
+  summary: Get feature by id
+  description: Get feature by id
+  operationId: GetFeatureById
+  parameters:
+    - name: feature_id
+      in: path
+      schema:
+        type: string
+        format: uuid
+      required: true
+  responses:
+    '200':
+      description: 'Feature'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Feature.yaml'
+    '404':
+      description: 'Not Found'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+put:
+  tags:
+    - Feature
+  summary: Update feature by id
+  description: Update feature by id
+  operationId: UpdateFeatureById
+  parameters:
+    - name: feature_id
+      in: path
+      schema:
+        type: string
+        format: uuid
+      required: true
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "Feature Name"
+            description:
+              type: string
+              example: "Feature Description"
+            code:
+              type: string
+              example: "feature_code"
+            status:
+              type: string
+              enum:
+                - in_development
+                - available
+              example: "in_development"
+            eligibility_rules:
+              type: array
+              items:
+                type: object
+                properties:
+                  country:
+                    type: array
+                    items:
+                      type: string
+                    example: ["us"]
+            auto_approval_rules:
+              type: array
+              items:
+                type: object
+                properties:
+                  country:
+                    type: array
+                    items:
+                      type: string
+                    example: ["us"]
+                  business_type:
+                    type: string
+                    enum:
+                      - individual
+                      - company
+                      - partner
+                    example: "individual"
+  responses:
+    '200':
+      description: 'Feature'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Feature.yaml'
+    '404':
+      description: 'Not Found'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+delete:
+  tags:
+    - Feature
+  summary: Delete feature by id
+  description: Delete feature by id
+  operationId: DeleteFeatureById
+  parameters:
+    - name: feature_id
+      in: path
+      schema:
+        type: string
+        format: uuid
+      required: true
+  responses:
+    '204':
+      description: 'Successful response'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

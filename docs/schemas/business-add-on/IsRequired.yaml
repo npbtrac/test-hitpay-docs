@@ -1,0 +1,4 @@
+type: integer
+description: The flag to specify the Add-on is required or not
+enum: [0, 1]
+example: 1

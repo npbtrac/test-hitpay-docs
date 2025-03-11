@@ -1,0 +1,89 @@
+get:
+  tags:
+    - SoundboxDevices
+  summary: Get list of soundbox devices
+  description: Get list of soundbox devices
+  operationId: GetSoundboxDevices
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - name: per_page
+      in: query
+      schema:
+        type: integer
+        default: 25
+    - name: keywords
+      in: query
+      schema:
+        type: string
+        description: Search by label or name
+    - name: cursor
+      in: query
+      schema:
+        type: string
+        description: Cursor value to get next or prev page
+  responses:
+    '200':
+      description: A list of soundbox devices.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../../schemas/SoundboxDevice.yaml'
+              links:
+                type: object
+                properties:
+                  first:
+                    type: [string, "null"]
+                  last:
+                    type: [string, "null"]
+                  prev:
+                    type: [string, "null"]
+                  next:
+                    type: [string, "null"]
+              meta:
+                type: object
+                properties:
+                  path:
+                    type: string
+                  per_page:
+                    type: integer
+                  next_cursor:
+                    type: [string, "null"]
+                  prev_cursor:
+                    type: [string, "null"]
+
+post:
+  tags:
+    - SoundboxDevices
+  summary: Create a soundbox device
+  description: Create a soundbox device
+  operationId: CreateSoundboxDevice
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required: 
+            - device_sn
+          properties:
+            device_sn:
+              type: string
+              description: Device Serial Number
+              example: "2321A3249SDF932"
+            label:
+              type: string
+              description: Label
+              example: "Downturn High Street Store"
+  responses:
+    '200':
+      description: 'Successful'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/SoundboxDevice.yaml'

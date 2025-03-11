@@ -1,0 +1,57 @@
+put:
+  tags:
+    - SubscriptionPaymentMethods
+  summary: Update a subscription payment method
+  description: Update a subscription payment method
+  operationId: UpdateBusinessSubscriptionPaymentMethods
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - name: subscription_payment_method_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            is_default:
+              type: boolean
+              example: true
+              description: Is default payment method for the business
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/SubscriptionPaymentMethod.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/Error.yaml'
+
+delete:
+  tags:
+    - SubscriptionPaymentMethods
+  summary: Delete a subscription payment method
+  description: Delete a subscription payment method
+  operationId: DeleteBusinessSubscriptionPaymentMethods
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - name: subscription_payment_method_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '204':
+      description: 'Successfully'
+    '404':
+      description: 'Not found'

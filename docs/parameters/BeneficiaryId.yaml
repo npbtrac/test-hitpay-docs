@@ -1,0 +1,7 @@
+name: beneficiary_id
+in: path
+description: The unique identifier for a beneficiary
+required: true
+schema:
+  type: string
+  format: uuid

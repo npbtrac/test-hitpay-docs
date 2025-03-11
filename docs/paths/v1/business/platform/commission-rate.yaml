@@ -1,0 +1,26 @@
+put:
+  tags:
+    - Platform
+  summary: Set Commission Rate
+  description: Set Platform Commission Rate
+  operationId: setCommissionRate
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            rate:
+              type: string
+              example: '55'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/platform/Platform.yaml'
+    '404':
+      description: 'Not Found'

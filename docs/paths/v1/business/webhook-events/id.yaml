@@ -1,0 +1,50 @@
+put:
+  summary: Update Webhook Event
+  operationId: updateWebhookEvent
+  tags:
+    - Webhook Events
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: webhook_event_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../schemas/WebhookEventPayload.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/WebhookEvent.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+delete:
+  summary: Delete Webhook Event
+  operationId: deleteWebhookEvent
+  tags:
+    - Webhook Events
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: webhook_event_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '204':
+      description: 'Successfully'
+    '404':
+      description: 'Not Found'

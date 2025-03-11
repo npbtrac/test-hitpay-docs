@@ -1,0 +1,26 @@
+post:
+  tags:
+    - Order
+  summary: Print order receipt
+  description: Print order receipt
+  operationId: PrintOrderReceipt
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            terminal_id:
+              type: string
+              description: Terminal ID.
+  responses:
+    '204':
+      description: 'Successfully'

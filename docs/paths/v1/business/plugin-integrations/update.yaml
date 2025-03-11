@@ -1,0 +1,28 @@
+tags:
+  - Integrations
+summary: Update existing integration
+parameters:
+  - $ref: '../../../../parameters/BusinessId.yaml'
+  - name: integration_id
+    in: path
+    description: The unique identifier of the integration
+    required: true
+    schema:
+      type: string
+      format: uuid
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../../../schemas/IntegrationCreateEdit.yaml'
+responses:
+  '200':
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../schemas/Integration.yaml'
+  '404':
+    description: Wrong business or integration id
+

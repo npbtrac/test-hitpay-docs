@@ -1,0 +1,47 @@
+post:
+  tags:
+    - Product
+  summary: Product bulk import
+  description: Product bulk import
+  operationId: ProductBulkImport
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            products:
+              type: string
+              format: binary
+              description: Products file in csv,xls,xlsx format. Max size 5MB.
+            source:
+              type: string
+              default: hitpay
+              enum:
+                - hitpay
+                - shopify
+                - shopee
+                - lazada
+            overwrite:
+              type: boolean
+              description: Overwrite existing products
+              default: false
+          required:
+            - products
+  responses:
+    '204':
+      description: 'Successfully'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

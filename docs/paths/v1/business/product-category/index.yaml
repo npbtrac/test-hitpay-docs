@@ -1,0 +1,112 @@
+post:
+  tags:
+    - Product Category
+  summary: Create product category
+  description: Create product category
+  operationId: CreateProductCategory
+  parameters:
+    - name: business_id
+      required: true
+      in: path
+      schema:
+        type: string
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Product category name
+              example: Category 1
+            handle:
+              type: string
+              description: Product category handle
+              example: category-1
+            active:
+              type: boolean
+              description: Product category status
+              example: true
+            parent_id:
+              type: string
+              format: uuid
+              description: Parent product category id
+            emoji:
+              type: string
+              description: Product category emoji
+              example: 🍔
+            pos_color:
+              type: string
+              description: Product category color
+              example: "#000000"
+            image:
+              type: string
+              format: binary
+              description: Product category image
+          required:
+            - name
+            - active
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/ProductCategory.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+get:
+  tags:
+    - Product Category
+  summary: Get list of product categories
+  description: Get list of product categories
+  operationId: GetListProductCategories
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    - name: active
+      in: query
+      schema:
+        type: boolean
+    - name: parent_id
+      in: query
+      schema:
+        type: string
+        format: uuid
+        description: List all sub-categories of the given parent category
+    - name: keywords
+      in: query
+      schema:
+        type: string
+        description: Search by name
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/ProductCategory.yaml'

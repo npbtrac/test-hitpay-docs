@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Wallet Balances
+  summary: Estimate Payout
+  description: Estimate Payout
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              source_amount:
+                type: integer
+                example: 100
+              source_currency:
+                type: string
+                example: "sgd"
+              exchange_rate:
+                type: number
+                format: float
+                example: 1.0000
+              target_amount:
+                type: integer
+                example: 99
+              target_currency:
+                type: string
+                example: "sgd"
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

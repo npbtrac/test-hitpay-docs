@@ -1,0 +1,30 @@
+post:
+  tags:
+    - Beneficiaries
+  summary: Mark as favourite
+  description: Mark beneficiary as favourite
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/BeneficiaryId.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Beneficiary.yaml'
+delete:
+  tags:
+    - Beneficiaries
+  summary: Un-mark as favourite
+  description: Un-mark beneficiary as favourite
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/BeneficiaryId.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Beneficiary.yaml'

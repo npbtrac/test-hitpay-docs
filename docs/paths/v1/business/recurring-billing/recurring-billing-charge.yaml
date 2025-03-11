@@ -1,0 +1,39 @@
+post:
+  tags:
+  - Recurring Billing
+  summary: 02 Charge the saved card
+  description: 02 Charge the saved card
+  operationId: 02ChargeTheSavedCard
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: string
+              example: '49.99'
+            currency:
+              type: string
+              example: 'USD '
+        example:
+          amount: '49.99'
+          currency: 'USD '
+  responses:
+    '200':
+      description: ''
+parameters:
+- name: recurring_billing_id
+  in: path
+  required: true
+  schema:
+    type: string
+    example: '{{recurring_billing_id}}'
+  description: |
+    Add the card before charging

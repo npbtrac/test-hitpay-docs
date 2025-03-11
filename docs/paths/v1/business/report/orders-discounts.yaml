@@ -1,0 +1,85 @@
+get:
+  tags:
+    - Report
+  summary: Get order discounts report
+  description: Get order discounts report
+  operationId: GetOrderDiscountsReport
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: from_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date from
+    - name: to_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date to
+    - name: channel
+      in: query
+      schema:
+        type: string
+        description: Filter by channel
+        enum:
+          - store_checkout
+          - point_of_sale
+          - quick_sale
+    - name: currency
+      in: query
+      schema:
+        type: string
+        description: Filter by currency
+        enum:
+          - sgd
+          - usd
+          - eur
+    - name: user_ids
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          format: number
+        description: Filter by business user id
+    - name: location_ids
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          format: uuid
+        description: Filter by location id
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      example: 123e4567-e89b-12d3-a456-426614174000
+                      description: Discount ID.
+                    name:
+                      type: string
+                      description: Discount name.
+                      example: "Discount 1"
+                    amount_discounted:
+                      type: number
+                      format: float
+                      example: 1000.0
+                    discounts_applied:
+                      type: number
+                      format: int
+                      example: 100
+                      description: Number of discounts applied.

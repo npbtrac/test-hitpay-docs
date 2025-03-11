@@ -1,0 +1,21 @@
+post:
+  tags:
+    - Payment request
+  summary: Create Payment Request
+  description: Create Payment Request
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../schemas/CreatePaymentRequest.yaml'
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/PaymentRequest.yaml'
+
+
+

@@ -1,0 +1,32 @@
+get:
+  tags:
+    - Support
+  summary: Get Plain Info Token
+  description: Get Plain Info Token
+  operationId: getPlainInfoToken
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - name: token
+      in: path
+      description: The token identifier for a support chat access
+      required: true
+      schema:
+        type: string
+        format: JWT
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/support/Plain.yaml'
+    '401':
+      description: 'Unauthorized'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: 'Invalid token'

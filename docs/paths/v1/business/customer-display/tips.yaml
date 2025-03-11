@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Customer Display
+  summary: Get tip settings
+  description: Get tip settings
+  operationId: GetCustomerDisplayTipSettings
+  security:
+    - cdmAuth: []
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              tips_enabled: 
+                type: boolean
+              tip_option_1:
+                type: number
+                format: float
+                description: Tip percentage for tip_option_1
+                example: 0.1
+              tip_option_2:
+                type: number
+                format: float
+                description: Tip percentage for tip_option_2
+                example: 0.15
+              tip_option_3:
+                type: number
+                format: float
+                description: Tip percentage for tip_option_3
+                example: 0.2
+              custom_tip_enabled:
+                type: boolean
+                description: Tip custom enabled
+    '404':
+      description: 'Not Found'

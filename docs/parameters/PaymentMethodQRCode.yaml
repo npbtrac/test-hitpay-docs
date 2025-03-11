@@ -1,0 +1,12 @@
+name: payment_method
+in: path
+description: Payment Method Code, allowed v
+required: true
+schema:
+  type: string
+  enum:
+    - paynow_online
+    - qrph
+    - doku_qris
+    - durian_qris
+    - shopee_pay

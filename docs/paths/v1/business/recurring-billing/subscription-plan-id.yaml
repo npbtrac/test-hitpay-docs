@@ -1,0 +1,90 @@
+get:
+  tags:
+  - Subscription Plan
+  summary: 03. Get a subscription plan detail
+  description: 03. Get a subscription plan detail
+  operationId: 03GetASubscriptionPlanDetail
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  responses:
+    '200':
+      description: ''
+
+put:
+  tags:
+  - Subscription Plan
+  summary: 04. Update subscription plan
+  description: 04. Update subscription plan
+  operationId: 04UpdateSubscriptionPlan
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: string
+              example: '{{amount}}'
+            currency:
+              type: string
+              example: USD
+            cycle:
+              type: string
+              example: '{{cycle}}'
+            cycle_frequency:
+              type: string
+              example: '{{cycle_frequency}}'
+            cycle_repeat:
+              type: string
+              example: '{{cycle_repeat}}'
+            description:
+              type: string
+              example: Update_{{$timestamp}}
+            name:
+              type: string
+              example: Update_{{$timestamp}}
+            redirect_url:
+              type: string
+              example: https://www.google.com
+            reference:
+              type: string
+              example: Reference_{{$timestamp}}
+        example:
+          amount: '{{amount}}'
+          currency: USD
+          cycle: '{{cycle}}'
+          cycle_frequency: '{{cycle_frequency}}'
+          cycle_repeat: '{{cycle_repeat}}'
+          description: Update_{{$timestamp}}
+          name: Update_{{$timestamp}}
+          redirect_url: https://www.google.com
+          reference: Reference_{{$timestamp}}
+  responses:
+    '200':
+      description: ''
+parameters:
+- name: plan_id
+  in: path
+  required: true
+  schema:
+    type: string

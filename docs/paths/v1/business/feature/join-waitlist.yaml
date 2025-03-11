@@ -1,0 +1,30 @@
+post:
+  tags:
+    - Business Feature
+  summary: Join waitlist
+  description: Join waitlist
+  operationId: JoinWaitlist
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: feature_id
+      in: path
+      schema:
+        type: string
+      required: true
+  responses:
+    "200":
+      description: "Successfully"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Join waitlist successfully"
+    "422":
+      description: "Unprocessable Entity"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/Error.yaml"

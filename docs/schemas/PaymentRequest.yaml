@@ -1,0 +1,131 @@
+type: object
+required:
+  - id
+  - currency
+  - status
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "9aa01532-9785-4f2a-bf81-26b45a1df7f6"
+  name:
+    type: string
+  email:
+    type: string
+    format: email
+  phone:
+    type: string
+    format: phone
+  amount:
+    type: string
+    format: number
+    example: "100"
+  currency:
+    type: string
+    maxLength: 3
+    example: SGD
+  is_currency_editable:
+    type: boolean
+  status:
+    type: string
+  purpose:
+    type: string
+    maxLength: 255
+  payment_methods:
+    type: array
+    items:
+      $ref: './PaymentMethod.yaml'
+  url:
+    type: string
+    format: uri
+  redirect_url:
+    type: string
+    format: uri
+    maxLength: 1028
+  webhook:
+    type: string
+    format: uri
+  send_sms:
+    type: boolean
+  send_email:
+    type: boolean
+  sms_status:
+    type: string
+  email_status:
+    type: string
+  allow_repeated_payments:
+    type: boolean
+  expiry_date:
+    type: string
+    format: date-time
+  address:
+    type: object
+    required:
+      - line1
+      - city
+      - state
+      - country
+      - postal_code
+    properties:
+      line1:
+        type: string
+      line2:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      state:
+        type: string
+      postal_code:
+        type: string
+  line_items:
+    type: array
+    items:
+      $ref: './LineItems.yaml'
+  executor_id:
+    type: string
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  payments:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        quantity:
+          type: string
+          format: number
+        status:
+          type: string
+        currency:
+          type: string
+        amount:
+          type: string
+          format: number
+        home_currency:
+          type: string
+          description: only for cross-border methods
+        home_currency_amount:
+          type: string
+          format: number
+          description: only for cross-border methods
+  qr_code_data:
+    type: object
+    description: Only valid for paynow_online, qrph_netbank, doku_qris and shopee_pay if generate_qr was true
+    properties:
+      qr_code:
+        type: string
+        description: QR code content for qr-code endpoint
+      qr_code_expiry:
+        type: string
+        description: QR code expire date
+  xbMethod:
+    type: boolean
+    description: true for cross-border payment_methods

@@ -1,0 +1,8 @@
+type: object
+properties:
+  commission_rate:
+    type: number
+    example: 0.55
+  platform_key:
+    type: string
+    example: platform_key

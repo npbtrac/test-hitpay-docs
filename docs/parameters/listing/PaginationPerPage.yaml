@@ -1,0 +1,7 @@
+name: per_page
+in: query
+example: 10
+description: Number of items to be returned per page
+schema:
+  type: number
+  default: 20

@@ -1,0 +1,84 @@
+get:
+  tags:
+    - Checkout
+  summary: Show the cart page details
+  description: Show all the details of the cart for the Cart page with cart content and discount
+  operationId: ShowCartPage
+  parameters:
+    - name: cart_id
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cart:
+                type: object  
+                properties:
+                  id:
+                    $ref: '../../../schemas/Cart.yaml#/id'
+                  business_id:
+                    $ref: '../../../schemas/Cart.yaml#/business_id'
+                  products:
+                    $ref: '../../../schemas/Cart.yaml#/products'
+                  discount_amount: 
+                    type: integer
+                    description: Amount of the discount amount to be applied for the cart, in minor units
+                    example: 10333
+                  applied_discounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: Id (from the Db) of the discount applied
+                        fixed_amount:
+                          type: integer
+                          description: Amount of the discount amount to be applied for the cart, in minor units
+                        percentage:
+                          type: number
+                          format: float
+                          description: Percentage of the discount amount to be applied for the cart
+                  cart_products_amount:
+                    type: integer
+                    description: Amount of the cart products, in minor units
+                  cart_product_add_ons_amount:
+                    type: integer
+                    description: Amount of the cart product add-ons, in minor units
+                  total_cart_amount:
+                    type: integer
+                    description: Total amount of the cart, in minor units
+              data:
+                type: object
+                properties:
+                  products:
+                    type: object
+                    description: List of products/variations in the cart in the format `cart_product_item_id` => item details. Details of the product for a cart item like data in cart, product data, variation data, image url, product amount, product add-ons amount, product total amount
+                  discount_names:
+                    type: array
+                    items:
+                      type: string
+                      description: Name of the discount rule that is applied to the cart
+                  discount_amount:
+                    type: integer
+                    description: Amount of the discount amount to be applied for the cart, in minor units
+                  cart_products_amount:
+                    type: integer
+                    description: Amount of the cart products, in minor units
+                  cart_product_add_ons_amount:
+                    type: integer
+                    description: Amount of the cart product add-ons, in minor units
+                  total_cart_amount:
+                    type: integer
+                    description: Total amount of the cart, in minor units
+    '400':
+      description: 'Bad Request'
+                  

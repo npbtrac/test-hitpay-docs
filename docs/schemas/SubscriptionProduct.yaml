@@ -1,0 +1,36 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: 9b868785-4024-44ed-aa1f-21b6e9ac92b5
+  parent_type:
+    type: string
+    enum: ["tier", "addon"]
+    example: "tier"
+    description: Product type - is it a Tier product or an Addon product
+  billing_frequency:
+    type: string
+    enum: [monthly, annually]
+    example: monthly
+    description: Billing frequency
+  hierarchy:
+    type: integer
+    example: 10
+    description: Hierarchy of the product - the larger the number the higher premium the product
+  currency:
+    type: string
+    description: 3-letter ISO 4217 currency code
+    example: sgd
+  price:
+    type: number
+    format: float
+    example: 99.99
+  name:
+    type: string
+    example: PRO
+  features:
+    type: array
+    description: Subscription features that comes with this product
+    items:
+      $ref: './SubscriptionFeature.yaml'

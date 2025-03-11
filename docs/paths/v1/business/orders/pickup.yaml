@@ -1,0 +1,47 @@
+put:
+  tags:
+    - Order
+  summary: Update order pickup details
+  description: Update order pickup details
+  operationId: UpdateOrderPickupDetails
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            pickup_location:
+              type: string
+              format: uuid
+              description: 'Pickup ID'
+            date_slot:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+                  example: '2024-01-01'
+                times:
+                  type: array
+                  description: 'Array of time slots. Each time slot is a string in the format "HH:MM AM/PM"'
+                  example: ['09:00 AM', '10:00 AM']
+                  items:
+                    type: string
+                    pattern: "^(0[1-9]|1[0-2]):[0-5]\\d (AM|PM)$"
+                    description: "Time in HH:mm A format (12-hour)"
+                    example: "02:30 AM"
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'

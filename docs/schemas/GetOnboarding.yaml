@@ -1,0 +1,38 @@
+type: object
+properties:
+  business_status:
+    type: string
+    example: pending_onboarding
+    description: the status can be pending_onboarding|pending_verification|active
+  status:
+    type: string
+    example: pending
+    description: the status can be pending|blocked|waitlist|all_okay
+  questionnaire:
+    type: array
+    items:
+      type: object
+      properties:
+        title:
+          type: string
+          example: What type of business do you run?
+        unified_field:
+          type: string
+          example: corporate.business_category
+        type:
+          type: string
+          example: select
+        options:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string 
+          example:
+            - label: Corporate
+              value: corporate
+            - lable: Retail
+              value: retail

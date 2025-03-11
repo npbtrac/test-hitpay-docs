@@ -1,0 +1,20 @@
+type: object
+properties:
+  host:
+    type: string
+    example: "sftp://example.com"
+  port:
+    type: number
+    example: 22
+  username:
+    type: string
+    example: "username"
+  directory_path:
+    type: string
+    example: "/path/to/file"
+  protocol:
+    type: string
+    enum:
+      - ftp
+      - sftp
+    example: "sftp"

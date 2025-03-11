@@ -1,0 +1,30 @@
+post:
+  summary: Bulk delete customers
+  description: Deletes multiple customers by their IDs.
+  tags:
+    - Customers
+  operationId: deleteBulkCustomers
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_ids:
+              type: array
+              items:
+                type: string
+                format: uuid
+                description: Customer id
+                example: 123e4567-e89b-12d3-a456-426614174000
+  responses:
+    '204':
+      description: 'Successfully deleted'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

@@ -1,0 +1,296 @@
+get:
+  tags:
+    - Transfers
+  summary: Get transfers
+  description: Retrieve the business transfers.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: beneficiary_id
+      in: query
+      description: The unique identifier for a beneficiary
+      schema:
+        type: string
+        format: uuid
+    - name: status
+      in: query
+      schema:
+        type: [string, "null"]
+        enum: [
+          'request_pending',
+          'paused',
+          'processing',
+          'requires_merchant_action',
+          'requires_admin_action',
+          'reverted',
+          'requires_manual_review',
+          'succeeded',
+          'succeeded_manually',
+          'to_be_processed',
+          'paid',
+        ]
+    - name: amount_from
+      in: query
+      schema:
+        type: [number, "null"]
+        format: float
+        example: 100.15
+    - name: amount_to
+      in: query
+      schema:
+        type: [number, "null"]
+        format: float
+        example: 100.15
+    - name: created_at_from
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+    - name: created_at_to
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+    - name: keywords
+      in: query
+      schema:
+        type: string
+        description: Search by ID, beneficiary name and remark
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "9ad4789b-2066-4a71-af9c-ee66714fbc84"
+                    beneficiary:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "9ad4789a-c864-48a6-a657-7fdfc57ba1fc"
+                        is_external:
+                          type: boolean
+                          example: true
+                        country:
+                          type: string
+                          example: "sg"
+                        currency:
+                          type: string
+                          example: "sgd"
+                        transfer_method:
+                          type: string
+                          example: "local"
+                        nickname:
+                          type: [string, "null"]
+                        remark:
+                          type: [string, "null"]
+                        holder_name:
+                          type: string
+                          example: "Dr. Chester Ernser IV"
+                        holder_type:
+                          type: string
+                          example: "company"
+                        bank_id:
+                          type: string
+                          example: "TMADHX0E2V2"
+                        bank_branch_code:
+                          type: [string, "null"]
+                        account_number:
+                          type: string
+                          example: "0123456789"
+                        created_at:
+                          type: string
+                          format: date-time
+                          example: "2023-12-12T17:31:11+08:00"
+                        updated_at:
+                          type: string
+                          format: date-time
+                          example: "2023-12-12T17:31:11+08:00"
+                        deleted_at:
+                          type: [string, "null"]
+                          format: date-time
+                    payment_currency:
+                      type: string
+                      example: "sgd"
+                    payment_amount:
+                      type: number
+                      example: 1
+                    source_currency:
+                      type: string
+                      example: "sgd"
+                    source_amount:
+                      type: number
+                      example: 1
+                    exchange_rate:
+                      type: [string, "null"]
+                    fixed_fee:
+                      type: number
+                      example: 0
+                    discount_fee:
+                      type: number
+                      example: 0
+                    discount_fee_rate:
+                      type: number
+                      example: 0
+                    fx_fee:
+                      type: number
+                      example: 0
+                    fx_fee_rate:
+                      type: number
+                      example: 0
+                    fee_payer:
+                      type: string
+                      enum:
+                        - "payer"
+                        - "beneficiary"
+                      example: "payer"
+                    remark:
+                      type: string
+                      example: "Test SGD transfer to US"
+                    status:
+                      type: string
+                      example: "to_be_processed"
+                    source_type:
+                      type: [string, "null"]
+                    created_at:
+                      type: string
+                      format: date-time
+                      example: "2023-12-12T17:31:11+08:00"
+              links:
+                type: object
+                properties:
+                  first:
+                    type: [string, "null"]
+                  last:
+                    type: [string, "null"]
+                  prev:
+                    type: [string, "null"]
+                  next:
+                    type: [string, "null"]
+              meta:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: "/v1/business/9ad4789a-52c4-4efa-a7ed-1f99cb7b6633/transfers"
+                  per_page:
+                    type: integer
+                    example: 25
+                  next_cursor:
+                    type: [string, "null"]
+                  prev_cursor:
+                    type: [string, "null"]
+post:
+  tags:
+    - Transfers
+  summary: Create a transfer
+  description: Create a new transfer
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            beneficiary_id:
+              type: [string, "null"]
+              format: uuid
+              example: "9ad4789a-c864-48a6-a657-7fdfc57ba1fc"
+              description: "Required without `beneficiary`"
+            beneficiary:
+              type: [object, "null"]
+              description: "Required without `beneficiary_id`"
+              properties:
+                country:
+                  type: string
+                  example: "sg"
+                currency:
+                  type: string
+                  example: "sgd"
+                transfer_method:
+                  type: string
+                  example: "local"
+                holder_name:
+                  type: string
+                  example: "Dr. Chester"
+                holder_type:
+                  type: string
+                  example: "company"
+                bank_swift_code:
+                  type: string
+                  example: "DBSSSGSG"
+                account_number:
+                  type: string
+                  example: "0123456789"
+            payment_amount:
+              type: [number, "null"]
+              example: 1
+            source_currency:
+              type: string
+              example: "sgd"
+            source_amount:
+              type: [number, "null"]
+              example: 1
+            remark:
+              type: string
+              example: "Test SGD transfer"
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            beneficiary_id:
+              type: string
+              format: uuid
+              example: "9ad4789a-c864-48a6-a657-7fdfc57ba1fc"
+            payment_amount:
+              type: [number, "null"]
+              example: 1
+            source_currency:
+              type: string
+              example: "sgd"
+            source_amount:
+              type: [number, "null"]
+              example: 1
+            remark:
+              type: string
+              example: "Test SGD transfer to US"
+            attached_file:
+              type: string
+              format: binary
+              description: "Only .jpg, .png, .gif and .pdf extensions are allowed. Maximum file size is 5MB."
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Transfer.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '409':
+      description: 'Conflict'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error message

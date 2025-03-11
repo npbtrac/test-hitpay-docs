@@ -1,0 +1,62 @@
+type: object
+properties:
+  id:
+    type: string
+    format: number
+    example: 1
+  type: 
+    type: string
+    enum: ["danger", "warning", "info"]
+    example: "danger"
+  condition:
+    type: object
+    properties:
+      country:
+        type: array
+        items:
+          type: string
+        example: ["MY", "SG"]
+      payment_method:
+        type: array
+        items:
+          type: string
+        example: ["grabpay", "shopee_pay"]
+      business:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            rule:
+              type: string
+              enum: ["business_has_two_fa_disabled", "business_has_payout_method_disabled"]
+  banner:
+    type: object
+    properties:
+      title:
+        type: string
+        example: "New Banner"
+      body:
+        type: string
+        example: "This is a new banner"
+      dismissible:
+        type: boolean
+        example: true
+      cta:
+        type: object
+        properties:
+          title:
+            type: string
+            example: "Use Alternate Payment"
+          action:
+            type: string
+            example: "navigate"
+          url:
+            type: string
+            example: "/payment-methods"
+  status:
+    type: string
+    enum: ["active", "inactive"]
+    example: "active"

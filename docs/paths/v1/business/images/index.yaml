@@ -1,0 +1,50 @@
+get:
+  tags:
+    - Business Images
+  summary: List Business Images
+  description: List Business Images
+  operationId: ListBusinessImages
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/listing/PaginationPage.yaml'
+    - $ref: '../../../../parameters/listing/PaginationPerPage.yaml'
+    - name: keywords
+      in: query
+      example: "keywoord1 keyword2"
+      description: Keywords to be searched, separate by space (all keywords should appear). Search field is caption
+      schema:
+        type: string
+    - name: group
+      in: query
+      example: "logo"
+      description: The group for the file to be uploaded to be set in the database
+      schema:
+        type: string
+        enum:
+          - logo
+          - product
+          - cover
+          - product-variation
+          - generic
+          - meta
+          - product-category
+      
+  responses:
+    '200':
+      description: A list of Business Images.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                $ref: '../../../../parameters/responses/listing-links.yaml'
+              meta:
+                $ref: '../../../../parameters/responses/listing-meta.yaml'
+              data:
+                type: array
+                items:
+                  type: object
+                  $ref: '../../../../schemas/BusinessImage.yaml'
+    '422':
+      $ref: '../../../../parameters/responses/422.yaml'

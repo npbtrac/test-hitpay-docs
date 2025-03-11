@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Product
+  summary: List of Business Add-ons that are linked to the product
+  description: List of Business Add-ons that are linked to the product
+  operationId: ListProductAddOns
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/ProductId.yaml'
+    - $ref: '../../../../parameters/listing/PaginationPage.yaml'
+    - $ref: '../../../../parameters/listing/PaginationPerPage.yaml'
+    - $ref: '../../../../parameters/listing/Keywords.yaml'
+      description: Keywords to be searched, should be separated by spaces (**all keywords should appear**). Search field is `name` of the Add-on.
+  responses:
+    '200':
+      description: A list of Business Add-ons that are linked to the product with pagination parameters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              links:
+                $ref: '../../../../parameters/responses/listing-links.yaml'
+              meta:
+                $ref: '../../../../parameters/responses/listing-meta.yaml'
+              data:
+                type: array
+                items:
+                  type: object
+                  $ref: '../../../../schemas/BusinessAddOn.yaml'
+    '404':
+      description: 'Not found'
+

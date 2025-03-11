@@ -1,0 +1,22 @@
+get:
+  tags: 
+    - Business Gto Malls
+  summary: Get GTO Malls for Business
+  description: Retrieve all GTO Malls for Business
+  operationId: GetGtoMallsForBusiness
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/GtoMall.yaml'
+    '404':
+      description: Not found

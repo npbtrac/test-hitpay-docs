@@ -1,0 +1,6 @@
+name: api_key_id
+in: path
+description: The unique identifier for a business API key
+required: true
+schema:
+  type: string

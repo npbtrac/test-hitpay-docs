@@ -1,0 +1,80 @@
+get:
+  tags:
+    - Business Static QR Code
+  summary: Get list of static QR codes
+  description: Retrieve a list of static QR codes for a given business.
+  operationId: GetStaticQRCodes
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440001"
+      description: "UUID of the business to retrieve QR codes for"
+  responses:
+    '200':
+      description: 'Successfully retrieved list of static QR codes'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/StaticQr.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+post:
+  tags:
+    - Business Static QR Code
+  summary: Create a static QR code
+  description: Create a new static QR code for a business.
+  operationId: CreateStaticQRCode
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440001"
+      description: "UUID of the business to create a QR code for"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "QR Code 1"
+            payment_provider_method:
+              type: string
+              example: "paynow_transfer"
+            device_id:
+              type: [string, "null"]
+              format: uuid
+              example: "550e8400-e29b-41d4-a716-446655440002"
+            location_id:
+              type: [string, "null"]
+              format: uuid
+              example: "550e8400-e29b-41d4-a716-446655440003"
+  responses:
+    '201':
+      description: 'Successfully created static QR code'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/StaticQr.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

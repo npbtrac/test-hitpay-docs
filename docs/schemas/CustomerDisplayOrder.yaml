@@ -1,0 +1,97 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  business_id:
+    type: string
+    format: uuid
+  order_display_number:
+    type: integer
+    description: Order display number
+    example: 4321
+  channel:
+    type: string
+    description: Channel of the order
+    enum:
+      - point_of_sale
+      - quick_sale
+      - store_checkout
+  customer:
+    type: object
+    properties:
+      name:
+        type: string
+        example: John Doe
+      phone_number:
+        type: string
+        example: 6567463879
+      email:
+        type: string
+      address:
+        type: object
+        properties:
+          street:
+            type: string
+            example: 123 Main St
+          city:
+            type: string
+            example: San Francisco
+          state:
+            type: string
+            example: CA
+          country:
+            type: string
+            example: US
+          postal_code:
+            type: string
+            example: 94105
+  location:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+      name:
+        type: string
+        example: Main Store
+  line_items:
+    type: array
+    items:
+      $ref: '../schemas/OrderLineItem.yaml'
+  currency:
+    type: string
+    description: Currency of the order
+    example: usd
+  status:
+    type: string
+    description: Status of the order
+    enum:
+      - draft
+      - completed
+      - canceled
+  remark:
+    type: string
+    description: Remark of the order
+    example: Order remark
+  payment_status:
+    type: string
+    description: Payment status of the order
+    enum:
+      - paid
+      - refunded
+      - partially_refunded
+  amount:
+    type: number
+    description: Total amount of the order
+    example: 100.00
+  closed_at:
+    type: string
+    format: date-time
+    description: Closed time of the order
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time

@@ -1,0 +1,135 @@
+get:
+  tags:
+    - Payment Providers
+  summary: Get all POS methods
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              paymentMethods:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    logos:
+                      type: object
+                      required:
+                        - sm
+                        - md
+                        - lg
+                        - svg
+                        - svg_square
+                        - png_square
+                      properties:
+                        sm:
+                          type: string
+                        md:
+                          type: string
+                        lg:
+                          type: string
+                        svg:
+                          type: string
+                        svg_square:
+                          type: string
+                        png_square:
+                          type: string
+                    method:
+                      type: string
+                    iconName:
+                      type: string
+                    displayName:
+                      type: string
+                    currencies:
+                      type: array
+                      items:
+                        type: string
+                    generate_qr:
+                      type: boolean
+              nativeQrMethods:
+                type: array
+                items:
+                  type: string
+              data:
+                type: array
+                items:
+                  type: string
+              point_of_sale_hidden_methods:
+                type: array
+                items:
+                  type: string
+              point_of_sale_methods:
+                type: array
+                items:
+                  type: string
+            example:
+              paymentMethods:
+                - logos:
+                    sm: "https://api.src.test/icons/methods/sm/alipay.png"
+                    md: "https://api.src.test/icons/methods/md/alipay.png"
+                    lg: "https://api.src.test/icons/methods/lg/alipay.png"
+                    svg: "https://api.src.test/icons/methods/svg/alipay.svg"
+                    svg_square: "https://api.src.test/icons/methods/svg_square/alipay.svg"
+                    png_square: "https://api.src.test/icons/methods/png_square/alipay.png"
+                  method: "qfpay_alipay"
+                  iconName: "alipay"
+                  displayName: "Alipay"
+                  currencies:
+                    - "sgd"
+                  generate_qr: true
+                - logos:
+                    sm: "https://api.src.test/icons/methods/sm/wechat.png"
+                    md: "https://api.src.test/icons/methods/md/wechat.png"
+                    lg: "https://api.src.test/icons/methods/lg/wechat.png"
+                    svg: "https://api.src.test/icons/methods/svg/wechat.svg"
+                    svg_square: "https://api.src.test/icons/methods/svg_square/wechat.svg"
+                    png_square: "https://api.src.test/icons/methods/png_square/wechat.png"
+                  method: "qfpay_wechat"
+                  iconName: "wechat"
+                  displayName: "WeChat"
+                  currencies:
+                    - "sgd"
+                  generate_qr: true
+                - logos:
+                    sm: "https://api.src.test/icons/methods/sm/atome.png"
+                    md: "https://api.src.test/icons/methods/md/atome.png"
+                    lg: "https://api.src.test/icons/methods/lg/atome.png"
+                    svg: "https://api.src.test/icons/methods/svg/atome.svg"
+                    svg_square: "https://api.src.test/icons/methods/svg_square/atome.svg"
+                    png_square: "https://api.src.test/icons/methods/png_square/atome.png"
+                  method: "atome"
+                  iconName: "atome"
+                  displayName: "Atome"
+                # Include other payment methods as needed
+              nativeQrMethods:
+                - "paynow_online"
+                - "qfpay_alipay"
+                - "qfpay_wechat"
+              data:
+                - "card"
+                - "card_present"
+                - "paynow_online"
+                - "qfpay_alipay"
+                - "qfpay_wechat"
+                - "cash"
+              point_of_sale_hidden_methods:
+                - "scan_to_pay"
+                - "scan_to_pay"
+                - "payment_link"
+                - "taptopay_android"
+                - "taptopay_ios"
+              point_of_sale_methods:
+                - "card"
+                - "card_present"
+                - "paynow_online"
+                - "qfpay_alipay"
+                - "qfpay_wechat"
+                - "scan_to_pay"
+                - "payment_link"
+                - "cash"
+                - "taptopay_android"

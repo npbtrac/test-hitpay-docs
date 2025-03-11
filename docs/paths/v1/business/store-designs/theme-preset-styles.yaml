@@ -1,0 +1,50 @@
+get:
+  tags:
+    - Store Design Theme
+  summary: Theme Preset Styles
+  description: Preset Styles List
+  operationId: GetPresetStyles
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+put:
+  tags:
+    - Preset Styles Update
+  summary: Preset Styles Update
+  description: Preset Styles Update
+  operationId: UpdatePresetStyles
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: preset
+      in: query
+      schema:
+        type: string
+    - name: sections
+      in: query
+      schema:
+        type: string
+    - name: publish
+      in: query
+      schema:
+        type: boolean
+  responses:
+    '200':
+      description: 'Successfully'
+    '404':
+      description: 'Not Found'

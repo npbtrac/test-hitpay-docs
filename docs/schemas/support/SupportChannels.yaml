@@ -1,0 +1,64 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: string
+      example: "contact_form"
+    title:
+      type: string
+      example: "Report an Issue"
+    description:
+      type: string
+      example: "Get the fastest help by reporting issues."
+    icon:
+      type: string
+      example: "report_icon.svg"
+    response_time:
+      type: number
+      example: 30
+    start_time:
+      type: string
+      example: "2025-01-15T01:00:00.000000Z"
+    end_time:
+      type: string
+      example: "2025-01-15T10:00:00.000000Z"
+    agent_available:
+      type: string
+      example: "John Doe"
+    data:
+      type: object
+      properties:
+        form_id:
+          type: string
+          example: "report_issue"
+        required_fields:
+          type: array
+          items:
+            type: string
+            example: "payment_method"
+        optional_fields:
+          type: array
+          items:
+            type: string
+            example: "customer_name"
+        plain_api_url:
+          type: string
+          example: "https://api.plain.com/forms"
+        hashed_email:
+          type: [string, "null"]
+          example: null
+        authentication_method:
+          type: [string, "null"]
+          example: null
+        auth_hash_expiry:
+          type: [string, "null"]
+          example: null
+        feedback_url:
+          type: [string, "null"]
+          example: null
+        whatsapp_url:
+          type: [string, "null"]
+          example: null
+
+

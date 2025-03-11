@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Customer Display
+  summary: Logout the customer display device
+  description: Logout the customer display device
+  operationId: LogoutTheCustomerDisplayDevice
+  security:
+    - cdmAuth: []
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '204':
+      description: 'Successfully'
+    '400':
+      description: 'Bad Request'

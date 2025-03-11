@@ -1,0 +1,35 @@
+post:
+  tags:
+    - Product
+  summary: Unink a Business Add-on from a Product
+  description: Unink a Business Add-on from a Product
+  operationId: UnlinkAddOnProduct
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/ProductId.yaml'
+      description: The unique identifier of the Product that Add-ons in the payload would be unlinked from
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            pivot:
+              type: object
+              properties:
+                business_add_on_id:
+                  $ref: '../../../../schemas/common/Id.yaml'
+                  description: The Id of the Existing Add On to be unlinked from the Product.
+                  required: true                 
+  responses:
+    '200':
+      description: 'Successfully done'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+

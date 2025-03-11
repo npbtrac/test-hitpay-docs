@@ -1,0 +1,4 @@
+type: string
+format: uuid
+description: The Business Id the record belongs to
+example: "98567029-f559-49f9-916b-042a4255b32a"

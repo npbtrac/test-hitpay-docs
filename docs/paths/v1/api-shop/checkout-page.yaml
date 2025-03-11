@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Api Shop
+  summary: Checkout Page
+  description: Display Data Cart Product with discount, Coupon and Shipping
+  operationId: getCheckoutData
+  parameters:
+    - name: business_id
+      in: path
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'

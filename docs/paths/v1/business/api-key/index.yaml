@@ -1,0 +1,35 @@
+get:
+  tags:
+    - Business API Key
+  summary: List Business API Keys
+  description: List Business API Keys
+  operationId: ListBusinessApiKeys
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: A list of Business API Keys with pagination parameters
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/BusinessApiKey.yaml'
+post:
+  summary: Create a Business API Key
+  operationId: CreateBusinessApiKey
+  tags:
+    - Business API Key
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '201':
+      description: Business API Key created successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true

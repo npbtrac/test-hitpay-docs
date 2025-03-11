@@ -1,0 +1,9 @@
+post:
+  tags:
+    - Auth
+  summary: Logout
+  description: Logout
+  operationId: Logout
+  responses:
+    '204':
+      description: 'Successfully'

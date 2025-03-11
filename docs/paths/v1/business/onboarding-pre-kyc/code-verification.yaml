@@ -1,0 +1,40 @@
+post:
+  tags:
+    - Self Serve Onboarding
+  summary: Code Verification
+  description: Verify the code
+  operationId: CodeVerification
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "1234567890abczyz"
+  responses:
+    '200':
+      description: 'Verify code submit'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "9df51aaf-11c0-4d83-8c2c-311ff3e4bc50"
+              status:
+                type: string
+                example: "pending_onboarding"
+              business_onboarding_status:
+                type: string
+                example: "pending"
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

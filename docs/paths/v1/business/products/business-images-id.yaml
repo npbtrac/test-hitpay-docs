@@ -1,0 +1,16 @@
+delete:
+  tags:
+    - Product
+  summary: Unlink a Business Image from the Product
+  description: Unlink a Business Image from the Product
+  operationId: UnlinkAProductImage
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/ProductId.yaml'
+    - $ref: '../../../../parameters/ImageId.yaml'
+  responses:
+    '204':
+      description: 'Successfully'
+    '404':
+      description: 'Not found'
+

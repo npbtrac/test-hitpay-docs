@@ -1,0 +1,89 @@
+get:
+  tags:
+    - Payment Providers
+  summary: Get all available payment providers for onboarding
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            required: 
+              -  disabled_providers
+            properties:
+              payment_providers:
+                type: array
+                items:
+                  type: object
+                  required: 
+                    - display_name
+                    - slug
+                    - methods
+                    - mcc_disabled_methods
+                    - method_logo
+                    - main_logo
+                    - onboarding_status
+                    - payment_enabled
+                    - payouts_enabled
+                  properties:
+                    display_name:
+                      type: string
+                    slug: 
+                      type: string
+                    methods:
+                      type: array
+                      items:
+                        type: string
+                    mcc_disabled_methods:
+                      type: array
+                      items:
+                        type: string
+                    method_logo:
+                      type: array
+                      items:
+                        $ref: '../../../../schemas/MethodLogo.yaml'
+                    main_logo:
+                      type: string
+                    onboarding_status:
+                      type: string
+                    payment_enabled:
+                      type: boolean
+                    payouts_enabled:
+                      type: boolean
+                    action_url:
+                      type: string
+                    should_api_connect:
+                      type: boolean
+                    error_message:
+                      type: boolean
+
+              disabled_providers:
+                type: array
+                items:
+                  type: string
+
+            example: # Here is where we define the explicit example
+              payment_providers:
+                - display_name: PayNow
+                  slug: dbs_sg
+                  methods:
+                    - paynow_online
+                  mcc_disabled_methods:
+                    []
+                  method_logo:
+                    - method: paynow_online
+                      sm: https://api.hit-pay.com/icons/methods/sm/paynow.png
+                      md: https://api.hit-pay.com/icons/methods/md/paynow.png
+                  main_logo: https://api.hit-pay.com/icons/payment-providers/paynow.png
+                  onboarding_status: success
+                  payment_enabled: true
+                  payouts_enabled: true
+                  action_url: https://dashboard.hit-pay.com/business/9229d05d-2f91-406f-9fd0-c05c27d28fcd/payments/payment-methods/paynow
+              disabled_providers:
+                []
+              
+
+

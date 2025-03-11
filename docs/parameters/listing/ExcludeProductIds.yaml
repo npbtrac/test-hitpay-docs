@@ -1,0 +1,10 @@
+name: exclude_product_ids[]
+in: query
+description: The array of Product Ids where linked Add-ons to them are excluded
+schema:
+  type: array
+  items: 
+    type: string
+    format: uuid
+    description: The Product Id where linked Add-ons to them are excluded
+    

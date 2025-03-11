@@ -1,0 +1,35 @@
+type: object
+properties: 
+  partner_details:
+    type: object
+    properties: 
+      partner_id:
+        type: string
+        format: uuid
+      name:
+        type: string
+        example: "John Doe"
+      email:
+        type: string
+        example: "jhondoe@gmail.com"
+      phone:
+        type: string
+        example: "+65 1234 5678"
+  status:
+    type: string
+    example: "accepted"
+  bank_account:
+    type: boolean
+    example: true
+  number_of_referred_businesses:
+    type: integer
+    example: 2
+  referral_code:
+    type: string
+    example: "ABCD1234" 
+  referral_link:
+    type: string
+    example: "https://dashboard.hit-pay.com/register?partner_referral=ABCDEF1234"
+  commission_rate:
+    type: number
+    example: 0.1

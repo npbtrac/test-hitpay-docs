@@ -1,0 +1,59 @@
+post:
+  tags:
+    - Wallet Balances
+  summary: Manually Request Payout
+  description: Manually request a payout for a business.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Payout amount
+  responses:
+    '200':
+      description: Payout Requested Successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Your payout is on the way to your bank.
+    '400':
+      description: Bad Request (e.g. insufficient funds)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: The wallet has insufficient balance.
+    '422':
+      description: Unprocessable Entity (e.g. invalid amount specified)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: The given data was invalid. The amount must be at least 1.
+              errors:
+                type: object
+                properties:
+                  amount:
+                    type: array
+                    items:
+                      type: string
+                      example: The amount must be at least 1.
+    '404':
+      description: Not Found

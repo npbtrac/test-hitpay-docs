@@ -1,0 +1,37 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+  name:
+    type: string
+    example: "GTO Integration 1"
+  frequency_type:
+    type: string
+    enum: ["hourly", "daily"]
+    example: "daily"
+  machine_no:
+    type: number
+    example: 3820932
+  sync_start_time:
+    type: string
+    pattern: "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+    description: "Time in HH:mm format (24-hour)"
+    example: "14:30"
+  status:
+    type: string
+    enum: ["active", "inactive"]
+    example: "active"
+  location:
+    $ref: "./Location.yaml"
+  sftp:
+    $ref: "./SftpDetail.yaml"
+  created_at:
+    type: string
+    format: date-time
+    example: "2021-07-01T00:00:00Z"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2021-07-01T00:00:00Z"

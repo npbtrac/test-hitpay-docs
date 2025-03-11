@@ -1,0 +1,123 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "9d33ccf5-19cd-4302-b2a0-17412194e736"
+    description: "The unique identifier for the static QR code"
+  name:
+    type: string
+    example: "Online 1"
+    description: "The name of the static QR code"
+  reference:
+    type: string
+    example: "SQRBJXAWN1MZ1JPW"
+    description: "The reference code for the static QR code"
+  payment_provider:
+    type: string
+    example: "dbs_max_sg"
+    description: "The payment provider associated with this QR code"
+  payment_provider_method:
+    type: string
+    example: "paynow_transfer"
+    description: "The payment provider method used"
+  payment_provider_method_logos:
+    type: array
+    items:
+      type: object
+      properties:
+        sm:
+          type: string
+          example: "https://api.hitpay.local/icons/methods/sm/paynow.png"
+          description: "Small logo for the payment method"
+        md:
+          type: string
+          example: "https://api.hitpay.local/icons/methods/md/paynow.png"
+          description: "Medium logo for the payment method"
+        lg:
+          type: string
+          example: "https://api.hitpay.local/icons/methods/lg/paynow.png"
+          description: "Large logo for the payment method"
+        svg:
+          type: string
+          example: "https://api.hitpay.local/icons/methods/svg/paynow.svg"
+          description: "SVG format logo for the payment method"
+        svg_square:
+          type: string
+          example: "https://api.hitpay.local/icons/methods/svg_square/paynow.svg"
+          description: "Square SVG format logo for the payment method"
+        png_square:
+          type: string
+          example: "https://api.hitpay.local/icons/methods/png_square/paynow.png"
+          description: "Square PNG format logo for the payment method"
+        method:
+          type: string
+          example: "paynow_transfer"
+          description: "The payment method name"
+        iconName:
+          type: string
+          example: "paynow"
+          description: "The icon name for the payment method"
+        displayName:
+          type: string
+          example: "PayNow Transfer"
+          description: "The display name for the payment method"
+  device_id:
+    type: [string, "null"]
+    format: uuid
+    example: "550e8400-e29b-41d4-a716-446655440002"
+    description: "The UUID of the device associated with the QR code, if applicable"
+  device:
+    type: object
+    properties:
+      label:
+        type: string
+        example: "DEVICE 1"
+        description: "The label of the device"
+  location_id:
+    type: [string, "null"]
+    format: uuid
+    example: "96e21521-3c8a-4c21-b76d-558d2cb8b846"
+    description: "The UUID of the location associated with the QR code, if applicable"
+  location:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "location 1"
+        description: "The name of the location"
+  qr_value:
+    type: [string, "null"]
+    format: uuid
+    example: "https://securecheckout.hitpay.com/demo/paynow/eyJpdiI6ImFLS01rUzRvNC9sUUVGbVFLaFpsNFE9PSIsInZhbHVlIjoielorVUVianNjcUdLTTVhYnNuVitDcEJ4MWJ0bWtoNVFiMi9mV0s2bmsvYktMSi9DY09kVGV5cm9nNGhzanF4dlJrdm9rREhrdmIxa2pSNktkbmNEQlpGQUg1QVhuTGo5VlFTNXRwaWtnN3c9IiwibWFjIjoiMjZkYjAyNWE4MTg3MzEwOThkYmUwY2I5YjU1MDEzYjA0NmQ2MmFiZWQ5MWY5MGQ3ZWY1ODYwMzkwNGVjNTA4OCIsInRhZyI6IiJ9"
+    description: "QR String"
+  created_by:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: "9b38f2a6-b967-4146-a529-a27b159423cd"
+        description: "The UUID of the user who created the static QR code"
+      display_name:
+        type: string
+        example: "Maulana Dev"
+        description: "The display name of the user who created the static QR code"
+      first_name:
+        type: string
+        example: "Maulana"
+        description: "The first name of the user who created the static QR code"
+      last_name:
+        type: string
+        example: "Dev"
+        description: "The last name of the user who created the static QR code"
+  created_at:
+    type: string
+    format: date-time
+    example: "2024-01-01T00:00:00Z"
+    description: "The timestamp when the static QR code was created"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2024-01-02T00:00:00Z"
+    description: "The timestamp when the static QR code was last updated"

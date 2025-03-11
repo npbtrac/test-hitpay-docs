@@ -1,0 +1,98 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: 9b51b421-a182-4e8d-a6be-f4fce539dca9
+  business_id:
+    type: string
+    format: uuid
+    description: Business ID
+    example: 9b100ee9-f363-4284-93ec-103243609cca
+  executor_id:
+    type: string
+    format: uuid
+    description: Business ID
+    example: 9b100ee9-f363-4284-93ec-103243609cca
+  name:
+    type: [string, "null"]
+  email:
+    type: [string, "null"]
+    format: email
+    description: Email address attached to the payment request
+  phone:
+    type: [string, "null"]
+  amount:
+    type: string
+    example: 25.00
+  currency:
+    type: string
+    example: sgd
+  is_currency_editable:
+    type: boolean
+  status:
+    type: string
+    example: pending
+  current_status:
+    type: string
+    example: pending
+  purpose:
+    type: [string, "null"]
+  reference_number:
+    type: [string, "null"]
+  payment_methods:
+    type: array
+  url:
+    type: string
+    example: https://securecheckout.src.test/payment-request/@bankorh/9b3b7dea-d14a-409b-bebc-b30977e4db57/checkout
+  redirect_url:
+    type: [string, "null"]
+  webhook:
+    type: [string, "null"]
+  send_sms:
+    type: boolean
+  send_email:
+    type: boolean
+  sms_status:
+    type: string
+    example: pending
+  email_status:
+    type: string
+    example: sent
+  is_default:
+    type: boolean
+  platform_business_id:
+    type: [string, "null"]
+    format: uuid
+    example: 9b100ee9-f363-4284-93ec-103243609cca
+  commission_rate:
+    type: string
+    example: 0.0000
+  channel:
+    type: string
+    example: api_link
+  add_admin_fee:
+    type: number
+    example: 0
+  wifi_terminal_id:
+    type: [string, "null"]
+  allow_repeated_payments:
+    type: boolean
+  is_expired:
+    type: boolean
+  expiry_date:
+    type: [string, "null"]
+    format: date-time
+    example: 2024-02-06T01:58:15
+  address:
+    type: [string, "null"]
+  line_items:
+    type: [array, "null"]
+  created_at:
+    type: string
+    format: date-time
+    example: 2024-02-06T01:58:15
+  updated_at:
+    type: string
+    format: date-time
+    example: 2024-02-06T01:58:15

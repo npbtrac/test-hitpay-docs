@@ -1,0 +1,115 @@
+tags:
+  - Integrations
+summary: Get data for edit existing integration form
+parameters:
+  - $ref: '../../../../parameters/BusinessId.yaml'
+  - $ref: '../../../../parameters/IntegrationId.yaml'
+responses:
+  '200':
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            gatewayProvider:
+              $ref: '../../../../schemas/Integration.yaml'
+            data:
+              type: object
+              properties:
+                providers:
+                  type: object
+                  properties:
+                    ^.*$: # This matches any string, so it will apply to all payment provider keys.
+                      type: string
+                methods:
+                  type: object
+                  properties:
+                    ^.*$: # This matches any string, so it will apply to all payment provider keys.
+                      type: string
+                method_logos:
+                  type: array
+                  items:
+                    $ref: '../../../../schemas/MethodLogo.yaml'
+            recurringMethodAvailable:
+              type: array
+              items:
+                type: string
+
+          example: # Here is where we define the explicit example
+            gatewayProvider:
+              id: 63
+              business_id: 96f755bc-e113-4616-bbbf-3a0587667f45
+              name: "api_shopify"
+              method_names:
+                - upay_instapay
+                - upay_online
+              created_at: 2023-11-09T20:44:55.000000Z
+              updated_at: 2023-11-09T20:44:55.000000Z
+              xero_id: null
+              xero_branding_theme: null
+            data:
+              providers:
+                api_shopify: "Shopify Payments App"
+                wix: "Wix Payments App"
+                custom: "Payment Request APIs"
+                xero: "Xero"
+                prestashop: "Prestashop"
+                magento: "Magento"
+                ecwid: "Ecwid"
+                opencart: "OpenCart"
+                link: "Link"
+                invoice: "Invoice"
+                recurring_billing: "Recurring Billing"
+                woocomm: "WooCommerce Plugin"
+                store: "HitPay Store"
+                google_forms: "Google Forms"
+                api_whcms: "WHCMS"
+                api_odoo: "Odoo"
+              methods:
+                billease: "Billease"
+                grabpay_direct: "GrabPay Direct"
+                upay_bayd: "Bayad Center"
+                upay_ecpy: "ECPay"
+                upay_instapay: "Instapay"
+                upay_online: "Unionbank Online"
+                upay_pchc: "PesoNet"
+                upay_plwn: "Palawan Pawnshop"
+                xpay_card: "Cards"
+              method_logos:
+                - method: billease
+                  sm: https://dashboard.hit-pay.com/icons/methods/sm/billease.png
+                  md: https://dashboard.hit-pay.com/icons/methods/sm/billease.png
+                - method: grabpay_direct
+                  sm: https://dashboard.hit-pay.com/icons/methods/sm/grabpay.png
+                  md: https://dashboard.hit-pay.com/icons/methods/md/grabpay.png
+                - method: shopee_pay
+                  sm: https://dashboard.hit-pay.com/icons/methods/shopee.png
+                  md: https://dashboard.hit-pay.com/icons/methods/shopee.png
+                - method: upay_bayd
+                  sm: https://dashboard.hit-pay.com/icons/methods/bayad.png
+                  md: https://dashboard.hit-pay.com/icons/methods/bayad.png
+                - method: upay_ecpy
+                  sm: https://dashboard.hit-pay.com/icons/methods/ecpay.png
+                  md: https://dashboard.hit-pay.com/icons/methods/ecpay.png
+                - method: upay_instapay
+                  sm: https://dashboard.hit-pay.com/icons/methods/upay_instapay.png
+                  md: https://dashboard.hit-pay.com/icons/methods/upay_instapay.png
+                - method: upay_online
+                  sm: https://dashboard.hit-pay.com/icons/methods/ubonline.png
+                  md: https://dashboard.hit-pay.com/icons/methods/ubonline.png
+                - method: upay_pchc
+                  sm: https://dashboard.hit-pay.com/icons/methods/pesonet.png
+                  md: https://dashboard.hit-pay.com/icons/methods/pesonet.png
+                - method: upay_plwn
+                  sm: https://dashboard.hit-pay.com/icons/methods/plwn.png
+                  md: https://dashboard.hit-pay.com/icons/methods/plwn.png
+                - method: xpay_card
+                  sm: https://dashboard.hit-pay.com/icons/methods/card.png
+                  md: https://dashboard.hit-pay.com/icons/methods/card.png
+            recurringMethodAvailable:
+              - card_present
+  '404':
+    description: Wrong business or integration id
+
+

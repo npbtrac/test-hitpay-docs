@@ -1,0 +1,4 @@
+type: string
+description: The Name of the Add-on
+maximum: 255
+example: Deliver as a Birthday gift

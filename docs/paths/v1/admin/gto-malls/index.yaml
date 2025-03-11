@@ -1,0 +1,84 @@
+get:
+  tags: 
+    - GTO Malls
+  summary: Get GTO Malls
+  description: Get all GTO Malls
+  operationId: GetGtoMalls
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/GtoMall.yaml'
+    '404':
+      description: Not found
+post: 
+  tags: 
+    - GTO Malls
+  summary: Create GTO Mall
+  description: Create a new GTO Mall
+  operationId: CreateGtoMall
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: GTO Mall name
+              example: "GTO Mall 1"
+            description:
+              type: string
+              description: GTO Mall description
+              example: "GTO Mall 1 description"
+            key:
+              type: string
+              description: GTO Mall key
+              example: "gto-mall-1"
+            available_frequency:
+              type: array
+              items:
+                type: string
+                format: enum
+                enum:
+                  - month_end
+                  - daily
+                  - hourly
+              description: Available frequency
+              example: ["month_end", "daily", "hourly"]
+            file_format:
+              type: string
+              description: File format
+              example: "txt"
+            protocol:
+              type: string
+              format: enum
+              enum:
+                - sftp
+                - ftp
+              description: Protocol
+              example: "sftp"
+  responses:
+    '201':
+      description: "Successfully"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../../../schemas/GtoMall.yaml'
+    '422':
+      description: "Unprocessable Entity"
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

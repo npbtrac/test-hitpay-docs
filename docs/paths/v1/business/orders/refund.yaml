@@ -1,0 +1,34 @@
+post:
+  tags:
+    - Order
+  summary: Refund an order
+  description: Refund an order
+  operationId: RefundOrder
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: number
+              description: Refund amount
+              example: 20.00
+            message:
+              type: string
+              description: Refund note
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'

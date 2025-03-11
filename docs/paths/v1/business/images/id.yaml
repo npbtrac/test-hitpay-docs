@@ -1,0 +1,101 @@
+get:
+  summary: Get a Business Image by Id
+  operationId: getBusinessImageById
+  tags:
+    - Business Images
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: business_image_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: Business Image data retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/BusinessImage.yaml'
+    '404':
+      description: 'Not found'
+
+put:
+  summary: Update a Business Image by Id
+  operationId: updateBusinessImageById
+  tags:
+    - Business Images
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: business_image_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            group:
+              type: string
+              enum:
+                - logo
+                - product
+                - cover
+                - product-variation
+                - generic
+                - meta
+                - product-category
+              description: The group for the file to be uploaded to be set in the database
+            alt_text:
+              type: string
+              maxLength: 255
+              description: The Alternate Text for the item
+            caption:
+              type: string
+              maxLength: 255
+              description: The Caption Text for the item
+            order:
+              type: number
+              description: The ordering weight
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../../../schemas/BusinessImage.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+delete:
+  summary: Delete a Business Image by Id
+  operationId: deleteBusinessImageById
+  tags:
+    - Business Images
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: business_image_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '204':
+      description: 'Successfully'
+    '400':
+      description: 'Bad request'
+    '404':
+      description: 'Not found'

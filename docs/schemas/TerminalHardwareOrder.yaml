@@ -1,0 +1,55 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  payment_provider:
+    type: string
+    example: stripe_sg
+  status:
+    type: string
+    enum:
+      - draft
+      - expired
+      - pending
+      - canceled
+      - shipped
+      - delivered
+      - undeliverable
+  currency:
+    type: string
+    example: myr
+  amount:
+    type: number
+    example: 391
+  data:
+    type: object
+  order_items:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          example: thsku_M8vLdalNJ0bS2I
+        title:
+          type: string
+          example: BBPOS WisePad 3
+        image:
+          type: string
+          example: https://s3.ap-southeast-1.amazonaws.com/hitpayapp.com/letter/images/Hitpay-WisePad3.png
+        quantity:
+          type: number
+          example: 1
+        amount:
+          type: number
+          example: 280
+        product_type:
+          type: string
+          example: bbpos_wisepad_3
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time

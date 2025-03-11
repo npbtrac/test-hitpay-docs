@@ -1,0 +1,25 @@
+type: object
+properties:
+  cart_product_item_id:
+    type: string
+    format: uuid
+    description: Id of the cart product item, this is used to update/delete the item
+  product_id:
+    type: string
+    format: uuid
+    description: Id of the product that is added to the cart
+  variation_id:
+    type: string
+    format: uuid
+    description: Id of the variation that is added to the cart, would be null if no variation is selected
+  quantity:
+    type: integer
+    description: Quantity of the product item that is added to the cart
+  remark:
+    type: string
+    maxLength: 255
+    description: Remark of the product item that is added to the cart, it would be added to the line item
+  product_add_ons:
+    type: array
+    items:
+      $ref: "./CartProductAddOn.yaml"

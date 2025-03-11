@@ -1,0 +1,143 @@
+get:
+  tags:
+    - GTO Integrations
+  summary: Get GTO Integration by ID
+  description: Retrieve a GTO Integration by ID
+  operationId: GetGtoIntegrationById
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: integration_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+  responses:
+    '200':
+      description: Successful
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/GtoIntegration.yaml'
+    '404':
+      description: Not found
+put:
+  tags:
+    - GTO Integrations
+  summary: Update GTO Integration by ID
+  description: Update a GTO Integration by ID
+  operationId: UpdateGtoIntegrationById
+  parameters:
+    - name: integration_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "GTO Integration 1"
+            type:
+              type: string
+              enum:
+                - hourly
+                - daily
+                - month_end
+              example: "daily"
+            machine_no:
+              type: number
+              example: 3820932
+            sync_start_time:
+              type: string
+              pattern: "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+              description: "Time in HH:mm format (24-hour)"
+              example: "14:30"
+            status:
+              type: string
+              enum:
+                - active
+                - inactive
+              example: "active"
+            business_location_id:
+              type: string
+              format: uuid
+              example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+            gto_mall:
+              type: string
+              example: "capitaland"
+            sftp:
+              type: object
+              properties:
+                host:
+                  type: string
+                  example: "ftp.example.com"
+                port:
+                  type: number
+                  example: 22
+                username:
+                  type: string
+                  example: "username"
+                password:
+                  type: string
+                  example: "password"
+                path:
+                  type: string
+                  example: "/path/to/file"
+                protocol:
+                  type: string
+                  enum:
+                    - ftp
+                    - sftp
+                  example: "sftp"
+          required:
+            - name
+            - type
+            - machine_no
+            - sync_start_time
+            - status
+            - business_location_id
+            - gto_mall
+            - sftp
+  responses:
+    '200':
+      description: Successful 
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/GtoIntegration.yaml'
+    '422':
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+delete:
+  tags:
+    - GTO Integrations
+  summary: Delete GTO Integration by ID
+  description: Delete a GTO Integration by ID
+  operationId: DeleteGtoIntegrationById
+  parameters:
+    - name: integration_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: Successful
+    '404':
+      description: Not found

@@ -1,0 +1,141 @@
+get:
+  tags:
+  - Recurring Billing
+  summary: 04. FIlter recurring billing
+  description: 04. FIlter recurring billing
+  operationId: 04FilterRecurringBilling
+  parameters:
+  - name: status
+    in: query
+    schema:
+      type: string
+      example: canceled
+    description: Recurring billing status, options [active, scheduled, canceled]
+  - name: business_recurring_plans_id
+    in: query
+    schema:
+      type: string
+      example: 9862daf4-ff49-46dd-a382-ca86d414da8c
+  - name: customer_email
+    in: query
+    schema:
+      type: string
+      example: danangxp@gmail.com
+  - name: reference
+    in: query
+    schema:
+      type: string
+      example: cust_id_124
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  responses:
+    '200':
+      description: ''
+
+post:
+  tags:
+  - Recurring Billing
+  summary: 01. Create a recurring billing
+  description: 01. Create a recurring billing
+  operationId: 01CreateARecurringBilling
+  parameters:
+  - name: X-BUSINESS-API-KEY
+    in: header
+    schema:
+      type: string
+      example: '{{api_key}}'
+  - name: X-Requested-With
+    in: header
+    schema:
+      type: string
+      example: XMLHttpRequest
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: string
+              example: '{{amount}}'
+            currency:
+              type: string
+              example: USD
+            customer_email:
+              type: string
+              example: danangxp@gmail.com
+            customer_name:
+              type: string
+              example: Quy_Auto
+            cycle:
+              type: string
+              example: '{{cycle}}'
+            cycle_frequency:
+              type: string
+              example: '{{cycle_frequency}}'
+            cycle_repeat:
+              type: string
+              example: '{{cycle_repeat}}'
+            description:
+              type: string
+              example: Recurring_Billing_{{$timestamp}}
+            name:
+              type: string
+              example: New_ Recurring_Billing_{{$timestamp}}
+            payment_methods[]:
+              type: string
+              example: giro
+            plan_id:
+              type: string
+              example: '{{plan_id}}'
+            redirect_url:
+              type: string
+              example: https://www.google.com
+            reference:
+              type: string
+              example: cust_id_124
+            save_card:
+              type: string
+              example: 'false'
+            send_email:
+              type: string
+              example: 'true'
+            start_date:
+              type: string
+              example: '{{start_date}}'
+            times_to_be_charged:
+              type: string
+              example: '2'
+            webhook:
+              type: string
+              example: https://webhook.site/64da3fed-cd82-49cc-a368-a9ede02441aa
+        example:
+          amount: '{{amount}}'
+          currency: USD
+          customer_email: danangxp@gmail.com
+          customer_name: Quy_Auto
+          cycle: '{{cycle}}'
+          cycle_frequency: '{{cycle_frequency}}'
+          cycle_repeat: '{{cycle_repeat}}'
+          description: Recurring_Billing_{{$timestamp}}
+          name: New_ Recurring_Billing_{{$timestamp}}
+          payment_methods[]: giro
+          plan_id: '{{plan_id}}'
+          redirect_url: https://www.google.com
+          reference: cust_id_124
+          save_card: 'false'
+          send_email: 'true'
+          start_date: '{{start_date}}'
+          times_to_be_charged: '2'
+          webhook: https://webhook.site/64da3fed-cd82-49cc-a368-a9ede02441aa
+  responses:
+    '200':
+      description: ''

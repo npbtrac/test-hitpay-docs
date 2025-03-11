@@ -1,0 +1,59 @@
+post:
+  tags:
+    - Business Images
+  summary: Create a Cloud Temporary Upload Url
+  description: Create a Cloud Temporary Upload Url
+  operationId: CreateTemporaryUploadUrl
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            filename:
+              type: string
+              description: The filename of the file to be uploaded
+            group:
+              type: string
+              enum:
+                - logo
+                - product
+                - cover
+                - product-variation
+                - generic
+                - meta
+                - product-category
+              description: The group for the file to be uploaded to be set in the database
+            alt_text:
+              type: string
+              maxLength: 255
+              description: The Alternate Text for the item
+            caption:
+              type: string
+              maxLength: 255
+              description: The Caption Text for the item
+            id:
+              type: string
+              format: uuid
+              description: The Existing ID for the Image to be updated (for the src of the image)
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/BusinessImage.yaml'
+            temporary_upload_url:
+              type: string
+              format: uri
+            temporary_upload_url_expired_at:
+              type: integer
+              description: The timestamp when the upload url expires
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

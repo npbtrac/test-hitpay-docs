@@ -1,0 +1,105 @@
+get:
+  tags:
+    - Report
+  summary: Get sales summary report
+  description: Get sales summary report
+  operationId: GetSalesSummaryReport
+  parameters:
+    - $ref: "../../../../parameters/BusinessId.yaml"
+    - name: from_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date from
+    - name: to_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date to
+    - name: plugin_providers
+      in: query
+      schema:
+        type: array
+        description: Filter by plugin_provider
+        items:
+          type: string
+          enum:
+            - api_store
+            - point_of_sale
+            - quick_sale
+    - name: plugin_provider
+      in: query
+      schema:
+        type: string
+        description: Filter by a single plugin_provider
+        enum:
+          - api_store
+          - point_of_sale
+          - quick_sale
+    - name: location_id
+      in: query
+      schema:
+        type: string
+        format: uuid
+        description: Filter by location
+    - name: user_id
+      in: query
+      schema:
+        type: string
+        format: int
+        description: Filter by business user
+    - name: currency
+      in: query
+      schema:
+        type: string
+        description: Filter by currency
+        enum:
+          - sgd
+          - myr
+  responses:
+    "200":
+      description: "Successfully"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    method:
+                      type: string
+                      description: Payment method
+                      example: all
+                    currency:
+                      type: string
+                      description: Currency
+                      example: sgd
+                    payments:
+                      type: number
+                      description: Total payments
+                      example: 480
+                    refunds:
+                      type: number
+                      description: Total refunds
+                      example: 605.18
+                    gross_sales:
+                      type: number
+                      description: Gross sales
+                      example: 138289235.78
+                    total_fees:
+                      type: number
+                      description: Total fees
+                      example: 24050.13
+                    net_sales:
+                      type: number
+                      description: Net sales
+                      example: 138288630.6
+                    net_collected:
+                      type: number
+                      description: Net collected
+                      example: 138264580.47

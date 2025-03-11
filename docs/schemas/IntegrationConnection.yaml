@@ -1,0 +1,28 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  business_id:
+    type: string
+    format: uuid
+  connectLink:
+    type: string
+  status:
+    type: string
+    enum:
+      - pending
+      - linked
+  provider:
+    type: string
+    enum:
+      - codat
+      - shopify_webhook
+  provider_data:
+    type: object
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time

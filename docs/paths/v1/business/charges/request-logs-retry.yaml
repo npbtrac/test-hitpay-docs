@@ -1,0 +1,35 @@
+post:
+  tags:
+    - Charge
+  summary: Retries the charge webhook in case it wasn't successful
+  description: Allows to retry the last webhook associated with the Charge, only if the last one wasn't successful
+  operationId: RetryRequestLog
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: charge_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: 'Webhook request retried'
+    '422':
+      description: 'Unprocessable'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: 'No need to retry!'

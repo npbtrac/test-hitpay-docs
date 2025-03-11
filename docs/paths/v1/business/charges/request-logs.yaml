@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Charge
+  summary: Get list of request logs for a charge
+  description: Get list of most recent webhook request logs for a charge in descending order (most recent on top)
+  operationId: GetListRequestLogs
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: charge_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/RequestLog.yaml'

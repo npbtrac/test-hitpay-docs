@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Product
+  summary: Upload product images
+  description: Upload product images
+  operationId: UploadProductImages
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: product_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            image:
+              type: array
+              items:
+                type: string
+                format: binary
+                description: Image of the product.
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Product.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

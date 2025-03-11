@@ -1,0 +1,6 @@
+name: keywords
+in: query
+description: Keywords to be searched, should be separated by spaces (all keywords should appear). Search field is `name`.
+example: "keyword1 keyword2"
+schema:
+  type: string

@@ -1,0 +1,81 @@
+post:
+  tags:
+    - Product Category
+  summary: Link image to product category
+  description: Link an existing image id to a product category id
+  operationId: LinkImageToProductCategory
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: category_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: image_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/ProductCategory.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not Found'
+
+delete:
+  tags:
+    - Product Category
+  summary: Unlink image to product category
+  description: Unlink an existing image id from a product category id
+  operationId: UnlinkImageFromProductCategory
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: category_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: image_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/ProductCategory.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not Found'

@@ -1,0 +1,34 @@
+post:
+  tags:
+    - Feature
+  summary: Grant business access to feature
+  description: Grant business access to feature
+  operationId: GrantBusinessAccessToFeature
+  parameters:
+    - name: feature_id
+      in: path
+      schema:
+        type: string
+        format: uuid
+      required: true
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            businesses:
+              type: array
+              items:
+                type: string
+              example: ["9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"]
+  responses:
+    "204":
+      description: "Successfully"
+    "422":
+      description: "Unprocessable Entity"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/Error.yaml"

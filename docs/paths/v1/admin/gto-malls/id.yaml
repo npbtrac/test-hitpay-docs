@@ -1,0 +1,89 @@
+patch:
+  tags:
+    - GTO Malls
+  summary: Update GTO Mall
+  description: Update GTO Mall
+  operationId: UpdateGtoMall
+  parameters:
+    - name: mall_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: GTO Mall name
+              example: "GTO Mall 1"
+            description:
+              type: string
+              description: GTO Mall description
+              example: "GTO Mall 1 description"
+            key:
+              type: string
+              description: GTO Mall key
+              example: "gto-mall-1"
+            available_frequency:
+              type: array
+              items:
+                type: string
+              description: Available frequency
+              example: ["month_end", "daily", "hourly"]
+            file_format:
+              type: string
+              description: File format
+              example: "txt"
+            protocol:
+              type: string
+              enum:
+                - sftp
+                - ftp
+              description: Protocol
+              example: "sftp"
+  responses:
+    '204':
+      description: "Successfully"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../../../schemas/GtoMall.yaml'
+    '422':
+      description: "Unprocessable Entity"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/Error.yaml"
+delete:
+  tags:
+    - GTO Malls
+  summary: Delete GTO Mall by ID
+  description: Delete a GTO Mall by ID
+  operationId: DeleteGtoMallById
+  parameters:
+    - name: mall_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+  responses:
+    '204':
+      description: "Successfully"
+    '422':
+      description: "Unprocessable Entity"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/Error.yaml"

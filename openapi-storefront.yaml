@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: HitPay Storefront APIs Specification
+  version: 1.0.0
+servers:
+  - url: https://api-shop.staging.hit-pay.com
+  - url: https://api-shop.sandbox.hit-pay.com
+  - url: https://api-shop.hit-pay.com
+paths:
+  # Cart
+  /v1/carts/{cart_id}:
+    $ref: "./docs/storefront/paths/v1/carts/id.yaml"
+
+  # Checkout
+  /v1/cart-page:
+    $ref: "./docs/storefront/paths/v1/checkout/cart-page.yaml"
+  /v1/checkout-page:
+    $ref: "./docs/storefront/paths/v1/checkout/checkout-page.yaml"
+  /v1/checkout:
+    $ref: "./docs/storefront/paths/v1/checkout/do-checkout.yaml"
+
+components:
+  securitySchemes:
+    HitPayDomainHeader:
+      type: apiKey
+      name: Hitpay-Domain
+      in: header
+      description: Custom header for the domain of the business in HitPay db, 
+        e.g. hitpay.shop, business.xyz...
+    HitPayIdentifierHeader:
+      type: apiKey
+      name: Hitpay-Identifier
+      in: header
+      description: Custom header for the idenfier of the business in HitPay db
+        e.g. qasg, nitin234...
+
+security:
+  - HitPayDomainHeader: []
+    HitPayIdentifierHeader: []

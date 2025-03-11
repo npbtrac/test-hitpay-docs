@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Platform
+  summary: Get Platform Charges
+  description: Get Platform Charges
+  operationId: charges
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/listing/PaginationPage.yaml'
+    - $ref: '../../../../parameters/listing/PaginationPerPage.yaml'
+    - $ref: '../../../../parameters/listing/Keywords.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/platform/Charges.yaml'
+    '404':
+      description: 'Not found'

@@ -1,0 +1,84 @@
+get:
+  tags:
+    - Report
+  summary: Get category summary report
+  description: Get category summary report
+  operationId: GetCategorySummaryReport
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: from_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date from
+    - name: to_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date to
+    - name: plugin_provider
+      in: query
+      schema:
+        type: string
+        description: Filter by plugin_provider
+        enum:
+          - store_checkout
+          - point_of_sale
+    - name: location_id
+      in: query
+      schema:
+        type: string
+        format: uuid
+        description: Filter by location
+    - name: user_id
+      in: query
+      schema:
+        type: string
+        format: integer
+        description: Filter by business user
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+        description: Page number
+    - name: limit
+      in: query
+      schema:
+        type: integer
+        default: 10
+        description: Number of items per page
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      example: "Food"
+                    quantity_sold:
+                      type: number
+                      format: int
+                      example: 10
+                    gross_sales:
+                      type: number
+                      format: float
+                      example: 330.0
+                    discounts_applied:
+                      type: number
+                      format: float
+                      example: -20.0
+                    net_sales:
+                      type: number
+                      format: float
+                      example: 310.0

@@ -1,0 +1,17 @@
+put:
+  tags:
+    - Platform
+  summary: Rekey
+  description: Regenerate Platform Key
+  operationId: rekey
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/platform/Platform.yaml'
+    '404':
+      description: 'Not Found'

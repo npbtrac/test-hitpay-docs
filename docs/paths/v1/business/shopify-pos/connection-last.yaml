@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Shopify POS
+  summary: Get last Shopify POS connection
+  description: Get last Shopify POS connection
+  operationId: GetLastShopifyPOSConnection
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/IntegrationConnection.yaml'
+    '404':
+      description: 'Not Found'

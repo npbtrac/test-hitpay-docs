@@ -1,0 +1,105 @@
+get:
+  tags:
+    - Report
+  summary: Get order details report
+  description: Get order details report
+  operationId: GetOrderDetailsReport
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: from_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date from
+    - name: to_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date to
+    - name: channel
+      in: query
+      schema:
+        type: string
+        description: Filter by channel
+        enum:
+          - store_checkout
+          - point_of_sale
+          - quick_sale
+    - name: location_id
+      in: query
+      schema:
+        type: string
+        format: uuid
+        description: Filter by location
+    - name: user_id
+      in: query
+      schema:
+        type: string
+        format: int
+        description: Filter by business user
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    currency:
+                      type: string
+                      example: "sgd"
+                    gross_sales:
+                      type: object
+                      properties:
+                        amount:
+                          type: number
+                          format: float
+                          example: 300.0
+                        quick_sale_amount:
+                          type: number
+                          format: float
+                          example: 100.0
+                        product_sale_amount:
+                          type: number
+                          format: float
+                          example: 200.0
+                    surcharge:
+                      type: number
+                      format: float
+                      example: 30.0
+                    discounts:
+                      type: number
+                      format: float
+                      example: -20.0
+                    net_sales:
+                      type: number
+                      format: float
+                      example: 310.0
+                    taxes:
+                      type: number
+                      format: float
+                      example: 10.0
+                    tips:
+                      type: number
+                      format: float
+                      example: 10.0
+                    shipping:
+                      type: number
+                      format: float
+                      example: 10.0
+                    total_sales:
+                      type: number
+                      format: float
+                      example: 330.0
+                    numbers:
+                      type: number
+                      format: int
+                      example: 12
+                      description: Number of orders

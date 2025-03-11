@@ -1,0 +1,313 @@
+get:
+  tags:
+    - Charge
+  summary: Get list of charges
+  description: Get list of charges
+  operationId: GetListCharges
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: per_page
+      in: query
+      schema:
+        type: integer
+        default: 25
+        enum:
+          - 5
+          - 10
+          - 25
+          - 50
+          - 100
+    - name: cursor
+      in: query
+      schema:
+        type: string
+        description: Cursor value to get next page
+    - name: keywords
+      in: query
+      schema:
+        type: string
+        description: Search by charge ID, customer email, remark
+    - name: status
+      in: query
+      schema:
+        type: string
+        description: Filter by charge status
+        enum:
+          - succeeded
+          - failed
+          - refunded
+    - name: location_ids
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          format: uuid
+        description: Filter by location ids
+    - name: user_ids
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+        description: Filter by user ids
+    - name: statuses
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - succeeded
+            - succeeded_manually
+            - pending
+            - failed
+            - canceled
+            - refunded
+            - partially_refunded
+            - void
+        description: Filter by statuses
+    - name: date_from
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date from
+    - name: date_to
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date to
+    - name: payment_methods
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+        description: Filter by payment methods
+    - name: amount_from
+      in: query
+      schema:
+        type: number
+        format: float
+        description: Filter by amount from 
+    - name: amount_to
+      in: query
+      schema:
+        type: number
+        format: float
+        description: Filter by amount to
+    - name: payment_request_id
+      in: query
+      schema:
+        type: string
+        description: Filter by payment request id
+    - name: customer_id
+      in: query
+      schema:
+        type: string
+        format: uuid
+        description: Filter by customer id
+    - name: relatable
+      in: query
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9_]+:[a-zA-Z0-9-]+$'
+        description: >
+          Filter by relatable morph class and id. 
+          Format: {morph_class}:{uuid}. 
+          Example: static_qr:123e4567-e89b-12d3-a456-426614174000
+    - name: channel
+      in: query
+      schema:
+        type: string
+        enum:
+          - point_of_sale
+          - api_custom
+          - shopify
+          - woocommerce
+          - api_prestashop
+          - api_magento
+          - api_xero
+          - api_platform
+          - api_quickbooks
+          - api_ecwid
+          - api_opencart
+          - api_link
+          - invoice
+          - api_invoice
+          - api_rest_invoice
+          - api_mobile_invoice
+          - api_woocomm
+          - api_shopify
+          - api_wix
+          - api_store
+          - api_google_forms
+          - api_whcms
+          - api_odoo
+          - api_givewp
+          - recurring_billing
+          - api_cal
+        description: Filter by channel
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      description: Charge id
+                    currency:
+                      type: string
+                      description: 3-letter ISO 4217 currency code
+                      example: sgd
+                    home_currency:
+                      type: string
+                      description: 3-letter ISO 4217 currency code
+                      example: sgd
+                    exchange_rate:
+                      format: float
+                      description: Exchange rate
+                      example: 1.00
+                    amount:
+                      format: float
+                      description: The charge amount in higher denomination
+                      example: 12.00
+                    fixed_fee:
+                      format: float
+                      description: Fixed fee
+                      example: 0.00
+                    discount_fee:
+                      format: float
+                      description: Discount fee
+                      example: 0.00
+                    discount_fee_rate:
+                      format: float
+                      description: Discount fee rate
+                      example: 0.00
+                    remark:
+                      type: string
+                      description: Charge remark
+                      example: Charge remark
+                    status:
+                      type: string
+                      description: Charge status
+                      example: succeeded
+                      enum:
+                        - succeeded
+                        - pending
+                        - failed
+                        - canceled
+                        - refunded
+                        - partially_refunded
+                        - void
+                    payment_method:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Payment method name
+                          example: card
+                        display_logo:
+                          type: string
+                          description: Payment method display logo
+                        data:
+                          type: object
+                          description: Payment method data
+                          example: {
+                            "brand": "Visa",
+                            "last4": "4242",
+                            "country": null,
+                            "country_code": "US"
+                          }
+                    customer:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Customer name
+                          example: John Doe
+                        email:
+                          type: string
+                          description: Customer email
+                          example: john@domain.com
+                        phone_number:
+                          type: string
+                          description: Customer phone
+                          example: 6567464879
+                    payment_request_id:
+                      type: string
+                      description: Payment request ID
+                      example: 996c36bc-7016-4833-9ab9-0772b730b7ae
+                    webhook_status:
+                      type: boolean
+                      description: Webhook status
+                    order_reference_number:
+                      type: string
+                      description: Order reference number
+                      example: 1234
+                    executor:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: Executor id
+                        display_name:
+                          type: string
+                          description: Executor display name
+                          example: John Doe
+                        email:
+                          type: string
+                          description: Executor email
+                          example: john@domain.com
+                    location:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: Location id
+                        name:
+                          type: string
+                          description: Location name
+                          example: Main Store
+                        address:
+                          type: string
+                          description: Location address
+                          example: 123 Main St
+                    channel:
+                      type: string
+                      description: Charge channel
+                      example: point_of_sale
+                    admin_fee:
+                      type: boolean
+                      description: Admin fee
+                    closed_at:
+                      type: string
+                      format: date-time
+                      description: Charge created at
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: Charge created at
+                    updated_at:
+                      type: string
+                      format: date-time
+                      description: Charge updated at
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

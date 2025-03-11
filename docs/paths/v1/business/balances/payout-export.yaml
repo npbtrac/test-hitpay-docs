@@ -1,0 +1,18 @@
+post:
+  tags:
+    - Wallet Balances
+  summary: Export payout details breakdown
+  description: Export payout details breakdown as CSV-file.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+    - $ref: '../../../../parameters/Id.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        text/csv:
+          schema:
+            type: string
+            format: binary

@@ -1,0 +1,82 @@
+get:
+  tags:
+    - Beneficiaries
+  summary: Get list of beneficiaries
+  description: Get list of beneficiaries
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/Beneficiary.yaml'
+post:
+  tags:
+    - Beneficiaries
+  summary: Create a new beneficiary
+  description: |
+    Create a new beneficiary. Note: you need to pass the values for the fields listed in the "schema" API response.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            is_external:
+              type: boolean
+              example: true
+            country:
+              type: string
+              example: "sg"
+            currency:
+              type: string
+              example: "sgd"
+            transfer_method:
+              type: string
+              example: "local"
+            nickname:
+              type: [string, "null"]
+            remark:
+              type: [string, "null"]
+            holder_name:
+              type: string
+              example: "Dr. Chester Ernser IV"
+            holder_type:
+              type: string
+              example: "company"
+            bank_id:
+              type: string
+              example: "TMADHX0E2V2"
+            bank_branch_code:
+              type: [string, "null"]
+            account_number:
+              type: string
+              example: "0123456789"
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Beneficiary.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '409':
+      description: 'Conflict'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/ErrorWithMessage.yaml'

@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Support
+  summary: Get Plain Info
+  description: Get Plain Info
+  operationId: getInfo
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/support/Plain.yaml'

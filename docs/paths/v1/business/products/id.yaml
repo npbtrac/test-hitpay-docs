@@ -1,0 +1,345 @@
+get:
+  tags:
+    - Product
+  summary: Get product details
+  description: Get product details
+  operationId: GetProductDetails
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: product_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Product.yaml'
+
+post:
+  tags:
+    - Product
+  summary: Update product details
+  description: Update product details
+  operationId: UpdateProductDetails
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: product_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Product name
+              example: Product 1
+            stock_keeping_unit:
+              type: string
+              description: Product stock keeping unit
+              example: PR001
+            barcode:
+              type: string
+              description: Product barcode
+              example: 1234567890
+            headline:
+              type: string
+              description: Product headline
+              example: Product 1 headline
+            emoji:
+              type: string
+              description: Product emoji
+              example: 🍔
+            description:
+              type: string
+              description: Product description
+              example: Product 1 description
+            type:
+              type: string
+              description: Product type
+              enum:
+                - physical
+                - digital
+            publish:
+              type: boolean
+              description: Product publish status
+              example: true
+            is_pinned:
+              type: boolean
+              description: Product pinned status
+              example: true
+            allow_back_order:
+              type: boolean
+              description: Product allow back order status
+              example: true
+            business_product_category_id:
+              type: string
+              description: Business product category id
+              example: ["9a02b5e7-f445-40c4-ad86-da18e5295ae1"]
+            category_ids:
+              type: array
+              description: Product category ids (max 5 items).
+              items:
+                type: string
+                format: uuid
+            is_manageable:
+              type: boolean
+              description: Product manageable status
+              example: true
+            quantity:
+              type: integer
+              description: Product quantity
+              example: 10
+            quantity_alert_level:
+              type: integer
+              description: Product quantity alert level
+              example: 5
+            price:
+              type: number
+              description: Product price
+              example: 100.00
+            price_before_discount:
+              type: number
+              description: Product price before discount
+              example: 120.00
+            currency:
+              type: string
+              description: Product currency
+              example: sgd
+            location_ids:
+              type: array
+              items:
+                type: string
+                format: uuid
+            locations:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Location id
+                    example: 9a02b5e7-f445-40c4-ad86-da18e5295ae1
+                  manage_inventory:
+                    type: boolean
+                    description: Manage inventory
+                    example: true
+                  quantity:
+                    type: integer
+                    description: Product quantity
+                    example: 100
+                  quantity_alert_level:
+                    type: integer
+                    description: Product quantity alert level
+                    example: 5
+            channels:
+              type: array
+              items:
+                type: string
+                enum:
+                  - online_store
+                  - pos
+                  - invoice
+                  - self_serve
+            auto_tag_new_locations:
+              type: boolean
+              description: Auto tag new locations
+              example: true
+            image:
+              type: array
+              items:
+                type: string
+                format: binary
+                description: Image of the product.
+            password_protected:
+              type: boolean
+              description: Is the product password protected
+              example: true
+            product_unit:
+              type: string
+              description: Product unit
+              enum:
+                - piece
+                - dozen
+                - kilogram
+                - gram
+                - liter
+                - milliliter
+                - meter
+                - centimeter
+                - feet
+                - minute
+                - day
+                - month
+                - year
+                - service
+                - packet
+                - box
+                - case
+                - pair
+            product_unit_value:
+              type: number
+              description: Product unit value
+              example: 1
+            product_weight:
+              type: integer
+              description: The weight in gram for the product, must be an integer >= 1
+              example: 100
+            delivery_method_required:
+              type: boolean
+              description: Does the product require the shipping or pickup, default to true
+              example: true
+            digital_content:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Name of the digital content
+                    example: Digital content 1
+                  order:
+                    type: integer
+                    description: Order of the digital content
+                    example: 1
+                  type:
+                    type: string
+                    description: Type of the digital content
+                    enum:
+                      - file
+                      - link
+                  file:
+                    type: string
+                    format: binary
+                    description: File of the digital content. Max size 10MB.
+                  link:
+                    type: string
+                    description: Link of the digital content
+                    example: https://www.google.com
+            variation:
+              type: array
+              items:
+                type: object
+                properties:
+                  values:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: Key of the product variation value
+                        example: Color
+                      value:
+                        type: string
+                        description: Value of the product variation value
+                        example: Blue
+                  price:
+                    type: number
+                    description: Price of the product variation
+                    example: 100.00
+                  open_amount:
+                    type: boolean
+                    description: Open amount of the product variation
+                    example: true
+                  quantity:
+                    type: integer
+                    description: Quantity of the product variation
+                    example: 10
+                  quantity_alert_level:
+                    type: integer
+                    description: Quantity alert level of the product variation
+                    example: 5
+                  barcode:
+                    type: string
+                    description: Barcode of the product variation
+                    example: 1234567890
+                  product_variation_weight:
+                    type: integer
+                    description: The weight in gram for the product, must be an integer >= 1
+                    example: 100
+                  order:
+                    type: integer
+                    description: Ordering weight for custom sorting (ASC)
+                    example: 10
+                  image:
+                    type: string
+                    format: binary
+                    description: Image of the product variation.
+                  locations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: Location id
+                          example: 9a02b5e7-f445-40c4-ad86-da18e5295ae1
+                        manage_inventory:
+                          type: boolean
+                          description: Manage inventory
+                          example: true
+                        quantity:
+                          type: integer
+                          description: Product quantity
+                          example: 100
+                        quantity_alert_level:
+                          type: integer
+                          description: Product quantity alert level
+                          example: 5
+            product_add_ons:
+              type: array
+              items:
+                type: object
+                properties:
+                  pivot:
+                    type: object
+                    properties:
+                      business_add_on_id:
+                        allOf:
+                          - $ref: '../../../../schemas/common/Id.yaml'
+                          - description: The Id of the Existing Add On to be linked to the Product. If this is in-use, the below params would be ignored.
+                      order_weight:
+                        allOf:
+                          - $ref: '../../../../schemas/business-add-on/OrderWeight.yaml'
+                          - description: for ordering weight of the add-on
+                  name:
+                    allOf:
+                      - $ref: '../../../../schemas/business-add-on/Name.yaml'
+                      - description: required if `pivot.business_add_on_id` not exists
+                  option_type:
+                    allOf:
+                      - $ref: '../../../../schemas/business-add-on/OptionType.yaml'
+                      - description: required if `pivot.business_add_on_id` not exists
+                  option_values:
+                    allOf:
+                      - $ref: '../../../../schemas/business-add-on/OptionValues.yaml'
+                      - description: required if `pivot.business_add_on_id` not exists
+                  min_selection:
+                    allOf:
+                      - $ref: '../../../../schemas/business-add-on/MinSelection.yaml'
+                  max_selection:
+                    allOf:
+                      - $ref: '../../../../schemas/business-add-on/MaxSelection.yaml'
+                  is_required:
+                    allOf:
+                      - $ref: '../../../../schemas/business-add-on/IsRequired.yaml'
+  responses:
+    '204':
+      description: 'Successfully'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

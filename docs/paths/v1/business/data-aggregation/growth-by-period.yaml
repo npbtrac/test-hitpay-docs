@@ -1,0 +1,35 @@
+get:
+  summary: Get Growth Summary by Period
+  operationId: getGrowthByPeriod
+  tags:
+    - Business data aggregation
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: period
+      in: query
+      description: The time period for the summary
+      required: true
+      schema:
+        type: string
+        enum: [this_week, this_month]
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              home_currency:
+                type: string
+                example: 'sgd'
+              total_amount:
+                type: number
+              usd_amount:
+                type: number
+              number_transactions:
+                type: number
+              amount_growth_percentage:
+                type: number
+                description: The amount growth percentage relative to the previous period of same length
+                example: 15.5

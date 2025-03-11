@@ -1,0 +1,616 @@
+openapi: 3.1.0
+info:
+  title: HitPay APIs Specification
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 1.0.0
+servers:
+  - url: https://api.staging.hit-pay.com
+  - url: https://api.sandbox.hit-pay.com
+  - url: https://api.hit-pay.com
+  - url: http://hitpay2020.test
+
+paths:
+  # Auth
+  /oauth/token:
+    $ref: "./docs/paths/auth/token.yaml"
+  /oauth/logout:
+    $ref: "./docs/paths/auth/logout.yaml"
+
+  # Business Details:
+  /v1/business/{business_id}:
+    $ref: "./docs/paths/v1/business/details/index.yaml"
+
+  # Location
+  /v1/business/{business_id}/locations:
+    $ref: "./docs/paths/v1/business/locations/index.yaml"
+  /v1/business/{business_id}/locations/{location_id}:
+    $ref: "./docs/paths/v1/business/locations/id.yaml"
+  /v1/business/{business_id}/locations/inventory/settings:
+    $ref: "./docs/paths/v1/business/locations/inventory.yaml"
+
+  # Payment Request
+  /v1/payment-request:
+    $ref: "./docs/paths/v1/create-payment-request.yaml"
+
+  # Product Category
+  /v1/business/{business_id}/product-category:
+    $ref: "./docs/paths/v1/business/product-category/index.yaml"
+  /v1/business/{business_id}/product-category/{category_id}:
+    $ref: "./docs/paths/v1/business/product-category/id.yaml"
+  /v1/business/{business_id}/product-category/{category_id}/image:
+    $ref: "./docs/paths/v1/business/product-category/image.yaml"
+  /v1/business/{business_id}/product-category/{category_id}/images/{image_id}:
+    $ref: "./docs/paths/v1/business/product-category/images-id-link.yaml"
+
+  # Products
+  /v1/business/{business_id}/products:
+    $ref: "./docs/paths/v1/business/products/index.yaml"
+  /v1/business/{business_id}/search/products:
+    $ref: "./docs/paths/v1/business/products/search.yaml"
+  /v1/business/{business_id}/products/{product_id}:
+    $ref: "./docs/paths/v1/business/products/id.yaml"
+  /v1/business/{business_id}/products/{product_id}/duplicate:
+    $ref: "./docs/paths/v1/business/products/duplicate.yaml"
+  /v1/business/{business_id}/products/{product_id}/image:
+    $ref: "./docs/paths/v1/business/products/upload-images.yaml"
+  /v1/business/{business_id}/products/dummy/import:
+    $ref: "./docs/paths/v1/business/products/dummy-import.yaml"
+  /v1/business/{business_id}/products/bulk/import:
+    $ref: "./docs/paths/v1/business/products/bulk-import.yaml"
+  /v1/business/{business_id}/products/bulk/assign-categories:
+    $ref: "./docs/paths/v1/business/products/bulk-assign-categories.yaml"
+  /v1/business/{business_id}/products/bulk/assign-channels:
+    $ref: "./docs/paths/v1/business/products/bulk-assign-channels.yaml"
+  /v1/business/{business_id}/products/{product_id}/add-ons:
+    $ref: "./docs/paths/v1/business/products/id-add-ons.yaml"
+  /v1/business/{business_id}/products/{product_id}/add-ons/link:
+    $ref: "./docs/paths/v1/business/products/id-add-ons-link.yaml"
+  /v1/business/{business_id}/products/{product_id}/add-ons/unlink:
+    $ref: "./docs/paths/v1/business/products/id-add-ons-unlink.yaml"
+  /v1/business/{business_id}/products/{product_id}/business-images:
+    $ref: "./docs/paths/v1/business/products/business-images.yaml"
+  /v1/business/{business_id}/products/{product_id}/business-images/{image_id}:
+    $ref: "./docs/paths/v1/business/products/business-images-id.yaml"
+  /v1/business/{business_id}/products/{product_id}/variation/{product_variation_id}/business-images/{image_id}:
+    $ref: "./docs/paths/v1/business/products/variations/business-images-id.yaml"
+  /v1/business/{business_id}/products/{product_id}/variation/{product_variation_id}/business-images:
+    $ref: "./docs/paths/v1/business/products/variations/business-images.yaml"
+
+  # Invoices
+  /v1/business/{business_id}/invoices:
+    $ref: "./docs/paths/v1/business/invoices/index.yaml"
+  /v1/business/{business_id}/invoices/{b_invoice}:
+    $ref: "./docs/paths/v1/business/invoices/id.yaml"
+  /v1/business/{business_id}/invoices/{b_invoice}/resend:
+    $ref: "./docs/paths/v1/business/invoices/resend.yaml"
+  /v1/business/{business_id}/invoices/{b_invoice}/print:
+    $ref: "./docs/paths/v1/business/invoices/print.yaml"
+  /v1/business/{business_id}/invoices/{b_invoice}/save-and-send:
+    $ref: "./docs/paths/v1/business/invoices/save-and-send.yaml"
+  /v1/business/{business_id}/invoices/{b_invoice}/export:
+    $ref: "./docs/paths/v1/business/invoices/export.yaml"
+  /v1/business/{business_id}/invoices/{b_invoice}/paid:
+    $ref: "./docs/paths/v1/business/invoices/mark-as-paid.yaml"
+  /v1/business/{business_id}/invoices/{b_invoice}/void:
+    $ref: "./docs/paths/v1/business/invoices/void.yaml"
+  /v1/invoice-checkout/{b_invoice}:
+    $ref: "./docs/paths/v1/checkout/invoice-checkout.yaml"
+  /v1/business/{business_id}/invoices/settings:
+    $ref: "./docs/paths/v1/business/invoices/invoice-settings.yaml"
+
+  # Order
+  /v1/business/{business_id}/orders:
+    $ref: "./docs/paths/v1/business/orders/index.yaml"
+  /v1/business/{business_id}/orders/{order_id}:
+    $ref: "./docs/paths/v1/business/orders/id.yaml"
+  /v1/business/{business_id}/order/{order_id}/qr_code/{payment_method}/payment-intent:
+    $ref: "./docs/paths/v1/business/orders/qr-code.yaml"
+  /v1/business/{business_id}/order/{order_id}/mark-as-canceled:
+    $ref: "./docs/paths/v1/business/orders/mark-as-canceled.yaml"
+  /v1/business/{business_id}/order/{order_id}/mark-as-completed:
+    $ref: "./docs/paths/v1/business/orders/mark-as-completed.yaml"
+  /v1/business/{business_id}/order/{order_id}/shipping:
+    $ref: "./docs/paths/v1/business/orders/shipping.yaml"
+  /v1/business/{business_id}/order/{order_id}/mark-as-shipped:
+    $ref: "./docs/paths/v1/business/orders/mark-as-shipped.yaml"
+  /v1/business/{business_id}/order/{order_id}/pickup:
+    $ref: "./docs/paths/v1/business/orders/pickup.yaml"
+  /v1/business/{business_id}/order/{order_id}/mark-as-picked-up:
+    $ref: "./docs/paths/v1/business/orders/mark-as-picked-up.yaml"
+  /v1/business/{business_id}/order/{order_id}/refund:
+    $ref: "./docs/paths/v1/business/orders/refund.yaml"
+  /v1/business/{business_id}/order/{order_id}/resend-order-confirmation-email:
+    $ref: "./docs/paths/v1/business/orders/resend-order-confirmation-email.yaml"
+  /v1/business/{business_id}/order/bulk-fulfill:
+    $ref: "./docs/paths/v1/business/orders/bulk-fulfill.yaml"
+  /v1/business/{business_id}/orders/{order_id}/receipt/print:
+    $ref: "./docs/paths/v1/business/orders/print-receipt.yaml"
+  /v1/business/{business_id}/orders/{order_id}/shortcut:
+    $ref: "./docs/paths/v1/business/orders/shortcut.yaml"
+
+  # Order Logs
+  /v1/business/{business_id}/order/{order_id}/timeline:
+    $ref: "./docs/paths/v1/business/order-logs/timeline.yaml"
+  /v1/business/{business_id}/order/{order_id}/log-note:
+    $ref: "./docs/paths/v1/business/order-logs/log-note.yaml"
+  /v1/business/{business_id}/order/{order_id}/{order_log_id}:
+    $ref: "./docs/paths/v1/business/order-logs/id.yaml"
+
+  # Charge
+  /v1/business/{business_id}/charges:
+    $ref: "./docs/paths/v1/business/charges/index.yaml"
+  /v1/business/{business_id}/charges/{charge_id}:
+    $ref: "./docs/paths/v1/business/charges/id.yaml"
+  /v1/business/{business_id}/charges/{charge_id}/request-logs:
+    $ref: "./docs/paths/v1/business/charges/request-logs.yaml"
+  /v1/business/{business_id}/charges/{charge_id}/request-logs/retry:
+    $ref: "./docs/paths/v1/business/charges/request-logs-retry.yaml"
+  
+  # Partner
+  /v1/business/{business_id}/partner:
+    $ref: "./docs/paths/v1/business/partner/show.yaml"
+  /v1/business/{business_id}/partner/businesses:
+    $ref: "./docs/paths/v1/business/partner/listBusiness.yaml"
+  /v1/business/{business_id}/partner/commissions:
+    $ref: "./docs/paths/v1/business/partner/commission.yaml"
+  /v1/business/{business_id}/partner/commissions/export:
+    $ref: "./docs/paths/v1/business/partner/commission-export.yaml"
+  
+  # Payment Links
+  /v1/business/{business_id}/payment-links/default:
+    $ref: "./docs/paths/v1/business/payment-links/default.yaml"
+
+  # Report
+  /v1/business/{business_id}/report/orders-details:
+    $ref: "./docs/paths/v1/business/report/orders-details.yaml"
+  /v1/business/{business_id}/report/sales-summary:
+    $ref: "./docs/paths/v1/business/report/sales-summary.yaml"
+  /v1/business/{business_id}/report/sales-by-method:
+    $ref: "./docs/paths/v1/business/report/sales-by-method.yaml"
+  /v1/business/{business_id}/report/orders-discounts:
+    $ref: "./docs/paths/v1/business/report/orders-discounts.yaml"
+  /v1/business/{business_id}/report/sales-by-category:
+    $ref: "./docs/paths/v1/business/report/sales-by-category.yaml"
+  /v1/business/{business_id}/report/top-products:
+    $ref: "./docs/paths/v1/business/report/top-products.yaml"
+  /v1/business/{business_id}/report/top-product-variations:
+    $ref: "./docs/paths/v1/business/report/top-product-variations.yaml"
+
+  # Point Of Sale
+  /v1/business/{business_id}/point-of-sale/order/{order_id}:
+    $ref: "./docs/paths/v1/business/point-of-sale/order.yaml"
+  /v1/business/{business_id}/point-of-sale/order/{order_id}/tip:
+    $ref: "./docs/paths/v1/business/point-of-sale/order-tip.yaml"
+  /v1/business/{business_id}/point-of-sale/order/{order_id}/customer:
+    $ref: "./docs/paths/v1/business/point-of-sale/order-customer.yaml"
+  /v1/business/{business_id}/point-of-sale/customer:
+    $ref: "./docs/paths/v1/business/point-of-sale/customer.yaml"
+
+  # Recurring Billing
+  /v1/subscription-plan:
+    $ref: "./docs/paths/v1/business/recurring-billing/subscription-plan.yaml"
+  /v1/subscription-plan/{plan_id}:
+    $ref: "./docs/paths/v1/business/recurring-billing/subscription-plan-id.yaml"
+  /v1/recurring-billing:
+    $ref: "./docs/paths/v1/business/recurring-billing/recurring-billing.yaml"
+  /v1/charge/recurring-billing/{recurring_billing_id}:
+    $ref: "./docs/paths/v1/business/recurring-billing/recurring-billing-charge.yaml"
+  /v1/recurring-billing/{recurring_billing_id}:
+    $ref: "./docs/paths/v1/business/recurring-billing/recurring-billing-id.yaml"
+  /v1/recurring-billing/{business_recurring_plans_id}:
+    $ref: "./docs/paths/v1/business/recurring-billing/recurring-billing-plan.yaml"
+
+  # Donation
+  /v1/business/{business_id}/donation/settings:
+    $ref: "./docs/paths/v1/business/donation/settings.yaml"
+
+  # Customer Display
+  /v1/business/{business_id}/customer-display/settings:
+    $ref: "./docs/paths/v1/business/customer-display/settings.yaml"
+  /v1/customer-display/devices:
+    $ref: "./docs/paths/v1/customer-display/devices.yaml"
+  /v1/customer-display/devices/{device_id}:
+    $ref: "./docs/paths/v1/customer-display/device-id.yaml"
+  /v1/customer-display/devices/{device_id}/token:
+    $ref: "./docs/paths/v1/customer-display/token.yaml"
+  /v1/business/{business_id}/customer-display/devices:
+    $ref: "./docs/paths/v1/business/customer-display/devices.yaml"
+  /v1/business/{business_id}/customer-display/pairing:
+    $ref: "./docs/paths/v1/business/customer-display/pair.yaml"
+  /v1/business/{business_id}/customer-display/tips:
+    $ref: "./docs/paths/v1/business/customer-display/tips.yaml"
+  /v1/business/{business_id}/customer-display/orders/{order_id}:
+    $ref: "./docs/paths/v1/business/customer-display/order-id.yaml"
+  /v1/business/{business_id}/customer-display/orders/{order_id}/tip:
+    $ref: "./docs/paths/v1/business/customer-display/order-tip.yaml"
+  /v1/business/{business_id}/customer-display/orders/{order_id}/receipt:
+    $ref: "./docs/paths/v1/business/customer-display/order-receipt.yaml"
+  /v1/business/{business_id}/customer-display/logout:
+    $ref: "./docs/paths/v1/business/customer-display/logout.yaml"
+
+  # Shipping
+  /v1/business/{business_id}/shipping:
+    $ref: "./docs/paths/v1/business/shipping/index.yaml"
+  /v1/business/{business_id}/shipping/{shipping_id}:
+    $ref: "./docs/paths/v1/business/shipping/id.yaml"
+  /v1/business/{business_id}/shipping/{shipping_id}/activate:
+    $ref: "./docs/paths/v1/business/shipping/activate.yaml"
+  /v1/business/{business_id}/shipping/form-data:
+    $ref: "./docs/paths/v1/business/shipping/form-data.yaml"
+#  /v1/business/{business_id}/shipping/{customer_id}/charge':
+#    $ref: "./docs/paths/v1/business/customers/charge.yaml"
+
+  # Customer
+  /v1/business/{business_id}/customer:
+    $ref: "./docs/paths/v1/business/customers/index.yaml"
+  /v1/business/{business_id}/customer/{customer_id}:
+    $ref: "./docs/paths/v1/business/customers/id.yaml"
+  /v1/business/{business_id}/customer/{customer_id}/charge':
+    $ref: "./docs/paths/v1/business/customers/charge.yaml"
+  /v1/business/{business_id}/customer/create-by-email:
+    $ref: "./docs/paths/v1/business/customers/create-by-email.yaml"
+  /v1/business/{business_id}/customer/export:
+    $ref: "./docs/paths/v1/business/customers/export.yaml"
+  /v1/business/{business_id}/customer/download-feed-template:
+    $ref: "./docs/paths/v1/business/customers/download-feed-template.yaml"
+  /v1/business/{business_id}/customer/delete-bulk:
+    $ref: "./docs/paths/v1/business/customers/delete-bulk.yaml"
+
+  # Shopify POS
+  /v1/business/{business_id}/integration/shopify-pos:
+    $ref: "./docs/paths/v1/business/shopify-pos/connections.yaml"
+  /v1/business/{business_id}/integration/shopify-pos/last:
+    $ref: "./docs/paths/v1/business/shopify-pos/connection-last.yaml"
+  /v1/business/{business_id}/integration/shopify-pos/{connection_id}:
+    $ref: "./docs/paths/v1/business/shopify-pos/connection-id.yaml"
+  /v1/business/{business_id}/integration/shopify-pos/{connection_id}/reset:
+    $ref: "./docs/paths/v1/business/shopify-pos/connection-reset.yaml"
+
+  # Terminal Order
+  /v1/business/{business_id}/terminal/hardware-sku:
+    $ref: "./docs/paths/v1/business/terminal-hardware/sku.yaml"
+  /v1/business/{business_id}/terminal/hardware-shipping-methods:
+    $ref: "./docs/paths/v1/business/terminal-hardware/shippings.yaml"
+  /v1/business/{business_id}/terminal/hardware-orders:
+    $ref: "./docs/paths/v1/business/terminal-hardware/orders.yaml"
+  /v1/business/{business_id}/terminal/hardware-orders/{order_id}:
+    $ref: "./docs/paths/v1/business/terminal-hardware/order-id.yaml"
+  /v1/business/{business_id}/terminal/hardware-orders/{order_id}/cancel:
+    $ref: "./docs/paths/v1/business/terminal-hardware/order-cancel.yaml"
+  /v1/business/{business_id}/terminal/hardware-orders/{order_id}/confirm:
+    $ref: "./docs/paths/v1/business/terminal-hardware/order-confirm.yaml"
+
+  # Self serve Onboarding
+  /v1/business/{business_id}/onboarding-pre-kyc:
+    $ref: "./docs/paths/v1/business/onboarding-pre-kyc/get-onboarding.yaml"
+  /v1/business/{business_id}/onboarding-pre-kyc/response:
+    $ref: "./docs/paths/v1/business/onboarding-pre-kyc/respond-onboarding.yaml"
+  /v1/business/{business_id}/onboarding-pre-kyc/code-verification:
+    $ref: "./docs/paths/v1/business/onboarding-pre-kyc/code-verification.yaml"
+    
+  # Banner Notification
+  /v1/admin/banner-notification:
+    $ref: "./docs/paths/v1/admin/banner-notification/index.yaml"
+
+  # Feature
+  /v1/admin/features:
+    $ref: "./docs/paths/v1/admin/feature/index.yaml"
+  /v1/admin/features/{feature_id}/accesses:
+    $ref: "./docs/paths/v1/admin/feature/accesses.yaml"
+  /v1/admin/features/{feature_id}/waitlist:
+    $ref: "./docs/paths/v1/admin/feature/waitlist.yaml"
+  /v1/admin/features/{feature_id}:
+    $ref: "./docs/paths/v1/admin/feature/id.yaml"
+  /v1/admin/features/{feature_id}/grant-access:
+    $ref: "./docs/paths/v1/admin/feature/grant-access.yaml"
+  /v1/admin/features/{feature_id}/revoke-access:
+    $ref: "./docs/paths/v1/admin/feature/revoke-access.yaml"
+  /v1/admin/features/{feature_id}/waitlist/add:
+    $ref: "./docs/paths/v1/admin/feature/waitlist-add.yaml"
+  /v1/admin/features/{feature_id}/waitlist/remove:
+    $ref: "./docs/paths/v1/admin/feature/waitlist-remove.yaml"
+
+  # Feature Business
+  /v1/business/{business_id}/feature:
+    $ref: "./docs/paths/v1/business/feature/index.yaml"
+  /v1/business/{business_id}/feature/{feature_code}:
+    $ref: "./docs/paths/v1/business/feature/id.yaml"
+  /v1/business/{business_id}/feature/{feature_id}/request-access:
+    $ref: "./docs/paths/v1/business/feature/request-access.yaml"
+  /v1/business/{business_id}/feature/{feature_id}/join-waitlist:
+    $ref: "./docs/paths/v1/business/feature/join-waitlist.yaml"
+
+  # Admin GTO
+  /v1/admin/gto-malls:
+    $ref: "./docs/paths/v1/admin/gto-malls/index.yaml"
+  /v1/admin/gto-malls/{mall_id}:
+    $ref: "./docs/paths/v1/admin/gto-malls/id.yaml"
+  /v1/admin/gto-integrations/generate-file:
+    $ref: "./docs/paths/v1/admin/gto-integrations/generate-file.yaml"
+
+  # Business GTO
+  /v1/business/{business_id}/gto-malls:
+    $ref: "./docs/paths/v1/business/gto-malls/index.yaml"
+
+  # Business GTO Integration
+  /v1/business/{business_id}/gto-integrations:
+    $ref: "./docs/paths/v1/business/gto-integrations/index.yaml"
+  /v1/business/{business_id}/gto-integrations/{integration_id}:
+    $ref: "./docs/paths/v1/business/gto-integrations/id.yaml"
+  /v1/business/{business_id}/gto-integrations/{integration_id}/status:
+    $ref: "./docs/paths/v1/business/gto-integrations/status.yaml"
+  /v1/business/{business_id}/gto-integrations/{integration_id}/generate-file:
+    $ref: "./docs/paths/v1/business/gto-integrations/generate-file.yaml"
+  /v1/business/{business_id}/gto-integrations/test-connection:
+    $ref: "./docs/paths/v1/business/gto-integrations/test-connection.yaml"
+  /v1/business/{business_id}/gto-integrations/generate-test-data:
+    $ref: "./docs/paths/v1/business/gto-integrations/generate-test-data.yaml"
+
+  # Business GTO Integration History
+  /v1/business/{business_id}/gto-integration-history:
+    $ref: "./docs/paths/v1/business/gto-integration-history/index.yaml"
+  /v1/business/{business_id}/gto-integration-history/{history_id}/resync:
+    $ref: "./docs/paths/v1/business/gto-integration-history/resync.yaml"
+  /v1/business/{business_id}/gto-integration-history/{history_id}/download:
+    $ref: "./docs/paths/v1/business/gto-integration-history/download.yaml"
+
+  # Business Images
+  /v1/business/{business_id}/images:
+    $ref: "./docs/paths/v1/business/images/index.yaml"
+  /v1/business/{business_id}/images/{business_image_id}:
+    $ref: "./docs/paths/v1/business/images/id.yaml"
+  /v1/business/{business_id}/images/create-temporary-upload-url:
+    $ref: "./docs/paths/v1/business/images/create-temporary-upload-url.yaml"
+  /v1/business/{business_id}/images/{business_image_id}/complete-upload:
+    $ref: "./docs/paths/v1/business/images/complete-upload.yaml"
+
+  # Business Add-ons
+  /v1/business/{business_id}/add-ons:
+    $ref: "./docs/paths/v1/business/add-ons/index.yaml"
+  /v1/business/{business_id}/add-ons/{business_add_on_id}:
+    $ref: "./docs/paths/v1/business/add-ons/id.yaml"
+  /v1/business/{business_id}/add-ons/{business_add_on_id}/duplicate:
+    $ref: "./docs/paths/v1/business/add-ons/id-duplicate.yaml"
+
+  # Wallet Balances
+  /v1/business/{business_id}/balances:
+    $ref: "./docs/paths/v1/business/balances/index.yaml"
+  ? /v1/business/{business_id}/balances/{payment_provider}/{currency}/payout-settings
+  : $ref: "./docs/paths/v1/business/balances/payout-settings.yaml"
+  /v1/business/{business_id}/balances/{payment_provider}/{currency}/swap:
+    $ref: "./docs/paths/v1/business/balances/swap.yaml"
+  ? /v1/business/{business_id}/balances/{payment_provider}/{currency}/request-payout
+  : $ref: "./docs/paths/v1/business/balances/request-payout.yaml"
+  ? /v1/business/{business_id}/balances/{payment_provider}/{currency}/transactions
+  : $ref: "./docs/paths/v1/business/balances/transactions.yaml"
+  ? /v1/business/{business_id}/balances/{payment_provider}/{currency}/transactions/export
+  : $ref: "./docs/paths/v1/business/balances/transactions-list-export.yaml"
+  /v1/business/{business_id}/balances/{payment_provider}/{currency}/payouts:
+    $ref: "./docs/paths/v1/business/balances/payouts.yaml"
+  ? /v1/business/{business_id}/balances/{payment_provider}/{currency}/payouts/{id}
+  : $ref: "./docs/paths/v1/business/balances/payout-view.yaml"
+  ? /v1/business/{business_id}/balances/{payment_provider}/{currency}/payouts/{id}/export
+  : $ref: "./docs/paths/v1/business/balances/payout-export.yaml"
+  ? /v1/business/{business_id}/balances/{payment_provider}/{currency}/payouts/{id}/confirmation
+  : $ref: "./docs/paths/v1/business/balances/payout-confirmation.yaml"
+  ? /v1/business/{business_id}/balances/{payment_provider}/{currency}/payouts/export
+  : $ref: "./docs/paths/v1/business/balances/payouts-list-export.yaml"
+  ? /v1/business/{business_id}/balances/{payment_provider}/{currency}/top-up/methods
+  : $ref: "./docs/paths/v1/business/balances/top-up-methods.yaml"
+  /v1/business/{business_id}/balances/{payment_provider}/{currency}/estimate-payout:
+    $ref: "./docs/paths/v1/business/balances/estimate-payout.yaml"
+  /v1/business/{business_id}/balances/{payment_provider}/{currency}/top-up:
+    $ref: "./docs/paths/v1/business/balances/top-up-create.yaml"
+  /v1/business/{business_id}/balances/{payment_provider}/{currency}/top-up/{id}:
+    $ref: "./docs/paths/v1/business/balances/top-up-view.yaml"
+  /v1/business/{business_id}/balances/{payment_provider}/{currency}/exchange-currencies:
+    $ref: "./docs/paths/v1/business/balances/exchange-currencies.yaml"
+  /v1/business/{business_id}/balances/{payment_provider}/{currency}/exchange-quote:
+    $ref: "./docs/paths/v1/business/balances/exchange-quote.yaml"
+  /v1/business/{business_id}/balances/{payment_provider}/{currency}/exchange:
+    $ref: "./docs/paths/v1/business/balances/exchange.yaml"
+
+  # Beneficiaries
+  /v1/business/{business_id}/beneficiaries/schema:
+    $ref: "./docs/paths/v1/business/beneficiaries/schema.yaml"
+  /v1/business/{business_id}/beneficiaries:
+    $ref: "./docs/paths/v1/business/beneficiaries/index.yaml"
+  /v1/business/{business_id}/beneficiaries/{beneficiary_id}:
+    $ref: "./docs/paths/v1/business/beneficiaries/id.yaml"
+  /v1/business/{business_id}/beneficiaries/{beneficiary_id}/favourite:
+    $ref: "./docs/paths/v1/business/beneficiaries/favourite.yaml"
+
+  # Remitters
+  /v1/business/{business_id}/remitters:
+    $ref: "./docs/paths/v1/business/remitters/index.yaml"
+  /v1/business/{business_id}/remitters/{id}:
+    $ref: "./docs/paths/v1/business/remitters/id.yaml"
+
+  # Transfers
+  /v1/business/{business_id}/transfers:
+    $ref: "./docs/paths/v1/business/transfers/index.yaml"
+  /v1/business/{business_id}/transfers/estimate:
+    $ref: "./docs/paths/v1/business/transfers/estimate.yaml"
+  /v1/business/{business_id}/transfers/{transfer_id}:
+    $ref: "./docs/paths/v1/business/transfers/view.yaml"
+  /v1/business/{business_id}/transfers/{transfer_id}/approve:
+    $ref: "./docs/paths/v1/business/transfers/approve.yaml"
+  /v1/business/{business_id}/transfers/{transfer_id}/confirmation:
+    $ref: "./docs/paths/v1/business/transfers/confirmation.yaml"
+  /v1/business/{business_id}/transfers/export:
+    $ref: "./docs/paths/v1/business/transfers/export.yaml"
+  /v1/business/{business_id}/transfers/overview:
+    $ref: "./docs/paths/v1/business/transfers/overview.yaml"
+  /v1/business/{business_id}/transfers/totals:
+    $ref: "./docs/paths/v1/business/transfers/totals.yaml"
+  /v1/business/{business_id}/method-logos:
+    $ref: "./docs/paths/v1/business/method-logos/index.yaml"
+  /v1/business/{business_id}/payment-providers/payment-methods:
+    $ref: "./docs/paths/v1/business/payment-providers/payment-methods.yaml"
+  /v1/business/{business_id}/payment-providers/pos-methods:
+    $ref: "./docs/paths/v1/business/payment-providers/pos-methods.yaml"
+  /v1/business/{business_id}/payment-providers/static-qr-methods:
+    $ref: "./docs/paths/v1/business/payment-providers/static-qr-methods.yaml"
+
+  # Integrations
+  /v1/business/{business_id}/plugin-integrations:
+    get:
+      $ref: "./docs/paths/v1/business/plugin-integrations/index.yaml"
+    post:
+      $ref: "./docs/paths/v1/business/plugin-integrations/create.yaml"
+  /v1/business/{business_id}/plugin-integrations/{integration_id}:
+    delete:
+      $ref: "./docs/paths/v1/business/plugin-integrations/delete.yaml"
+    get:
+      $ref: "./docs/paths/v1/business/plugin-integrations/edit-data.yaml"
+    put:
+      $ref: "./docs/paths/v1/business/plugin-integrations/update.yaml"
+  /v1/business/{business_id}/plugin-integrations/create-data:
+    $ref: "./docs/paths/v1/business/plugin-integrations/create-data.yaml"
+
+  # Webhook Events
+  /v1/business/{business_id}/webhook-events:
+    $ref: "./docs/paths/v1/business/webhook-events/index.yaml"
+  /v1/business/{business_id}/webhook-events/{webhook_event_id}:
+    $ref: "./docs/paths/v1/business/webhook-events/id.yaml"
+
+  # Notifications
+  /v1/business/{business_id}/notifications:
+    $ref: "./docs/paths/v1/business/notifications/index.yaml"
+
+  # Checkout Customization
+  /v1/business/{business_id}/checkout-customisation:
+    $ref: "./docs/paths/v1/business/checkout-customisation/index.yaml"
+
+  # Business Revenue Aggregated data
+  /v1/business/{business_id}/revenue/volume-by-period:
+    $ref: "./docs/paths/v1/business/data-aggregation/volume-by-period.yaml"
+  /v1/business/{business_id}/revenue/channel-by-period:
+    $ref: "./docs/paths/v1/business/data-aggregation/channel-by-period.yaml"
+  /v1/business/{business_id}/revenue/growth-by-period:
+    $ref: "./docs/paths/v1/business/data-aggregation/growth-by-period.yaml"
+
+  # Subscription Products
+  /v1/business/{business_id}/subscription/products:
+    $ref: "./docs/paths/v1/business/subscription/products/index.yaml"
+  /v1/business/{business_id}/subscription/products/tiers:
+    $ref: "./docs/paths/v1/business/subscription/products/tiers.yaml"
+  /v1/business/{business_id}/subscription/products/addons:
+    $ref: "./docs/paths/v1/business/subscription/products/addons.yaml"
+  /v1/business/{business_id}/subscription/products/search:
+    $ref: "./docs/paths/v1/business/subscription/products/search.yaml"
+  /v1/business/{business_id}/subscription/features:
+    $ref: "./docs/paths/v1/business/subscription/products/features.yaml"
+
+  # Subscription Payment Methods
+  /v1/business/{business_id}/subscription/payment-methods:
+    $ref: "./docs/paths/v1/business/subscription/payment-methods/index.yaml"
+  /v1/business/{business_id}/subscription/payment-methods/initialize:
+    $ref: "./docs/paths/v1/business/subscription/payment-methods/new.yaml"
+  ? /v1/business/{business_id}/subscription/payment-methods/{subscription_payment_method_id}
+  : $ref: "./docs/paths/v1/business/subscription/payment-methods/update.yaml"
+
+  # Store Design Themes
+  /v1/business/{business_id}/store-designs/themes:
+    $ref: "./docs/paths/v1/business/store-designs/themes.yaml"
+  /v1/business/{business_id}/store-designs/theme/{name}/activate:
+    $ref: "./docs/paths/v1/business/store-designs/theme-activate.yaml"
+  /v1/business/{business_id}/store-designs/theme/{name}/publish:
+    $ref: "./docs/paths/v1/business/store-designs/theme-publish.yaml"
+  /v1/business/{business_id}/store-designs/theme/{name}/preset:
+    $ref: "./docs/paths/v1/business/store-designs/theme-preset-styles.yaml"
+
+  # Store Design Cover Images
+  /v1/business/{business_id}/store-designs/cover-images/links:
+    $ref: "./docs/paths/v1/business/store-designs/cover-images-links.yaml"
+
+  # Store Settings
+  /v1/business/{business_id}/store-settings/order-form:
+    $ref: "./docs/paths/v1/business/store-settings/order-form.yaml"
+
+  # User
+  /v1/user/settings/account-details:
+    $ref: "./docs/paths/v1/user/settings/account-details.yaml"
+  /v1/user/settings/security/update-password:
+    $ref: "./docs/paths/v1/user/settings/security/update-password.yaml"
+  /v1/user/settings/security/auth-secret/code:
+    $ref: "./docs/paths/v1/user/settings/security/auth-secret/code.yaml"
+  /v1/user/settings/security/auth-secret/enable:
+    $ref: "./docs/paths/v1/user/settings/security/auth-secret/enable.yaml"
+  /v1/user/settings/security/auth-secret/disable:
+    $ref: "./docs/paths/v1/user/settings/security/auth-secret/disable.yaml"
+  /v1/user/settings/locale:
+    $ref: "./docs/paths/v1/user/settings/locale.yaml"
+  /v1/user/community:
+    $ref: "./docs/paths/v1/user/community/index.yaml"
+
+  # Roles
+  /v1/business/{business_id}/role-restrictions:
+    $ref: "./docs/paths/v1/business/role/restrictions.yaml"
+
+  # Soundbox Devices
+  /v1/business/{business_id}/soundbox/devices:
+    $ref: "./docs/paths/v1/business/soundbox/devices/index.yaml"
+  ? /v1/business/{business_id}/soundbox/devices/{soundbox_device_id}
+  : $ref: "./docs/paths/v1/business/soundbox/devices/update.yaml"
+
+  # Static QR
+  /v1/business/{business_id}/static_qr:
+    $ref: "./docs/paths/v1/business/static-qr/index.yaml"
+  /v1/business/{business_id}/static_qr/{static_qr_id}:
+    $ref: "./docs/paths/v1/business/static-qr/id.yaml"
+  
+  # Api Key
+  /v1/business/{business_id}/api-key:
+    $ref: "./docs/paths/v1/business/api-key/index.yaml"
+  /v1/business/{business_id}/api-key/{api_key_id}:
+    $ref: "./docs/paths/v1/business/api-key/id.yaml"
+  /v1/business/{business_id}/api-key/{api_key_id}/status:
+    $ref: "./docs/paths/v1/business/api-key/status.yaml"
+
+  # Support
+  /v1/business/{business_id}/support/plain/info:
+    $ref: "./docs/paths/v1/business/support/plain/info.yaml"
+  /v1/business/{business_id}/support/plain/info/{token}:
+    $ref: "./docs/paths/v1/business/support/plain/info-token.yaml"
+  /v1/business/{business_id}/support/channels:
+    $ref: "./docs/paths/v1/business/support/channels.yaml"
+  /v1/business/{business_id}/support/report/missing-payment:
+    $ref: "./docs/paths/v1/business/support/report/missing-payment.yaml"
+  /v1/business/{business_id}/support/report/missing-payout:
+    $ref: "./docs/paths/v1/business/support/report/missing-payout.yaml"
+  /v1/business/{business_id}/support/report/bug:
+    $ref: "./docs/paths/v1/business/support/report/bug.yaml"
+  /v1/business/{business_id}/support/feedback:
+    $ref: "./docs/paths/v1/business/support/feedback.yaml"
+  /v1/business/{business_id}/support/token:
+    $ref: "./docs/paths/v1/business/support/token.yaml"
+
+  # Platform
+  /v1/business/{business_id}/platform:
+    $ref: "./docs/paths/v1/business/platform/index.yaml"
+  /v1/business/{business_id}/platform/charges:
+    $ref: "./docs/paths/v1/business/platform/charges.yaml"
+  /v1/business/{business_id}/platform/commission-rate:
+    $ref: "./docs/paths/v1/business/platform/commission-rate.yaml"
+  /v1/business/{business_id}/platform/rekey:
+    $ref: "./docs/paths/v1/business/platform/rekey.yaml"
+
+components:
+  schemas:
+    $ref: "./docs/schemas/_index.yaml"
+  securitySchemes:
+    apiAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    cdmAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Customer Display Token
+
+security:
+  - apiAuth: []

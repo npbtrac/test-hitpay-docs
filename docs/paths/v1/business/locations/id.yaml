@@ -1,0 +1,17 @@
+delete:
+  tags:
+    - Location
+  summary: Delete location
+  description: Delete location
+  operationId: DeleteLocation
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: location_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '204':
+      description: 'Successfully'

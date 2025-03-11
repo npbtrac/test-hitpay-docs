@@ -1,0 +1,23 @@
+put:
+  tags:
+    - Business API Key
+  summary: Change status of a Business API Key
+  description: Change the status of a Business API Key
+  operationId: ChangeBusinessApiKeyStatus
+  parameters:
+    - $ref: "../../../../parameters/BusinessId.yaml"
+    - $ref: "../../../../parameters/ApiKeyId.yaml"
+  responses:
+    "200":
+      description: "Successfully changed Business API Key status"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              is_enabled:
+                type: boolean
+                example: true

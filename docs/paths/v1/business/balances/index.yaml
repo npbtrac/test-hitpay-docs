@@ -1,0 +1,146 @@
+get:
+  tags:
+    - Wallet Balances
+  summary: Get balances
+  description: Get all balances
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              providers:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                    display_name:
+                      type: string
+                    supports_payouts:
+                      type: boolean
+                    has_payout_settings:
+                      type: boolean
+                    top_up_allowed:
+                      type: boolean
+                    payouts_allowed:
+                      type: boolean
+                    exchange_allowed:
+                      type: boolean
+                    manual_payouts_allowed:
+                      type: boolean
+                    currencies:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                          minimum_payout_amount:
+                            type: number
+                          wallets:
+                            type: object
+                            properties:
+                              available:
+                                type: number
+                              deposit:
+                                type: number
+                              pending:
+                                type: number
+                              reserve:
+                                type: number
+                              in_transit:
+                                type: number
+                          balance_total:
+                            type: number
+                    payment_methods:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          sm:
+                            type: string
+                            format: uri
+                            example: "https://api.hit-pay.com/icons/methods/sm/paynow.png"
+                          md:
+                            type: string
+                            format: uri
+                            example: "https://api.hit-pay.com/icons/methods/md/paynow.png"
+                          lg:
+                            type: string
+                            format: uri
+                            example: "https://api.hit-pay.com/icons/methods/lg/paynow.png"
+                          svg:
+                            type: string
+                            format: uri
+                            example: "https://api.hit-pay.com/icons/methods/sm/paynow.svg"
+                          method:
+                            type: string
+                            example: "paynow_online"
+                    home_currency_balance_total:
+                      type: [number, "null"]
+              home_currency_balance_total:
+                type: number
+            example: # Updated example based on new JSON structure
+              providers:
+                - code: "hitpay"
+                  display_name: "HitPay Balance"
+                  supports_payouts: true
+                  has_payout_settings: true
+                  top_up_allowed: true
+                  payouts_allowed: true
+                  manual_payouts_allowed: true
+                  currencies:
+                    - code: "sgd"
+                      minimum_payout_amount: 1
+                      wallets:
+                        available: 0
+                        deposit: 0
+                        pending: 0
+                        reserve: 10
+                      balance_total: 10
+                  payment_methods:
+                    - method: "paynow_online"
+                      title: "Paynow Online"
+                      logos:
+                        - sm: "https://api.hit-pay.com/icons/methods/sm/paynow.png"
+                          md: "https://api.hit-pay.com/icons/methods/md/paynow.png"
+                          lg: "https://api.hit-pay.com/icons/methods/lg/paynow.png"
+                          svg: "https://api.hit-pay.com/icons/methods/svg/paynow.svg"
+                          method: "paynow_online"
+                  home_currency_balance_total: 10
+                - code: "stripe_sg"
+                  display_name: "Cards Balance"
+                  supports_payouts: true
+                  has_payout_settings: false
+                  top_up_allowed: false
+                  payouts_allowed: true
+                  manual_payouts_allowed: true
+                  currencies:
+                    - code: "sgd"
+                      minimum_payout_amount: 1
+                      wallets:
+                        available: 0
+                        in_transit: 20
+                      balance_total: 0
+                  payment_methods:
+                    - method: "card"
+                      title: "Card"
+                      logos:
+                        - sm: "https://api.hit-pay.com/icons/methods/sm/visa.png"
+                          md: "https://api.hit-pay.com/icons/methods/md/visa.png"
+                          lg: "https://api.hit-pay.com/icons/methods/lg/visa.png"
+                          svg: "https://api.hit-pay.com/icons/methods/svg/visa.svg"
+                          method: "visa"
+                        - sm: "https://api.hit-pay.com/icons/methods/sm/mastercard.png"
+                          md: "https://api.hit-pay.com/icons/methods/md/mastercard.png"
+                          lg: "https://api.hit-pay.com/icons/methods/lg/mastercard.png"
+                          svg: "https://api.hit-pay.com/icons/methods/svg/mastercard.svg"
+                          method: "master"
+                  home_currency_balance_total: 0
+              home_currency_balance_total: 10

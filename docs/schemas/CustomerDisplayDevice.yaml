@@ -1,0 +1,53 @@
+type: object
+required:
+  - business_id
+  - display_device_id
+  - display_device_name
+properties:
+  id:
+    type: string
+    format: uuid
+  business_id:
+    type: string
+    format: uuid
+  pos_device_id:
+    type: string
+    description: ID of the POS device
+  display_device_id:
+    type: string
+    description: The unique ID of the customer display device
+    example: "cdd_1234567890"
+  display_device_name:
+    type: string
+    description: Name of the customer display device
+    example: "Barista's iPhone"
+  display_device_model:
+    type: string
+    description: Model of the customer display device
+    example: "iPhone 12 Pro Max"
+  display_device_type:
+    type: string
+    description: Type of the customer display device
+    enum:
+      - customer
+      - kittchen
+  status:
+    type: string
+    description: Status of the customer display device
+    enum:
+      - active
+      - inactive
+  pairing_code:
+    type: string
+    description: Pairing code of the customer display device
+    example: VMGFRS
+  pairing_expire_at:
+    type: string
+    format: date-time
+    description: Pairing code expire time of the customer display device
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time

@@ -1,0 +1,35 @@
+put:
+  tags:
+    - Account Details
+  summary: Update locale language
+  description: Update locale language for the user
+  operationId: UpdateLocaleLanguage
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            locale:
+              type: string
+              enum:
+                - en_US
+                - th_TH
+              description: Locale language
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../../../schemas/AccountDetails.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

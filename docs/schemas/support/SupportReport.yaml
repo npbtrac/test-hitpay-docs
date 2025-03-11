@@ -1,0 +1,45 @@
+type: object
+properties:
+  thread:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "th_01JGQYKAAW4V0S61YN3P15CCM2"
+      externalId:
+        type: [string, "null"]
+        example: null
+      customer:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "c_01JFKCAZ3MY9WG4378HRKFDS36"
+      status:
+        type: string
+        example: "TODO"
+      statusChangedAt:
+        type: object
+        properties:
+          iso8601:
+            type: string
+            example: "2025-01-04T06:03:49.834Z"
+          unixTimestamp:
+            type: string
+            example: "1735970629834"
+      title:
+        type: string
+        example: "Test"
+      previewText:
+        type: string
+        example: "Description: test description"
+      priority:
+        type: number
+        example: 0
+      threadFields:
+        type: array
+        example: []
+  error:
+    type: [string, "null"]
+    example: null
+

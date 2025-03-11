@@ -1,0 +1,32 @@
+type: object
+properties:
+  id:
+    type: integer
+  business_id:
+    type: string
+  name:
+    type: string
+  methods:
+    type: array
+    items:
+      type: string
+  created_at:
+    type: string
+  updated_at:
+    type: string
+  xero_id:
+    type: string
+  xero_branding_theme:
+    type: string
+example:
+  id: 64
+  business_id: 96f755bc-e113-4616-bbbf-3a0587667f45
+  name: ecwid
+  methods:
+    - upay_instapay
+    - upay_pchc
+  created_at: 2023-11-09T21:16:01.000000Z
+  updated_at: 2023-11-09T21:16:01.000000Z
+  xero_id: null
+  xero_branding_theme: null
+

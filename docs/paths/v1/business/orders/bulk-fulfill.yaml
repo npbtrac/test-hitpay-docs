@@ -1,0 +1,32 @@
+post:
+  tags:
+    - Order
+  summary: Bulk fulfill orders
+  description: Bulk fulfill orders
+  operationId: BulkFulfillOrders
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            selected:
+              type: array
+              description: Selected order ids
+            is_sent:
+              type: boolean
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

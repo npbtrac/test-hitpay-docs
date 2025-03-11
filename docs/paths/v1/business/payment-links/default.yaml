@@ -1,0 +1,67 @@
+get:
+  tags:
+    - Payment Links
+  summary: Get default payment link
+  description: Get default payment link
+  operationId: GetDefaultPaymentLink
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: status
+      in: query
+      schema:
+        type: string
+        enum:
+          - pending
+          - failed
+          - expired
+          - sent
+          - all
+          - completed
+          - canceled
+          - inactive
+        description: Filter by status
+  responses:
+    "200":
+      description: Get default payment link
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              payment_request_url:
+                type: string
+              default_id:
+                type: string
+              status:
+                type: string
+                enum:
+                  - pending
+                  - failed
+                  - expired
+                  - sent
+                  - completed
+                  - canceled
+                  - inactive
+              default_currency:
+                type: string
+                enum:
+                  - USD
+                  - EUR
+                  - GBP
+              active:
+                type: boolean
+              currencies:
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - USD
+                    - EUR
+                    - GBP
+              zero_decimal_cur:
+                type: string
+                enum:
+                  - USD
+                  - EUR
+              business_logo:
+                type: string

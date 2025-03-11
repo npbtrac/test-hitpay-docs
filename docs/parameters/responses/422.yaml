@@ -1,0 +1,5 @@
+description: 'Unprocessable Entity (Cannot proceed to the response because of the request params are incorrent...)'
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/Error.yaml'

@@ -1,0 +1,5 @@
+type: integer
+format: int32
+description: The maximum selection for the Add-on, must be higher than the `min_selection` if presents
+minimum: 1
+example: 10

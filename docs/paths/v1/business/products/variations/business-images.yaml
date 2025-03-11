@@ -1,0 +1,15 @@
+delete:
+  tags:
+    - Product
+  summary: Unlink all Business Images from the Product Variation
+  description: Unlink all Business Images from the Product Variation
+  operationId: UnlinkProductVariationImages
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../../parameters/ProductId.yaml'
+    - $ref: '../../../../../parameters/ProductVariationId.yaml'
+  responses:
+    '204':
+      description: 'Successfully'
+    '404':
+      description: 'Not found'

@@ -1,0 +1,4 @@
+type: string
+format: uuid
+description: The Product Id the record belongs to
+example: "9026ee0d-f347-4622-8871-9661ead81a8e"

@@ -1,0 +1,77 @@
+type: object
+properties:
+  tenant:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Tenant Id
+        example: "te_01JFV5E13J3K8YC0X4WBVX8A3R"
+      externalId:
+        type: string
+        description: Business Id
+        example: "98567029-f559-49f9-916b-042a4255b32a"
+      name:
+        type: string
+        description: Business Name
+        example: "98567029-f559-49f9-916b-042a4255b32a"
+      url:
+        type: [string, "null"]
+        example: null
+  customer:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Customer Id
+        example: "c_01JFKCAZ3MY9WG4378HRKFDS36"
+      externalId:
+        type: string
+        description: External Id
+        example: "98566f58-1c76-4b8b-8f75-d20bba2bc7f8"
+      shortName:
+        type: [string, "null"]
+        example: null
+      fullName:
+        type: string
+        example: "TestingSG"
+      email:
+        type: object
+        properties:
+          email:
+            type: string
+            example: "danangxp+sg@gmail.com"
+          isVerified:
+            type: boolean
+            example: true
+      status:
+        type: string
+        example: "ACTIVE"
+      customerGroupMemberships:
+        type: object
+        properties:
+          edges:
+            type: array
+            items:
+              type: object
+              properties:
+                node:
+                  type: object
+                  properties:
+                    customerGroup:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: "Enterprise"
+                        key:
+                          type: string
+                          example: "enterprise"
+  email_hash:
+    type: string
+    description: Email hash
+    example: "4197136426e180db160364c967ec4b51a5b67966ac77f15c55a121d5b8465df4"
+  error:
+    type: [string, "null"]
+    example: null
+

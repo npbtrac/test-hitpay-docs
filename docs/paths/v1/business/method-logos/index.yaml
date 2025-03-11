@@ -1,0 +1,25 @@
+get:
+  tags:
+    - Methods logos
+  summary: Get all available payment methods logos
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/MethodLogo.yaml'
+            example: # Here is where we define the explicit example
+              - method: billease
+                sm: https://api.hit-pay.com/icons/methods/sm/billease.png
+                md: https://api.hit-pay.com/icons/methods/md/billease.png
+              - methpd: gcash
+                sm: https://api.hit-pay.com/icons/methods/sm/gcash.png
+                md: https://api.hit-pay.com/icons/methods/md/gcash.png
+              - method: grabpay_direct
+                sm: https://api.hit-pay.com/icons/methods/sm/grabpay.png
+                md: https://api.hit-pay.com/icons/methods/md/grabpay.png

@@ -1,0 +1,93 @@
+post:
+  tags:
+    - Donation
+  summary: Update donation settings
+  description: Update donation settings
+  operationId: UpdateDonationSettings
+  parameters:
+    - name: business_id
+      required: true
+      in: path
+      schema:
+        type: string
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            welcome_message:
+              type: string
+              description: Maximum 500 characters.
+              example: Donate to ABC Charity
+            closing_message:
+              type: string
+              description: Maximum 500 characters.
+              example: Thank you for your donation
+            quicksale_amounts:
+              type: array
+              items:
+                type: number
+              description: Quick sale amounts
+              example: [5, 10, 20, 50]
+            custom_amount_enabled:
+              type: boolean
+              description: Custom amount enabled
+              example: true
+            promotional_material:
+              type: string
+              format: binary
+              description: Promotional material. Max 10MB.
+            show_customer_form:
+              type: boolean
+              description: Show customer form
+              example: true
+            show_order_form:
+              type: boolean
+              description: Show order form
+              example: true
+            text_color:
+              type: string
+              description: Text color
+              example: "#000000"
+            background_color:
+              type: string
+              description: Background color
+              example: "#FFFFFF"
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/DonationSettings.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+get:
+  tags:
+    - Donation
+  summary: Get donation settings
+  description: Get donation settings
+  operationId: GetDonationSettings
+  security:
+    - cdmAuth: []
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/DonationSettings.yaml'
+    '404':
+      description: 'Not Found'

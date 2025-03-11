@@ -1,0 +1,36 @@
+post:
+  summary: Void Invoice
+  operationId: voidInvoice
+  tags:
+    - Invoices
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: b_invoice
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            void_reason:
+              type: string
+  responses:
+    '200':
+      description: Invoice has been voided
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Invoice.yaml'
+    '404':
+      description: 'Not found'
+    '422':
+        description: 'Unprocessable Entity'
+        content:
+          application/json:
+            schema:
+              $ref: '../../../../schemas/Error.yaml'

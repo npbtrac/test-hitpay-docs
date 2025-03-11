@@ -1,0 +1,194 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  reference:
+    type: [string, "null"]
+    maxLength: 255
+  due_date:
+    type: [string, "null"]
+    format: date
+  auto_invoice_number:
+    type: [integer, "null"]
+    enum:
+      - 0
+      - 1
+  invoice_number:
+    type: [string, "null"]
+    maxLength: 255
+  amount:
+    type: number
+    format: float
+  subtotal:
+    type: number
+    format: float
+  payment_by:
+    type: string
+    enum:
+      - product
+      - amount
+  products:
+    type: array
+    items:
+      type: object
+      properties:
+        product_id:
+          type: [string, "null"]
+        name:
+          type: [string, "null"]
+          maxLength: 255
+        variation_id:
+          type: [string, "null"]
+        description:
+          type: [string, "null"]
+        quantity:
+          type: integer
+          minimum: 0
+          maximum: 999999
+        discount:
+          type: [number, "null"]
+          format: float
+        percentage_discount:
+          type: [number, "null"]
+          format: float
+          minimum: 0
+          maximum: 1
+        price:
+          type: [number, "null"]
+          format: float
+          minimum: 1
+  description:
+    type: [string, "null"]
+    maxLength: 255
+  currency:
+    type: string
+  tax_setting:
+    type: [string, "null"]
+  invoice_date:
+    type: string
+    format: date
+  type:
+    type: [string, "null"]
+    enum:
+      - invoice
+      - repeating_invoice
+  cycle:
+    type: [string, "null"]
+    enum:
+      - weekly
+      - monthly
+      - yearly
+      - custom
+  cycle_repeat:
+    type: [integer, "null"]
+    minimum: 1
+    maximum: 1000
+  cycle_frequency:
+    type: [string, "null"]
+    enum:
+      - week
+      - month
+  repeat_count:
+    type: [integer, "null"]
+    minimum: 1
+  repeating_due_date:
+    type: [string, "null"]
+    enum:
+      - no_due_date
+      - on_invoice_date
+      - after_number_of_days
+  due_date_after_number:
+    type: [integer, "null"]
+  delivery_options:
+    type: [string, "null"]
+    enum:
+      - send_automatically
+      - create_as_draft
+  late_fee_type:
+    type: [string, "null"]
+    enum:
+      - percentage_of_total
+      - percentage_of_outstanding
+      - fixed_amount
+  late_fee_percentage:
+    type: [number, "null"]
+    format: float
+    minimum: 0
+    maximum: 1
+  late_fee_amount:
+    type: [number, "null"]
+    format: float
+    minimum: 0.01
+  late_fee_grace_period:
+    type: [number, "null"]
+  allow_partial_payments:
+    type: [number, "null"]
+    enum:
+      - 0
+      - 1
+  partial_payments:
+    type: [array, "null"]
+    items:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: float
+          minimum: 0.01
+        due_date:
+          type: [string, "null"]
+          format: date
+  send_email:
+    type: [boolean, "null"]
+  send_email_by_default:
+    type: [boolean, "null"]
+  webhook:
+    type: [string, "null"]
+    format: uri
+  footer:
+    type: [string, "null"]
+  stackable_discounts:
+    type: [array, "null"]
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        discount:
+          type: number
+          format: float
+        percentage_discount:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        order:
+          type: integer
+          minimum: 1
+          maximum: 100
+  payment_methods:
+    type: [array, "null"]
+    items:
+      type: string
+  status:
+    type: [string, "null"]
+  attached_file:
+    type: [string, "null"]
+    format: binary
+  file_path:
+    type: [string, "null"]
+  customer_id:
+    type: [string, "null"]
+  customer:
+    $ref: './Customer.yaml'
+  recipients:
+    type: [array, "null"]
+    items:
+      type: object
+      properties:
+        email:
+          type: [string, "null"]
+        customer_id:
+          type: [number, "null"]

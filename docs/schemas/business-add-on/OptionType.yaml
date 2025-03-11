@@ -1,0 +1,7 @@
+type: string
+description: The type for the option
+enum:
+  - checkbox
+  - radio
+  - text
+  - select

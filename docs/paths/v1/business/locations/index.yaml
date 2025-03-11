@@ -1,0 +1,72 @@
+post:
+  tags:
+    - Location
+  summary: Create location
+  description: Create location
+  operationId: CreateLocation
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Location name
+              example: Location 1
+            street:
+              type: string
+              description: Street
+              example: 123 Main St
+            city:
+              type: string
+              description: City
+              example: San Francisco
+            state:
+              type: string
+              description: State
+              example: CA
+            country:
+              type: string
+              description: Country
+              example: US
+            postal_code:
+              type: string
+              description: Postal code
+              example: 94105
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Location.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+get:
+  tags:
+    - Location
+  summary: Get list of locations
+  description: Get list of locations
+  operationId: GetListLocations
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/Location.yaml'

@@ -1,0 +1,87 @@
+get:
+  summary: List all invoices
+  description: Retrieve a list of invoices with optional filtering and sorting parameters.
+  tags:
+    - Invoices
+  operationId: listInvoices
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: status
+      in: query
+      description: Filter by invoice status.
+      required: false
+      schema:
+        type: string
+        enum: [PAID, SENT, PENDING, DRAFT, OVERDUE, PARTIALITY_PAID, ALL]
+    - name: customer_email
+      in: query
+      description: Filter by customer email.
+      required: false
+      schema:
+        type: string
+        format: email
+    - name: reference
+      in: query
+      description: Filter by invoice reference.
+      required: false
+      schema:
+        type: string
+    - name: keywords
+      in: query
+      description: Filter by keywords (in invoice number, reference, or customer name).
+      required: false
+      schema:
+        type: string
+    - name: type
+      in: query
+      description: Filter by invoice type.
+      required: false
+      schema:
+        type: string
+        enum: [INVOICE, REPEATING_INVOICE]
+  responses:
+    '200':
+      description: A list of invoices.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/Invoice.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+
+post:
+  summary: Create an invoice
+  description: Creates a new invoice with specified details.
+  tags:
+    - Invoices
+  operationId: createInvoice
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          $ref: '../../../../schemas/Invoice.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Invoice.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'

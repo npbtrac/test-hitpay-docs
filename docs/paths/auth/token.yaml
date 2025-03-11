@@ -1,0 +1,61 @@
+post:
+  tags:
+    - Auth
+  summary: Create token
+  description: Create new token
+  operationId: CreateToken
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            grant_type:
+              type: string
+              description: Grant type
+              example: password
+              enum:
+                - password
+                - refresh_token
+            client_id:
+              type: string
+              description: Client id
+              example: 8b7bc7aa-bde1-4380-b49e-7f1baeb8c3ce
+            client_secret:
+              type: string
+              description: Client secret
+              example: cFxpL6tLjcbIAp5WQXHnLjHaaZgPCgUff5UXCzIp
+            username:
+              type: string
+              description: Username
+              example: user@gmail.com
+            password:
+              type: string
+              description: Password
+              example: password
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token_type:
+                type: string
+                description: Token type
+                example: Bearer
+              expires_in:
+                type: integer
+                description: Token expires in
+                example: 3600
+              access_token:
+                type: string
+                description: Access token
+                example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiI...
+    '400':
+      description: 'Invalid credentials'
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/Error.yaml'

@@ -1,0 +1,33 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: The unique identifier for the waitlist
+    business_id:
+      type: string
+      format: uuid
+      description: The unique identifier for the business
+    business:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the business
+        name:
+          type: string
+          description: The name of the business
+        description:
+          type: string
+          description: The description of the business
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the business was added to the waitlist
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time the business was last updated

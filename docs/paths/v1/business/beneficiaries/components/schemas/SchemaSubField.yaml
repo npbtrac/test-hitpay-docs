@@ -1,0 +1,25 @@
+type: object
+properties:
+  key:
+    type: string
+  title:
+    type: string
+  required:
+    type: boolean
+  type:
+    type: string
+  options:
+    type: array
+    items:
+      type: object
+      properties:
+        value:
+          type: string
+        label:
+          type: string
+  value:
+    oneOf:
+      - type: string
+      - type: boolean
+  validation:
+    type: string

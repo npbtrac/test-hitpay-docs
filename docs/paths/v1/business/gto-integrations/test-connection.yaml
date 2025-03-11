@@ -1,0 +1,58 @@
+post:
+  tags:
+    - GTO Integrations
+  summary: Test GTO Integrations Connection
+  description: Test GTO Integrations Connection
+  operationId: TestGtoIntegrationConnection
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            host:
+                type: string
+                example: "sftp://example.com"
+            port:
+              type: number
+              example: 22
+            username:
+              type: string
+              example: "username"
+            password:
+              type: string
+              example: "password"
+            directory_path:
+              type: string
+              example: "/path/to/file"
+            protocol:
+              type: string
+              enum:
+                - ftp
+                - sftp
+              example: "sftp"
+  responses:
+    '200':
+      description: Successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Connection successful"
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Connection failed"
+  

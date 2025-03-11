@@ -1,0 +1,32 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "9ae2634a-4609-45f9-a3e9-c5e8ee813aa7"
+  business_id:
+    type: string
+    example: "9130c422-bf97-4bd1-b370-07a3a6f40000"
+  name:
+    type: string
+    example: "My Webhook"
+  url:
+    type: string
+    format: uri
+    example: "https://google.com"
+  event_types:
+    type: array
+    items:
+      type: string
+    example:
+      - "charge.created"
+      - "charge.updated"
+  created_at:
+    type: string
+    format: date-time
+    example: "2023-12-19T07:33:10.000000Z"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2023-12-19T07:33:10.000000Z"
+  salt:
+    type: string

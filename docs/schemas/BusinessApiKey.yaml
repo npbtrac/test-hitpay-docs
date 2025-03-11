@@ -1,0 +1,17 @@
+type: object
+properties:
+  id: 
+    type: string
+    format: uuid
+  api_key: 
+    type: string
+  business_id:
+    type: string
+    format: uuid
+  is_enabled:
+    type: boolean
+  created_at:
+    $ref: './common/CreatedAt.yaml'
+  updated_at:
+    $ref: './common/UpdatedAt.yaml'
+  

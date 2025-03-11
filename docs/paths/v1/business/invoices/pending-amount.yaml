@@ -1,0 +1,18 @@
+post:
+  summary: Get Total Pending Amount
+  operationId: getPendingAmount
+  tags:
+    - Invoices
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: Returned pending amount for invoices
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              pending_amount:
+                type: string
+                example: "SGD 5.00"

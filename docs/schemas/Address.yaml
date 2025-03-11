@@ -1,0 +1,13 @@
+type: object
+properties:
+  street:
+    type: [string, "null"]
+  city:
+    type: [string, "null"]
+  state:
+    type: [string, "null"]
+  postal_code:
+    type: [string, "null"]
+  country:
+    type: string
+    example: "sg"

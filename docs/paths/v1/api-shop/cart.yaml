@@ -1,0 +1,53 @@
+get:
+  tags:
+    - Api Shop
+  summary: Cart Data
+  description: Cart detail display cart products
+  operationId: getCartData
+  parameters:
+    - name: business_id
+      in: path
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+POST:
+  tags:
+    - Api Shop
+  summary: Add to cart
+  operationId: AddToCart
+  parameters:
+    - name: business_id
+      in: path
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+PUT:
+  tags:
+    - Api Shop
+  summary: Update cart item
+  operationId: UpdateCartItem
+  parameters:
+    - name: business_id
+      in: path
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+DELETE:
+  tags:
+    - Api Shop
+  summary: Delete Cart item
+  operationId: DeleteCartItem
+  parameters:
+    - name: business_id
+      in: path
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'

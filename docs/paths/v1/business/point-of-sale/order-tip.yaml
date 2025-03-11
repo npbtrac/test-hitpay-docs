@@ -1,0 +1,46 @@
+post:
+  tags:
+    - Point Of Sale
+  summary: Add tip to order
+  description: Add tip to order
+  operationId: POSAddTipToOrder
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            tip_option_type:
+              type: string
+              enum:
+                - tip_custom
+                - tip_option_1
+                - tip_option_2
+                - tip_option_3
+              description: Tip option type.
+            tip_custom_amount:
+              type: number
+              format: float
+              description: Tip amount for tip_custom type.
+              example: 15
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

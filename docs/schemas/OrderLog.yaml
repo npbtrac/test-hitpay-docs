@@ -1,0 +1,30 @@
+type: object
+properties:
+  id:
+    type: string
+    description: id of the Order Log
+    example: 98cd4dc5-0a00-4cfe-ad4c-c8a1c3073e65
+  business_order_id:
+    type: string
+    description: id of the Business Order
+    example: 98cd0dd9-8131-4291-9f6f-6ff7ecb99c40
+  message:
+    type: string
+    description: content for the Order Log
+  title:
+    type: string
+    description: Title of the Order Log
+    example: Marked this order as Partially Refunded
+  user_id:
+    type: string
+    description: id of the use who created the Order Log
+    example: 98566f58-1c76-4b8b-8f75-d20bba2bc7f8
+  data:
+    type: object
+    description: extra data
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time

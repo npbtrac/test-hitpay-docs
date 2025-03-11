@@ -1,0 +1,34 @@
+get:
+  tags:
+    - Referrals
+  summary: Get Business Referral
+  description: Get Business Referral
+  operationId: GetBusinessReferral
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    amount_earned:
+                      type: integer
+                      example: 9
+                      nullable: true
+                    total_referred:
+                      type: integer
+                      example: 8
+                    referral_url:
+                      type: string
+                      example: "https://dashboard.hitpay.local/register?referral_code=MAULAMACZ5"
+                    referral_code:
+                      type: string
+                      example: "MAULAMACZ5"

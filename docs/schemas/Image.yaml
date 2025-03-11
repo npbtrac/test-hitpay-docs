@@ -1,0 +1,64 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  caption:
+    type: string
+    description: Caption of the image
+    example: Image 1
+  url:
+    type: string
+    description: Url of the image
+    example: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
+  other_dimensions:
+    type: array
+    items:
+      type: object
+      properties:
+        size:
+          type: string
+          description: Size of the image
+          enum:
+            - icon
+            - large
+            - medium
+            - small
+            - thumbnail
+        path:
+          type: string
+          description: Url of the image
+          example: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
+  urls:
+    type: object
+    properties:
+      icon:
+        type: string
+        description: Url of the image (icon size)
+        example: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
+      thumbnail:
+        type: string
+        description: Url of the image (thumbnail size)
+        example: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
+      small:
+        type: string
+        description: Url of the image (small size)
+        example: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
+      medium:
+        type: string
+        description: Url of the image (medium size)
+        example: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
+      large:
+        type: string
+        description: Url of the image (large size)
+        example: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
+  pivot:
+    type: object
+    properties:
+      image_id:
+        type: string
+        format: uuid
+      order_weight:
+        type: integer
+      
+      

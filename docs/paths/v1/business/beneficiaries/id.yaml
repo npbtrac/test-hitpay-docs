@@ -1,0 +1,66 @@
+get:
+  tags:
+    - Beneficiaries
+  summary: Get beneficiary details
+  description: Get beneficiary details
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/BeneficiaryId.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Beneficiary.yaml'
+    '404':
+      description: 'Not found'
+patch:
+  tags:
+    - Beneficiaries
+  summary: Update beneficiary
+  description: Update beneficiary
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/BeneficiaryId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            nickname:
+              type: [string, "null"]
+            remark:
+              type: [string, "null"]
+            password:
+              type: [string, "null"]
+              description: Your account password
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Beneficiary.yaml'
+    '404':
+      description: 'Not found'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+delete:
+  tags:
+    - Beneficiaries
+  summary: Delete beneficiary
+  description: Delete beneficiary
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/BeneficiaryId.yaml'
+  responses:
+    '204':
+      description: Successful operation
+    '404':
+      description: 'Not found'

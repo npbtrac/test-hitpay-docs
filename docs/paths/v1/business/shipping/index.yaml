@@ -1,0 +1,44 @@
+get:
+  summary: List all shipping methods
+  description: Retrieve a list of shipping methods
+  tags:
+    - Shipping
+  operationId: listShippings
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: A list of shippings.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/Shipping.yaml'
+
+post:
+  summary: Create a shipping method
+  description: Creates a new shipping method with specified details.
+  tags:
+    - Shipping
+  operationId: createShipping
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          $ref: '../../../../schemas/Shipping.yaml'
+  responses:
+    '200':
+      description: 'Successfully create'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Shipping.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

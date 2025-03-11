@@ -1,0 +1,15 @@
+get:
+  summary: List all staffs
+  description: Retrieve a list of staffs.
+  tags:
+    - Staffs
+  operationId: listStaffs
+  responses:
+    '200':
+      description: A list of business staffs.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/Staff.yaml'

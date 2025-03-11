@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Referrals
+  summary: Send a referral invitation
+  description: Send a referral invitation
+  operationId: SendReferralInvitation
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              description: Email address to send the invitation. 
+              required: true
+            recaptcha_token:
+              type: string
+              description: Optional - Recaptcha token for validation.
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Invitation was sent successfully."

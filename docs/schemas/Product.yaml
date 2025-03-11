@@ -1,0 +1,175 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+    description: Name of the product
+    example: Product 1
+  headline:
+    type: string
+    description: Headline of the product
+    example: Product 1 headline
+  emoji:
+    type: string
+    description: Emoji of the product
+    example: 🍔
+  description:
+    type: string
+    description: Description of the product
+    example: Product 1 description
+  stock_keeping_unit:
+    type: string
+    description: Stock keeping unit of the product
+    example: PR001
+  barcode:
+    type: string
+    description: Barcode of the product
+    example: 1234567890
+  currency:
+    type: string
+    description: 3-letter ISO 4217 currency code
+    example: sgd
+  price:
+    type: number
+    description: Price of the product
+    example: 100.00
+  price_before_discount:
+    type: number
+    description: Price of the product before discount
+    example: 120.00
+  is_manageable:
+    type: boolean
+    description: Is the product manageable
+    example: true
+  is_pinned:
+    type: boolean
+    description: Is the product pinned
+    example: true
+  status:
+    type: string
+    description: Status of the product
+    enum:
+      - draft
+      - published
+  has_variations:
+    type: boolean
+    description: Does the product have variations
+    example: true
+  variations_count:
+    type: integer
+    description: Number of variations of the product
+    example: 1
+  variations:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        stock_keeping_unit:
+          type: string
+          description: Stock keeping unit of the product variation
+          example: PR001
+        description:
+          type: string
+          description: Description of the product variation
+          example: Blue / XL
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+                description: Key of the product variation value
+                example: Color
+              value:
+                type: string
+                description: Value of the product variation value
+                example: Blue
+        price:
+          type: number
+          description: Price of the product variation
+          example: 100.00
+        open_amount:
+          type: boolean
+          description: When true, allows custom pricing for this variation during checkout
+          default: false
+          example: true
+        quantity:
+          type: integer
+          description: Quantity of the product variation
+          example: 10
+        quantity_alert_level:
+          type: integer
+          description: Quantity alert level of the product variation
+          example: 5
+        order:
+          type: integer
+          description: Ordering weight for custom sorting (ASC)
+          example: 10
+        images:
+          type: array
+          items:
+            $ref: './Image.yaml'
+  images:
+    type: array
+    items:
+      $ref: './Image.yaml'
+  image:
+    type: string
+    description: Url of the product image
+    example: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
+  is_published:
+    type: boolean
+    description: Is the product published
+    example: true
+  type:
+    type: string
+    description: Type of the product
+    enum:
+      - physical
+      - digital
+  password_protected:
+    type: boolean
+    description: Is the product password protected
+    example: true
+  channels:
+    type: array
+    items:
+      type: string
+      description: Channel of the product
+      enum:
+        - pos
+        - online_store
+        - invoice
+  locations:
+    type: array
+    items:
+      $ref: './Location.yaml'
+  product_unit:
+    type: string
+    description: Unit of the product
+  product_unit_abbreviation:
+    type: string
+    description: Abbreviation of the product unit
+  product_unit_value:
+    type: number
+    description: Value of the product unit
+  handle:
+    type: string
+    description: The unique handle of the product
+    example: product-1
+  product_add_ons:
+    type: array
+    items:
+      $ref: './BusinessAddOn.yaml'
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time

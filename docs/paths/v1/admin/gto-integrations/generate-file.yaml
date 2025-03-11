@@ -1,0 +1,43 @@
+post:
+  tags:
+    - Admin GTO Integrations
+  summary: Generate File for GTO Integrations by Admin
+  description: Generate File for GTO Integrations by Admin
+  operationId: GenerateFileForGtoIntegrationsByAdmin
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            business_id:
+              type: [string, "null"]
+              format: uuid
+              example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+            integration_id:
+              type: [string, "null"]
+              format: uuid
+              example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+            sales_date:
+              type: [string, "null"]
+              format: date
+              example: "2023-11-07"
+  responses:
+    '200':
+      description: Successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+                example: "https://example.com"
+    '422':
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

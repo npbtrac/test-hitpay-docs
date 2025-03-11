@@ -1,0 +1,76 @@
+get:
+  summary: Get a Shipping method by ID
+  operationId: getShippingById
+  tags:
+    - Shipping
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: shipping_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+
+  responses:
+    '200':
+      description: Shipping method data retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Shipping.yaml'
+    '404':
+      description: 'Not found'
+
+put:
+  summary: Update a Shipping method by ID
+  operationId: updateShippingById
+  tags:
+    - Shipping
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: shipping_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../schemas/Shipping.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Shipping.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+
+delete:
+  summary: Delete a Shipping Method by ID
+  operationId: deleteShippingById
+  tags:
+    - Shipping
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: shipping_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '204':
+      description: 'Successfully'
+    '404':
+      description: 'Not found'

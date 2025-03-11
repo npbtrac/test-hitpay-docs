@@ -1,0 +1,26 @@
+type: object
+properties:
+  id:
+    $ref: './common/Id.yaml'
+  business_id:
+    $ref: './common/BusinessId.yaml'
+  name:
+    $ref: './business-add-on/Name.yaml'
+  option_type:
+    $ref: './business-add-on/OptionType.yaml'
+  option_values:
+    $ref: './business-add-on/OptionValues.yaml'
+  min_selection:
+    $ref: './business-add-on/MinSelection.yaml'
+  max_selection:
+    $ref: './business-add-on/MaxSelection.yaml'
+  is_required:
+    $ref: './business-add-on/IsRequired.yaml'
+  products:
+    $ref: './business-add-on/Products.yaml'
+  products_count:
+    $ref: './business-add-on/ProductsCount.yaml'
+  created_at:
+    $ref: './common/CreatedAt.yaml'
+  updated_at:
+    $ref: './common/UpdatedAt.yaml'

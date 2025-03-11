@@ -1,0 +1,23 @@
+post:
+  summary: Duplicate a Business Add-on by Id
+  operationId: duplicateBusinessAddOnById
+  tags:
+    - Business Add-ons
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: business_add_on_id
+      in: path
+      required: true
+      schema:
+        $ref: '../../../../schemas/common/Id.yaml'
+  responses:
+    '200':
+      description: 'Successfully done'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/BusinessAddOn.yaml'
+    '400':
+      description: 'Bad request'
+    '404':
+      description: 'Not found'

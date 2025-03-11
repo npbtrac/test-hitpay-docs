@@ -1,0 +1,21 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+    example: John Doe
+  email:
+    type: string
+    format: email
+    example: customer@domain.com
+  invited_at:
+    type: string
+    format: date-time
+    example: "2023-12-12T17:31:11+08:00"
+  role:
+    $ref: './Role.yaml'
+  locations:
+    type: array
+    $ref: './Location.yaml'

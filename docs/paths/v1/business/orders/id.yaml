@@ -1,0 +1,225 @@
+get:
+  tags:
+    - Order
+  summary: Get order details
+  description: Get order details
+  operationId: GetOrderDetails
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: prev
+      in: query
+      schema:
+        type: boolean
+        description: Get previous order
+    - name: next
+      in: query
+      schema:
+        type: boolean
+        description: Get next order
+    - name: channel
+      in: query
+      schema:
+        type: string
+        description: Get prev/next order by channel
+        enum:
+          - point_of_sale
+          - quick_sale
+          - self_serve
+          - store_checkout
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              order_display_number:
+                type: number
+                description: Order display number
+                example: 4321
+              channel:
+                type: string
+                description: Channel of the order
+                enum:
+                  - point_of_sale
+                  - quick_sale
+              remark:
+                type: string
+                description: Order remark
+                example: Order remark
+              customer:
+                $ref: '../../../../schemas/Customer.yaml'
+              shipping:
+                type: object
+                properties:
+                  method:
+                    type: string
+                    example: Standard
+                  amount:
+                    type: number
+                    format: float
+                    example: 10.00
+                  address:
+                    $ref: '../../../../schemas/Address.yaml'
+              pickup:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Main store
+                  address:
+                    $ref: '../../../../schemas/Address.yaml'
+              executor:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  display_name:
+                    type: string
+                    example: Cashier 1
+                  email:
+                    type: string
+                    format: email
+                    example: cashier1@domain.com
+              location:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                    example: Main Store
+                  address:
+                    type: string
+                    example: 123 Main St, San Francisco
+              line_items:
+                type: array
+                items:
+                  $ref: '../../../../schemas/OrderLineItem.yaml'
+              amount:
+                type: number
+                format: float
+                example: 100.00
+              currency:
+                type: string
+                description: 3-letter ISO 4217 currency code
+                example: sgd
+              status:
+                type: string
+                enum:
+                  - completed
+                  - pending
+                  - sent
+                  - draft
+                  - expired
+                  - canceled
+              fulfilment_type:
+                type: string
+                enum:
+                  - in_store
+                  - shipping
+                  - pickup
+              fulfilment_status:
+                type: string
+                enum:
+                  - pending_shipping
+                  - pending_pickup
+                  - completed_shipped
+                  - completed_pickup
+                  - completed_delivered
+                  - canceled
+                  - payment_in_progress
+                  - waiting_for_customer
+              payment_status:
+                type: string
+                enum:
+                  - paid
+                  - canceled
+                  - refunded
+                  - partially_refunded
+                  - awaiting_payment
+              closed_at:
+                type: string
+                format: date-time
+              created_at:
+                type: string
+                format: date-time
+              updated_at:
+                type: string
+                format: date-time
+
+put:
+  tags:
+    - Order
+  summary: Update order details
+  description: Update order details
+  operationId: UpdateOrderDetails
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_id:
+              type: string
+              format: uuid
+              description: Customer id
+            discount_reason:
+              type: string
+              description: Discount reason
+              example: I want to make discount for this product
+            discount_amount:
+              type: number
+              description: Discount amount
+              example: 20.00
+            remark:
+              type: string
+              description: Order remark
+              example: Order remark
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'
+
+delete:
+  tags:
+    - Order
+  summary: Delete order
+  description: Delete order
+  operationId: DeleteOrder
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '204':
+      description: 'Successfully'
+    '404':
+      description: 'Not found'

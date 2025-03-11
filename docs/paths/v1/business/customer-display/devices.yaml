@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Customer Display
+  summary: Get list devices
+  description: Get list of customer display devices
+  operationId: GetListCustomerDisplayDevices
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: per_page
+      in: query
+      schema:
+        type: integer
+        default: 10
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    - name: pos_device_id
+      in: query
+      schema:
+        type: string
+        description: The unique identifier of the POS device
+  responses:
+    '200':
+      description: 'List of customer display devices'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/CustomerDisplayDevice.yaml'
+    '404':
+      description: 'Not Found'

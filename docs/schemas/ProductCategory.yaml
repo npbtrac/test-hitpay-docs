@@ -1,0 +1,70 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+    description: Name of the product category
+    example: Product Category 1
+  description:
+    type: string
+    description: Description of the product category
+    example: Product Category 1
+  handle:
+    type: string
+    description: Handle of the product category
+    example: product-category-1
+  emoji:
+    type: string
+    description: Emoji of the product category
+    example: 🍔
+  pos_color:
+    type: string
+    description: Color of the product category
+    example: "#000000"
+  image:
+    type: string
+    description: Image of the product category
+  is_active:
+    type: boolean
+    description: Is the product category active
+    example: true
+  order:
+    type: integer
+    description: Order of the product category
+    example: 1
+  children:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: Name of the product category
+          example: Product Category 1
+        handle:
+          type: string
+          description: Handle of the product category
+          example: product-category-1
+        description:
+          type: string
+          description: Description of the product category
+          example: Product Category 1
+        is_active:
+          type: boolean
+          description: Is the product category active
+          example: true
+        order:
+          type: integer
+          description: Order of the product category
+          example: 1
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time

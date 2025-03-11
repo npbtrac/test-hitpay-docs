@@ -1,0 +1,63 @@
+post:
+  tags:
+    - Product
+  summary: Link and re-order the Business Images for the Product
+  description: Link and re-order the Business Images for the Product
+  operationId: ListProductImages
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/ProductId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            business_images:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    example: "98d71139-07f1-4e7d-8178-ccf278d25f36"
+                  order_weight:
+                    type: integer
+                    example: -1
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Product.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+delete:
+  tags:
+    - Product
+  summary: Unlink all Business Images for the Product
+  description: Unlink all Business Images for the Product
+  operationId: UnlinkProductImages
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/ProductId.yaml'
+  responses:
+    '204':
+      description: 'Successfully'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+

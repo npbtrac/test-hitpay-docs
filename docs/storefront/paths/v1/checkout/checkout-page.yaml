@@ -1,0 +1,144 @@
+get:
+  tags:
+    - Checkout
+  summary: Show the checkout details for the checkout page
+  description: Show all the details of the cart, discount, coupon for the Checkout page
+  operationId: ShowCheckoutPage
+  parameters:
+    - name: cart_id
+      in: query
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            coupon_code:
+              type: string
+              description: the code for the coupon to be used
+              example: 'sale10'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cart:
+                type: object  
+                properties:
+                  id:
+                    $ref: '../../../schemas/Cart.yaml#/id'
+                  business_id:
+                    $ref: '../../../schemas/Cart.yaml#/business_id'
+                  products:
+                    $ref: '../../../schemas/Cart.yaml#/products'
+                  discount_amount: 
+                    type: int
+                    description: Amount of the discount amount to be applied for the cart, in minor units
+                  coupon_amount: 
+                    type: int
+                    description: Amount of the coupon amount to be applied for the cart, in minor units
+                  applied_discounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: Id (from the Db) of the discount applied
+                        fixed_amount:
+                          type: int
+                          description: Amount of the discount amount to be applied for the cart, in minor units
+                        percentage:
+                          type: float
+                          description: Percentage of the discount amount to be applied for the cart
+                  cart_products_amount:
+                    type: int
+                    description: Amount of the cart products, in minor units
+                  cart_product_add_ons_amount:
+                    type: int
+                    description: Amount of the cart product add-ons, in minor units
+                  total_cart_amount:
+                    type: int
+                    description: Total amount of the cart, in minor units
+                  coupon_id:
+                    type: string
+                    format: uuid
+                    description: id of the coupon applied according to the coupon code from the request
+              data:
+                type: object
+                properties:
+                  products:
+                    type: object
+                    description: List of products/variations in the cart in the format `cart_product_item_id` => item details. Details of the product for a cart item like data in cart, product data, variation data, image url, product amount, product add-ons amount, product total amount
+                  order_form: 
+                    type: object
+                    description: Order form details
+                    properties:
+                      note:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          title:
+                            type: string
+                          deleted:
+                            type: boolean
+                          include:
+                            type: boolean
+                          required:
+                            type: boolean
+                      phone:
+                        type: object
+                        properties:
+                          include:
+                            type: boolean
+                          required:
+                            type: boolean
+                      remarks:
+                        type: object
+                        properties:
+                          include:
+                            type: boolean
+                          required:
+                            type: boolean
+                  seller_notes:
+                    type: string
+                  shipping:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        description: Id of the shipping method to be used
+                      discount:
+                        type: int
+                        description: Amount of the discount amount to be applied for the shipping, in minor units
+                      amount:
+                        type: int
+                        description: Amount of the shipping amount to be applied for the shipping, in minor units
+                  tax:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        description: Id of the shipping method to be used
+                      inclusive:
+                        type: boolean
+                        description: Indicates if the tax is inclusive
+                      amount:
+                        type: int
+                        description: Amount of the shipping amount to be applied for the shipping, in minor units
+                  total_amount:
+                    type: int
+                    description: Total amount for the cart, discount, coupon, in minor units
+                  coupon_invalid:
+                    type: string
+                  

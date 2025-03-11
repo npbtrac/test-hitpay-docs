@@ -1,0 +1,26 @@
+post:
+  summary: Resend an Invoice
+  operationId: resendInvoice
+  tags:
+    - Invoices
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: b_invoice
+      required: true
+      in: path
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: Invoice resent successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+    '404':
+      description: 'Not found'

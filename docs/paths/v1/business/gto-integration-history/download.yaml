@@ -1,0 +1,42 @@
+get:
+  tags:
+    - GTO Integration Histories
+  summary: Download GTO Integration
+  description: Download a GTO Integration
+  operationId: DownloadGtoIntegration
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: history_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: uri
+                    example: "https://example.com"
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

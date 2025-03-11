@@ -1,0 +1,72 @@
+get:
+  tags:
+    - Wallet Balances
+  summary: Get wallet transactions
+  description: Retrieve the transactions for a wallet.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+    - name: wallet_type
+      in: query
+      schema:
+        type: [string, "null"]
+        enum: ['available', 'deposit', 'pending', 'reserve']
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    wallet_type:
+                      type: string
+                      enum: ['available', 'deposit', 'pending', 'reserve']
+                    event:
+                      type: string
+                    currency:
+                      type: string
+                      pattern: '^([A-Z]{3})$'
+                    amount:
+                      type: number
+                    description:
+                      type: string
+                    confirmed:
+                      type: boolean
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+              links:
+                type: object
+                properties:
+                  first:
+                    type: [string, "null"]
+                  last:
+                    type: [string, "null"]
+                  prev:
+                    type: [string, "null"]
+                  next:
+                    type: [string, "null"]
+              meta:
+                type: object
+                properties:
+                  path:
+                    type: string
+                  per_page:
+                    type: integer
+                  next_cursor:
+                    type: [string, "null"]
+                  prev_cursor:
+                    type: [string, "null"]
+

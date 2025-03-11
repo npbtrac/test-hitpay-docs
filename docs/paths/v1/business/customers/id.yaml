@@ -1,0 +1,75 @@
+get:
+  summary: Get a Customer by ID
+  operationId: getCustomerById
+  tags:
+    - Customers
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: customer_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: Customer data retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Customer.yaml'
+    '404':
+      description: 'Not found'
+
+put:
+  summary: Update a Customer by ID
+  operationId: updateCustomerById
+  tags:
+    - Customers
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: customer_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../schemas/Customer.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Customer.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+
+delete:
+  summary: Delete a Customer by ID
+  operationId: deleteCustomerById
+  tags:
+    - Customers
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: customer_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '204':
+      description: 'Successfully'
+    '404':
+      description: 'Not found'

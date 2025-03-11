@@ -1,0 +1,99 @@
+get:
+  tags:
+    - Notifications
+  summary: Get business subscribed events
+  description: Get business subscribed events
+  operationId: GetBusinessSubscribedEvents
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/BusinessNotification.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+put:
+  tags:
+    - Notifications
+  summary: Update business subscribed events.
+  description: Update business subscribed events.
+  operationId: UpdateBusinessSubscribedEvents
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            customer_receipt@email:
+              type: boolean
+              description: Customer receipt email
+              example: true
+            daily_collection@email:
+              type: boolean
+              description: Daily collection email
+              example: true
+            daily_collection@push_notification:
+              type: boolean
+              description: Daily collection push notification
+              example: true
+            daily_payout@email:
+              type: boolean
+              description: Daily payout email
+              example: true
+            incoming_payment@email:
+              type: boolean
+              description: Incoming payment email
+              example: true
+            incoming_payment@push_notification:
+              type: boolean
+              description: Incoming payment push notification
+              example: true
+            new_order@email:
+              type: boolean
+              description: New order email
+              example: true
+            new_order@push_notification:
+              type: boolean
+              description: New order push notification
+              example: true
+            pending_order@email:
+              type: boolean
+              description: Pending order email
+              example: true
+            mall_gto_sync@email:
+              type: boolean
+              description: Mall GTO sync email
+              example: true
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/BusinessNotification.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

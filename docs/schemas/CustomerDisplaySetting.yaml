@@ -1,0 +1,35 @@
+type: object
+properties:
+  logo:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+      caption:
+        type: string
+      url:
+        type: string
+        format: uri
+      other_dimensions:
+        type: array
+  welcome_message:
+    type: string
+  promotional_material:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+      caption:
+        type: string
+      url:
+        type: string
+        format: uri
+      other_dimensions:
+        type: array
+  country_code:
+    type: string
+  location_id:
+    type: string
+    format: uuid

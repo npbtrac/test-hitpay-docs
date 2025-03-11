@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Charge
+  summary: Get charge details
+  description: Get charge details
+  operationId: GetChargeDetails
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: charge_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/ChargeDetail.yaml'

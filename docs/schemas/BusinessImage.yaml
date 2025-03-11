@@ -1,0 +1,31 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  business_id:
+    type: string
+    format: uuid
+  caption:
+    type: string
+  alt_text:
+    type: string
+  url:
+    type: string
+  disk:
+    type: string
+  other_dimensions:
+    type: object
+  is_uploaded:
+    type: integer
+    format: boolean
+  created_at:
+    type: string
+    format: date-time
+    description: Business created at
+    example: "2021-01-01T00:00:00Z"
+  updated_at:
+    type: string
+    format: date-time
+    description: Business updated at
+    example: "2021-01-01T00:00:00Z"

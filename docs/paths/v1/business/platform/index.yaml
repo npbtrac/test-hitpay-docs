@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Platform
+  summary: Get Platform Info
+  description: Get Platform Info
+  operationId: GetPlatformInfo
+  parameters:
+    - $ref: "../../../../parameters/BusinessId.yaml"
+  responses:
+    "200":
+      description: "Successfully"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/platform/Platform.yaml"
+    "404":
+      description: "Not Found"

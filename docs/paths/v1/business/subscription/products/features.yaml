@@ -1,0 +1,19 @@
+get:
+  tags:
+    - SubscriptionProduct
+  summary: Get list of subscription features
+  description: Get list of subscription features
+  operationId: GetSubscriptionFeatures
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: A list of subscription features.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../../schemas/SubscriptionFeature.yaml'
+    '404':
+      description: 'Not Found'

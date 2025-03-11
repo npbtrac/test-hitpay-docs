@@ -1,0 +1,73 @@
+get:
+  tags:
+    - Wallet Balances
+  summary: Get wallet payouts
+  description: Retrieve the payouts for a wallet.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+    - name: status
+      in: query
+      schema:
+        type: [string, "null"]
+        enum: [
+          'request_pending',
+          'paused',
+          'processing',
+          'requires_merchant_action',
+          'requires_admin_action',
+          'reverted',
+          'requires_manual_review',
+          'succeeded',
+          'succeeded_manually',
+          'to_be_processed',
+          'paid',
+        ]
+    - name: created_at_from
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+    - name: created_at_to
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/Payout.yaml'
+              links:
+                type: object
+                properties:
+                  first:
+                    type: [string, "null"]
+                  last:
+                    type: [string, "null"]
+                  prev:
+                    type: [string, "null"]
+                  next:
+                    type: [string, "null"]
+              meta:
+                type: object
+                properties:
+                  path:
+                    type: string
+                  per_page:
+                    type: integer
+                  next_cursor:
+                    type: [string, "null"]
+                  prev_cursor:
+                    type: [string, "null"]
+

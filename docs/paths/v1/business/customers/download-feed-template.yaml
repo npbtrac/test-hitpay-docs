@@ -1,0 +1,22 @@
+get:
+  summary: Download customers feed template
+  description: Download a CSV file with the template for importing customers.
+  tags:
+    - Customers
+  operationId: downloadCustomersFeedTemplate
+  parameters:
+    - $ref: "../../../../parameters/BusinessId.yaml"
+  responses:
+    "200":
+      description: "Successfully"
+      content:
+        application/csv:
+          schema:
+            type: string
+            format: binary
+    "422":
+      description: "Unprocessable Entity"
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/Error.yaml"

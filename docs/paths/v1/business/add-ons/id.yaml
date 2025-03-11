@@ -1,0 +1,124 @@
+get:
+  summary: Get a Business Add-on by Id
+  operationId: getBusinessAddOnById
+  tags:
+    - Business Add-ons
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: business_add_on_id
+      in: path
+      required: true
+      schema:
+        $ref: '../../../../schemas/common/Id.yaml'
+    - name: with_products
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: Return the products that link to in the add-on or not
+  responses:
+    '200':
+      description: 'Successfully done'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/BusinessAddOn.yaml'
+    '404':
+      description: 'Not found'
+
+put:
+  summary: Update a Business Add-on by Id
+  description: Update a Business Add-on with params from the request payload
+
+
+
+    It validates the following rules
+
+
+    - `name` must be at least 3 chars
+
+    - Number of items of `option_values` must have the correct value for `min_selection` and `max_selection` of the add-on when `is_required` is `true` and `option_type` is `checkbox`
+  operationId: updateBusinessAddOnById
+  tags:
+    - Business Add-ons
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: business_add_on_id
+      in: path
+      required: true
+      schema:
+        $ref: '../../../../schemas/common/Id.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/Name.yaml'
+            option_type:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/OptionType.yaml'
+            option_values:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/OptionValues.yaml'
+            min_selection:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/MinSelection.yaml'
+            max_selection:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/MaxSelection.yaml'
+            is_required:
+              allOf:
+                - $ref: '../../../../schemas/business-add-on/IsRequired.yaml'
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  pivot:
+                    type: object
+                    properties:
+                      business_product_id:
+                        type: string
+                        format: uuid
+                        example: "9c5408fa-ba77-4e74-adc7-6b48029809f4"
+                      order_weight:
+                        type: integer
+                        example: 12
+  responses:
+    '200':
+      description: 'Successfully done'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/BusinessAddOn.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+
+delete:
+  summary: Delete a Business Add-on by Id
+  operationId: deleteBusinessAddOnById
+  tags:
+    - Business Add-ons
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: business_add_on_id
+      in: path
+      required: true
+      schema:
+        $ref: '../../../../schemas/common/Id.yaml'
+  responses:
+    '204':
+      description: 'Successfully done'
+    '400':
+      description: 'Bad request'
+    '404':
+      description: 'Not found'

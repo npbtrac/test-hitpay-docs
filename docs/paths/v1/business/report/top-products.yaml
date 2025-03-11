@@ -1,0 +1,143 @@
+get:
+  tags:
+    - Report
+  summary: Get top products report
+  description: Get top products report
+  operationId: GetTopProductsReport
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: from_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date from
+    - name: to_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date to
+    - name: channels
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+          description: Filter by channel
+          enum:
+            - store_checkout
+            - point_of_sale
+            - quick_sale
+    - name: channel
+      in: query
+      schema:
+        type: string
+        description: Filter by channel
+        enum:
+          - store_checkout
+          - point_of_sale
+    - name: location_id
+      in: query
+      schema:
+        type: string
+        format: uuid
+        description: Filter by location
+    - name: user_id
+      in: query
+      schema:
+        type: string
+        format: integer
+        description: Filter by business user
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+        description: Page number
+    - name: limit
+      in: query
+      schema:
+        type: integer
+        default: 10
+        description: Number of items per page
+    - name: timezone
+      in: query
+      schema:
+        type: string
+        description: Timezone
+        example: "Asia/Singapore"
+    - name: order_by
+      in: query
+      schema:
+        type: string
+        description: Order by `sold` or `gross_sales`
+        example: "gross_sales"
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    product_id:
+                      type: string
+                      format: uuid
+                      example: "99b248f7-794f-4639-90f3-059da8ca8d09"
+                    product_name:
+                      type: string
+                      example: "Digital Product Fish"
+                    sold:
+                      type: number
+                      format: int
+                      example: 28
+                    gross_sales:
+                      type: number
+                      format: int
+                      example: 2740
+                    discount_applied:
+                      type: number
+                      format: int
+                      example: 146.19
+                    net_sales:
+                      type: number
+                      format: int
+                      example: 2593.8
+                    variants:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          product_id:
+                            type: string
+                            format: uuid
+                            example: "99b248f7-794f-4639-90f3-059da8ca8d09"
+                          variant_id:
+                            type: string
+                            format: uuid
+                            example: "9b004028-212c-4900-a936-5eb71f589604"
+                          variation_description:
+                            type: string
+                            example: "Update_Product_1690452646"
+                          sold:
+                            type: number
+                            format: int
+                            example: 37
+                          gross_sales:
+                            type: number
+                            format: int
+                            example: 3700
+                          discount_applied:
+                            type: number
+                            format: int
+                            example: 390
+                          net_sales:
+                            type: number
+                            format: int
+                            example: 3310

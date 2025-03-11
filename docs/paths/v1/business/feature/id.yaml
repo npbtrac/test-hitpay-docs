@@ -1,0 +1,46 @@
+get:
+  tags:
+    - Business Feature
+  summary: Check feature access
+  description: Check if business has access to a feature
+  operationId: CheckFeatureAccess
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: feature_code
+      in: path
+      schema:
+        type: string
+      required: true
+  responses:
+    "200":
+      description: "Successfully"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "feature_name"
+                  description:
+                    type: string
+                    example: "feature_description"
+                  feature_status:
+                    type: string
+                    enum:
+                      - in_development
+                      - available
+                  status:
+                    type: string
+                    enum:
+                      - none
+                      - waitlist
+                      - requested
+                      - granted
+                      - revoked
+                    example: "none"
+    "404":
+      description: "Not found"

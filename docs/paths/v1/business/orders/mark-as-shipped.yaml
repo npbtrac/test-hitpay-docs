@@ -1,0 +1,33 @@
+put:
+  tags:
+    - Order
+  summary: Mark order as shipped
+  description: Mark order as shipped
+  operationId: MarkOrderAsShipped
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Shipping message. Maximum 255 characters.
+            mark_as_shipped:
+              type: boolean
+              description: Set TRUE to complete order. FALSE to only add the message.
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'

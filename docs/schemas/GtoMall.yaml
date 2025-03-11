@@ -1,0 +1,43 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: GTO Mall ID
+    example: 1
+  name:
+    type: string
+    description: GTO Mall name
+    example: "GTO Mall 1"
+  description:
+    type: string
+    description: GTO Mall description
+    example: "GTO Mall 1 description"
+  key:
+    type: string
+    description: GTO Mall key
+    example: "gto-mall-1"
+  available_frequency:
+    type: array
+    items:
+      type: string
+    description: Available frequency
+    example: ["month_end", "daily", "hourly"]
+  protocol:
+    type: string
+    enum:
+      - sftp
+      - ftp
+    description: Protocol
+    example: "sftp"
+  file_format:
+    type: string
+    description: File format
+    example: "txt"
+  created_at:
+    type: string
+    format: date-time
+    example: "2021-01-01T00:00:00Z"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2021-01-01T00:00:00Z"

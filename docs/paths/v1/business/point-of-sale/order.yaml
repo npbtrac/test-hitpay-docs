@@ -1,0 +1,99 @@
+post:
+  tags:
+    - Point Of Sale
+  summary: Update order
+  description: Set products, discounts, surcharges, and tax to order
+  operationId: POSUpdateOrder
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                type: object
+                properties:
+                  product_id:
+                    type: string
+                    format: uuid
+                    description: Product id
+                  quantity:
+                    type: integer
+                    description: Product quantity
+                    example: 1
+                  discount_ids:
+                    type: array
+                    description: Discount ids apply to the product
+                    items:
+                      type: string
+                      format: uuid
+                      description: Discount id
+                  add_ons:
+                    type: array
+                    description: Product add-ons
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: Add-on id
+                        option_values:
+                          type: array
+                          description: Selected option values for the add-on
+                          items:
+                            type: string
+                          example: ["Cheese"]
+                      required:
+                        - id
+                        - option_values
+            discount_ids:
+              type: array
+              description: Discount ids apply to the order
+              items:
+                type: string
+                format: uuid
+                description: Discount id
+            surcharge_ids:
+              type: array
+              description: Surcharge ids apply to the order
+              items:
+                type: string
+                format: uuid
+                description: Surcharge id
+            tax_id:
+              type: string
+              format: uuid
+              description: Tax id apply to the order
+            form_response:
+              type: object
+              description: Form response
+              example: {
+                "name": "John Doe",
+                "phone": "0123456789",
+                "address": "123 Street",
+                "note": "Note"
+              }
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

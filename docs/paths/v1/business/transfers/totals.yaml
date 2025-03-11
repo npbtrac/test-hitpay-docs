@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Transfers
+  summary: Get transfers totals
+  description: Sum of transferred amount grouped by currency
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: beneficiary_id
+      in: query
+      description: The unique identifier for a beneficiary
+      schema:
+        type: string
+        format: uuid
+    - name: created_at_from
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+    - name: created_at_to
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                currency:
+                  type: string
+                  example: "sgd"
+                amount:
+                  type: number
+                  example: 100.15

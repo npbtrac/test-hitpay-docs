@@ -1,0 +1,40 @@
+type: array
+items:
+  type: object
+  properties:
+    business_id:
+      type: string
+      format: uuid
+      description: The unique identifier for the business
+    business:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the business
+        name:
+          type: string
+          description: The name of the business
+        description:
+          type: string
+          description: The description of the business
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the business was added to the access list
+        granted_at:
+          type: string
+          format: date-time
+          description: The date and time the business was granted access
+        status:
+          type: string
+          enum:
+            - requested
+            - granted
+            - revoked
+          example: "requested"
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time the business was last updated

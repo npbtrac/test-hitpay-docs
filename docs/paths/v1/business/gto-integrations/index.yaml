@@ -1,0 +1,106 @@
+get:
+  tags:
+    - GTO Integrations
+  summary: Get GTO Integrations
+  description: Retrieve all GTO Integrations
+  operationId: GetGtoIntegrations
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: Successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/GtoIntegration.yaml'
+    '404':
+      description: Not found
+
+post:
+  tags:
+    - GTO Integrations
+  summary: Create GTO Integration
+  description: Create a new GTO Integration
+  operationId: CreateGtoIntegration
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "GTO Integration 1"
+            type:
+              type: string
+              enum:
+                - hourly
+                - daily
+                - month_end
+              example: "daily"
+            machine_no:
+              type: number
+              example: 3820932
+            sync_start_time:
+              type: string
+              pattern: "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+              description: "Time in HH:mm format (24-hour)"
+              example: "14:30"
+            status:
+              type: string
+              enum:
+                - active
+                - inactive
+              example: "active"
+            business_location_id:
+              type: string
+              format: uuid
+              example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+            gto_mall:
+              type: string
+              example: "capitaland"
+            sftp:
+              type: object
+              properties:
+                host:
+                  type: string
+                  example: "ftp.example.com"
+                port:
+                  type: number
+                  example: 22
+                username:
+                  type: string
+                  example: "user"
+                password:
+                  type: string
+                  example: "password"
+                directory:
+                  type: string
+                  example: "/path/to/file"
+                protocol:
+                  type: string
+                  enum:
+                    - ftp
+                    - sftp
+                  example: "sftp"
+  responses:
+    '201':
+      description: Successful
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/GtoIntegration.yaml'
+    '422':
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

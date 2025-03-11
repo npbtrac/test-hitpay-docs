@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Api Shop
+  summary: Cart Page
+  description: Cart detail display cart products with discount if exist
+  operationId: getCartPageData
+  parameters:
+    - name: business_id
+      in: path
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'

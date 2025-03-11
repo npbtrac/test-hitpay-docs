@@ -1,0 +1,264 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  identifier:
+    type: string
+    description: Identifier of the business
+    example: "business_1"
+  store_url:
+    type: string
+    description: Store URL
+    example: "https://store.example.com"
+  payment_methods:
+    type: array
+    items:
+      type: object
+      properties:
+        payment_provider:
+          type: string
+          description: Payment provider
+          example: "stripe"
+        country:
+          type: string
+          description: Country
+          example: "sg"
+        code:
+          type: string
+          description: Payment method code
+          example: "card"
+        name:
+          type: string
+          description: Payment method name
+          example: "Credit Card"
+  owner_verified:
+    type: boolean
+    description: Owner verified
+    example: true
+  stripe_enabled:
+    type: boolean
+    description: Stripe enabled
+    example: true
+  payment_request_default_link: 
+    type: string
+    description: Payment request default link
+    example: "https://example.com"
+  name:
+    type: string
+    description: Business name
+    example: "Example Business"
+  phone_number:
+    type: string
+    description: Business phone number
+    example: "6567464879"
+  address:
+    $ref: './Address.yaml'
+  address_line:
+    type: string
+    description: Business address line
+    example: "123 Main Street"
+  country:
+    type: string
+    description: Business country
+    example: "sg"
+  can_pick_up:
+    type: integer
+    description: Can pick up
+    example: 1
+  thank_message:
+    type: string
+    description: Thank message
+    example: "Thank you for your purchase"
+  enabled_shipping:
+    type: boolean
+    description: Enabled shipping
+    example: true
+  introduction:
+    type: string
+    description: Introduction
+    example: "Welcome to our store"
+  seller_notes:
+    type: string
+    description: Seller notes
+    example: "Please note that all sales are final"
+  platform_enabled:
+    type: boolean
+    description: Platform enabled
+    example: true
+  statement_description:
+    type: string
+    description: Statement description
+    example: "Example Business"
+  founding_date:
+    type: string
+    format: date
+    description: Founding date
+    example: "2021-01-01"
+  locale:
+    type: string
+    description: Locale
+    example: "en"
+  currency:
+    type: string
+    description: Currency
+    example: "sgd"
+  currency_name:
+    type: string
+    description: Currency name
+    example: "Singapore Dollar"
+  created_at:
+    type: string
+    format: date-time
+    description: Business updated at
+    example: "2021-01-01T00:00:00Z"
+  updated_at:
+    type: string
+    format: date-time
+    description: Business updated at
+    example: "2021-01-01T00:00:00Z"
+  is_verified:
+    type: boolean
+    description: Is verified
+    example: true
+  is_email_verified:
+    type: boolean
+    description: Is email verified
+    example: true
+  is_phone_number_verified:
+    type: boolean
+    description: Is phone number verified
+    example: true
+  is_banned:
+    type: boolean
+    description: Is banned
+    example: false
+  is_deactivated:
+    type: boolean
+    description: Is deactivated
+    example: false
+  timezone:
+    type: string
+    description: Timezone
+    example: "Asia/Singapore"
+  business_type:
+    type: string
+    description: Business type
+    example: "company"
+  merchant_category:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: Merchant category id
+      name:
+        type: string
+        description: Merchant category name
+        example: "Food & Beverage"
+      code:
+        type: string
+        description: Merchant category code
+        example: "Booth"
+  website:
+    type: string
+    description: Website
+    example: "https://example.com"
+  referred_channel:
+    type: string
+    description: Referred channel
+    example: "HitPay Blog"
+  has_feature_recurring_payment:
+    type: boolean
+    description: Has feature recurring payment
+    example: true
+  stripe_terminal_locations:
+    type: [array, "null"]
+  features:
+    type: object
+    properties:
+      customer_display:
+        type: boolean
+        description: Customer display
+        example: true
+      point_of_sale_order_page:
+        type: boolean
+        description: Point of sale order page
+        example: true
+      online_store_theme:
+        type: boolean
+        description: Online store theme
+        example: true
+  warnings:
+    $ref: './BannerNotification.yaml'
+  location:
+    $ref: './Location.yaml'
+  role:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: Role id
+      type:
+        type: string
+        description: Role type
+        example: "business"
+      title:
+        type: string
+        description: Role title
+        example: "Owner"
+      description:
+        type: string
+        description: Role description
+        example: "Owner of the business"
+      created_at:
+        type: string
+        format: date-time
+        description: Role created at
+        example: "2021-01-01T00:00:00Z"
+      updated_at:
+        type: string
+        format: date-time
+        description: Role updated at
+        example: "2021-01-01T00:00:00Z"
+      business_user_id:
+        type: integer
+        description: Business user id
+        example: 1
+  logo_other_dimensions:
+    type: object
+    properties:
+      icon:
+        type: string
+        description: Icon logo
+        example: "https://example.com/icon.png"
+      small:
+        type: string
+        description: Small logo
+        example: "https://example.com/small.png"
+      medium:
+        type: string
+        description: Medium logo
+        example: "https://example.com/medium.png"
+      large:
+        type: string
+        description: Large logo
+        example: "https://example.com/large.png"
+      thumbnail:
+        type: string
+        description: Thumbnail logo
+        example: "https://example.com/thumbnail.png"
+  default_logo:
+    type: string
+    description: Default logo
+    example: "https://example.com/default.png"
+  logo_url:
+    type: string
+    description: Logo URL
+    example: "https://example.com/logo.png"
+  slug:
+    type: string
+    description: Slug
+    example: "example-business"
+

@@ -1,0 +1,58 @@
+get:
+  summary: Get Shipping Form Data
+  operationId: GetShippingFormData
+  tags:
+    - Shipping
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: withGlobal
+      in: query
+      schema:
+        type: [boolean, "null"]
+  responses:
+    '200':
+      description: Shipping form data retrieved successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              countries:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                    name:
+                      type: string
+                    states:
+                      type: array
+                    address_label:
+                      type: string
+                  required: [code, name, states, address_label]
+                  example:
+                    - code: ax
+                      name: Åland Islands
+                      states: []
+                      address_label: State
+              calculations:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      enum: [flat, fee_per_unit, weight_based]
+                    name:
+                      type: string
+                  required: [code, name]
+                  example:
+                    - code: flat
+                      name: Flat rate
+                    - code: fee_per_unit
+                      name: Fee Per Unit
+                    - code: weight_based
+                      name: Weight based
+    '404':
+      description: 'Not found'

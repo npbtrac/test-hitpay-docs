@@ -1,0 +1,26 @@
+type: object
+properties:
+  id:
+    type: string
+    example: thsm_MfuTNNHLbhXoKu
+  country:
+    type: string
+    example: MY
+  estimated_delivery_window:
+    type: object
+    properties:
+      maximum_date:
+        type: string
+        format: date-time
+        example: 2023-11-06
+      minimum_date:
+        type: string
+        format: date-time
+        example: 2023-11-06
+  name:
+    type: string
+    example: standard
+  status:
+    type: string
+    enum:
+      - available

@@ -1,0 +1,51 @@
+post:
+  tags:
+    - Self Serve Onboarding
+  summary: Respond Onboarding
+  description: Respond Onboarding Status and either Questionnaire or not
+  operationId: RespondOnboarding
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            responses:
+              type: array
+              items:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: "What solutions are you looking for with HitPay?"
+                  answer:
+                    type: string
+                    example: "in_person_payment"
+                  unified_field:
+                    type: string
+                    example: "business.interested_solutions"
+  responses:
+    '200':
+      description: 'Status and either Questionnaire or not'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "9df51aaf-11c0-4d83-8c2c-311ff3e4bc50"
+              status:
+                type: string
+                example: "pending_onboarding"
+              business_onboarding_status:
+                type: string
+                example: "pending"
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

@@ -1,0 +1,82 @@
+post:
+  tags:
+    - Transfers
+  summary: Estimate transfer fees
+  description: Estimate fees required to cover the transfer costs
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            beneficiary_id:
+              type: string
+              format: uuid
+              example: "9ad4789a-c864-48a6-a657-7fdfc57ba1fc"
+            payment_amount:
+              type: [number, "null"]
+              example: 1
+            source_currency:
+              type: string
+              example: "sgd"
+            source_amount:
+              type: [number, "null"]
+              example: 1
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              source_amount:
+                type: integer
+                example: 100
+              source_amount_fees:
+                type: integer
+                example: 0
+              source_currency:
+                type: string
+                example: "sgd"
+              exchange_rate:
+                type: number
+                format: float
+                example: 1.0000
+              payment_amount:
+                type: integer
+                example: 99
+              payment_amount_fees:
+                type: integer
+                example: 1
+              payment_currency:
+                type: string
+                example: "sgd"
+              fee_payer:
+                type: string
+                enum:
+                  - "payer"
+                  - "beneficiary"
+                example: "payer"
+              fee_currency:
+                type: string
+                example: "sgd"
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '409':
+      description: 'Conflict'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error message

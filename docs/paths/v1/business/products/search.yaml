@@ -1,0 +1,78 @@
+get:
+  tags:
+    - Product
+  summary: Search products
+  description: Search products
+  operationId: SearchProducts
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: per_page
+      in: query
+      schema:
+        type: integer
+        default: 10
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    - name: keywords
+      in: query
+      schema:
+        type: string
+        description: Search by name
+    - name: stock_keeping_unit
+      in: query
+      schema:
+        type: string
+        description: Search by stock keeping unit
+    - name: barcode
+      in: query
+      schema:
+        type: string
+        description: Search by barcode
+    - name: statuses
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+        description: Search by statuses
+    - name: categories
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+        description: Search by categories
+    - name: locations
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+        description: Search by locations
+    - name: channels
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+        description: Search by channels
+    - name: out_of_stock
+      in: query
+      schema:
+        type: boolean
+        description: Search by out of stock
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/Product.yaml'

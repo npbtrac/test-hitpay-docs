@@ -1,0 +1,60 @@
+type: object
+required:
+  - id
+  - is_external
+  - is_favourite
+  - country
+  - currency
+  - transfer_method
+  - nickname
+  - remark
+  - holder_name
+  - holder_type
+  - created_at
+  - updated_at
+properties:
+  id:
+    type: string
+    example: "9ad4789a-c864-48a6-a657-7fdfc57ba1fc"
+  is_external:
+    type: boolean
+    example: true
+  is_favourite:
+    type: boolean
+    example: true
+  country:
+    type: string
+    example: "sg"
+  currency:
+    type: string
+    example: "sgd"
+  transfer_method:
+    type: string
+    example: "local"
+  nickname:
+    type: [string, "null"]
+  remark:
+    type: [string, "null"]
+  holder_name:
+    type: string
+    example: "Dr. Chester Ernser IV"
+  holder_type:
+    type: string
+    example: "company"
+  bank_id:
+    type: string
+    example: "TMADHX0E2V2"
+  bank_branch_code:
+    type: [string, "null"]
+  account_number:
+    type: string
+    example: "0123456789"
+  created_at:
+    type: string
+    format: date-time
+    example: "2023-12-12T17:31:11+08:00"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2023-12-12T17:31:11+08:00"
+

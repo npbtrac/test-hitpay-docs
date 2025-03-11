@@ -1,0 +1,69 @@
+put:
+  tags:
+    - Shopify POS
+  summary: Update Shopify POS connection
+  description: Update Shopify POS connection
+  operationId: UpdateShopifyPOSConnection
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: connection_id
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            webhook_salt:
+              type: string
+              description: The webhook salt from Shopify settings
+              example: eb9aef78be0585f38fbb99dbe73d967291345764adb3a219f9975d50bbfe6385
+            terminals:
+              type: string
+              description: The terminal ID.
+              example: tmr_FNExKgTyNQpNzT
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/IntegrationConnection.yaml'
+    '404':
+      description: 'Not Found'
+
+delete:
+  tags:
+    - Shopify POS
+  summary: Delete Shopify POS connection
+  description: Delete Shopify POS connection
+  operationId: DeleteShopifyPOSConnection
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: connection_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: 'Successfully'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not Found'

@@ -1,0 +1,36 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "9d4446ad-0912-46c3-a4f3-db0a2abcf5d1"
+  stock_keeping_unit:
+    type: [string, "null"]
+    example: null
+  description:
+    type: string
+    example: "Red / M"
+  price:
+    type: number
+    format: float
+    example: 41.65
+  price_display:
+    type: string
+    example: "SGD 41.65"
+  price_stored:
+    type: integer
+    example: 4165
+  quantity:
+    type: integer
+    example: 0
+  quantity_alert_level:
+    type: [integer, "null"]
+    example: null
+  order:
+    type: integer
+    description: Ordering weight for custom sorting (ASC)
+    example: 10
+  images:
+    type: array
+    items:
+      $ref: './Image.yaml'

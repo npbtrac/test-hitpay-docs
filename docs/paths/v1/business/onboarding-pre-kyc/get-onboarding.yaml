@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Self Serve Onboarding
+  summary: Get Onboarding
+  description: Featch Status and Questionnaire to collect onboarding information to analyze and determine if a user should be placed on a blocklist or waitlist before proceeding to full KYC submission.
+  operationId: GetOnboarding
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Status and either Questionnaire or not'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/GetOnboarding.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

@@ -1,0 +1,18 @@
+post:
+  tags:
+    - Wallet Balances
+  summary: Export payout confirmation
+  description: Export payout confirmation as PDF-file.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+    - $ref: '../../../../parameters/Id.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/pdf:
+          schema:
+            type: string
+            format: binary

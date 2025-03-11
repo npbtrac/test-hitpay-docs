@@ -1,0 +1,33 @@
+put:
+  tags:
+    - Order
+  summary: Mark order as picked up
+  description: Mark order as picked up
+  operationId: MarkOrderAsPickedUp
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: [string, "null"]
+              description: Shipping message. Maximum 255 characters.
+            mark_as_picked_up:
+              type: boolean
+              description: Set TRUE to complete order. FALSE to only add the message.
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'

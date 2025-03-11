@@ -1,0 +1,22 @@
+tags:
+  - Integrations
+summary: Create integration
+parameters:
+  - $ref: '../../../../parameters/BusinessId.yaml'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: '../../../../schemas/IntegrationCreateEdit.yaml'
+responses:
+  '200':
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../schemas/Integration.yaml'
+  '404':
+    description: Wrong business id
+
+

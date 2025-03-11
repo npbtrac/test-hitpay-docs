@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Wallet Balances
+  summary: View payout
+  description: Retrieve the business payout.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+    - $ref: '../../../../parameters/Id.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Payout.yaml'

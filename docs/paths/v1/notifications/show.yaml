@@ -1,0 +1,26 @@
+get:
+  tags:
+    - Notifications
+  summary: Get business subscribed events
+  description: Get business subscribed events
+  operationId: GetBusinessSubscribedEvents
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/BusinessNotification.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

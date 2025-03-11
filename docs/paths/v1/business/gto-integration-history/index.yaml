@@ -1,0 +1,68 @@
+get:
+  tags:
+    - GTO Integration Histories
+  summary: Get GTO Integration Histories
+  description: Retrieve all GTO Integration Histories
+  operationId: GetGtoIntegrationHistories
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date (Y-m-d)
+    - name: status
+      in: query
+      schema:
+        type: string
+        description: Filter by status
+        enum:
+          - processing
+          - successful
+          - failed
+    - name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 25
+        enum:
+          - 5
+          - 10
+          - 25
+          - 50
+          - 100
+    - name: sort
+      in: query
+      schema:
+        type: string
+        description: Sort by created_at (asc, desc)
+        enum:
+          - asc
+          - desc
+    - name: business_location_id
+      in: query
+      schema:
+        type: string
+        format: uuid
+        description: Filter by business location id
+    - name: gto_integration_id
+      in: query
+      schema:
+        type: string
+        format: uuid
+        description: Filter by integration id
+  responses:
+    '200':
+      description: Successful
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/GtoIntegrationHistory.yaml'
+    '404':
+      description: Not found

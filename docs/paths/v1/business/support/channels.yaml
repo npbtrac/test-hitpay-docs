@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Support
+  summary: Get Channels
+  description: Get Channels
+  operationId: index
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/support/SupportChannels.yaml'

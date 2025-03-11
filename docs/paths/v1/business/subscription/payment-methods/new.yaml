@@ -1,0 +1,52 @@
+post:
+  tags:
+    - SubscriptionPaymentMethods
+  summary: Initialize form to add new subscription payment method
+  description: Initialize form to add new subscription payment method
+  operationId: InitializeNewBusinessSubscriptionPaymentMethods
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required: 
+            - ui_mode
+            - return_url
+          properties:
+            ui_mode:
+              type: string
+              enum: [ embedded, hosted ]
+              description: Stripe checkout session form page type
+              example: "embedded"
+            return_url:
+              type: string
+              description: Return customers to this URL on completion
+              example: "https://www.example.com/checkout/session/success"
+            cancel_url:
+              type: string
+              description: Optional - when ui_mode is hosted, send customers to this URL if they decide to cancel payment method setup
+              example: "https://www.example.com/checkout/session/cancel"
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+                description: Redirect customer to this URL to host Checkout page in hosted mode.
+                example: "https://checkout.stripe.com/dsafasdfasdf3safasdfasdf"
+              client_secret:
+                type: string
+                description: Use the client_secret returned in the response to mount Checkout in embedded mode.
+                example: "MgvkTWK1jRG3olSRx9B7MmxMgvkTWK1jRG3olSRx9B7Mmx"
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/Error.yaml'

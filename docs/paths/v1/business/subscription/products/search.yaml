@@ -1,0 +1,33 @@
+get:
+  tags:
+    - SubscriptionProduct
+  summary: Get list of available subscription products by feature
+  description: Get list of available subscription products by feature
+  operationId: GetAvailableSubscriptionProductsByFeature
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - name: feature_code
+      in: query
+      schema:
+        type: string
+        description: Feature code
+      required: true
+    - name: billing_frequency
+      in: query
+      schema:
+        type: string
+        description: Billing frequency
+        enum:
+          - monthly
+          - annually
+  responses:
+    '200':
+      description: A list of subscription products.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../../schemas/SubscriptionProduct.yaml'
+    '404':
+      description: 'Not Found'

@@ -1,0 +1,7 @@
+name: business_id
+in: path
+description: The unique identifier for a business
+required: true
+schema:
+  type: string
+  format: uuid

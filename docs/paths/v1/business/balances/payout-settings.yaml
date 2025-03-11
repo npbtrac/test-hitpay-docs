@@ -1,0 +1,47 @@
+get:
+  tags:
+    - Wallet Balances
+  summary: Get payout settings
+  description: Retrieve the current payout settings for a business.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+  responses:
+    '200':
+      description: Returns the current payout settings
+      content:
+        application/json:
+          schema:
+            name: PayoutSettings
+            $ref: './components/schemas/PayoutSettings.yaml'
+    404:
+      description: Not Found
+
+patch:
+  tags:
+    - Wallet Balances
+  summary: Update payout settings
+  description: Update the payout settings for a business.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          name: PayoutSettings
+          $ref: './components/schemas/PayoutSettings.yaml'
+  responses:
+    '200':
+      description: Settings updated successfully
+      content:
+        application/json:
+          schema:
+            name: PayoutSettings
+            $ref: './components/schemas/PayoutSettings.yaml'
+    '400':
+      description: Bad Request
+    '404':
+      description: Not Found

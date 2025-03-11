@@ -1,0 +1,4 @@
+type: integer
+format: int32
+description: Number of products that link to the Add-on
+example: 4

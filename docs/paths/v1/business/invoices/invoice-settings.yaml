@@ -1,0 +1,85 @@
+get:
+  summary: List all invoices settings
+  description: Retrieve a list of invoices settings.
+  tags:
+    - Invoices
+  operationId: listInvoicesSettings
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: A list of invoices settings.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../schemas/Invoice.yaml'
+    '404':
+      description: 'Not found'
+
+put:
+  summary: Update invoice settings
+  description: Update invoice settings.
+  tags:
+    - Invoices
+  operationId: updateInvoiceSettings
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            footer:
+              type: string
+            late_fee:
+              type: object
+              properties:
+                late_fee_type:
+                  type: string
+                  enum: ['percentage_of_total', 'percentage_of_outstanding', 'fixed_amount']
+                late_fee_fixed_amount:
+                  type: number
+                late_fee_percentage:
+                  type: number
+                late_fee_grace_period:
+                  type: integer
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              footer:
+                type: string
+              late_fee:
+                type: object
+                properties:
+                  late_fee_type:
+                    type: string
+                  late_fee_fixed_amount:
+                    type: number
+                  late_fee_percentage:
+                    type: number
+                  late_fee_grace_period:
+                    type: integer
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'

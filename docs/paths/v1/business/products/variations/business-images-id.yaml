@@ -1,0 +1,41 @@
+post:
+  tags:
+    - Product
+  summary: Link a Business Image to the Product Variation
+  description: Link a Business Image to the Product Variation
+  operationId: LinkProductVariationImage
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../../parameters/ProductId.yaml'
+    - $ref: '../../../../../parameters/ProductVariationId.yaml'
+    - $ref: '../../../../../parameters/ImageId.yaml'
+      description: The unique identifier for a the Image to be linked
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/ProductVariation.yaml'
+    '404':
+      description: 'Not found'
+
+delete:
+  tags:
+    - Product
+  summary: Unlink a Business Image from the Product Variation
+  description: Unlink a Business Image from the Product Variation
+  operationId: UnlinkProductVariationImage
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../../parameters/ProductId.yaml'
+    - $ref: '../../../../../parameters/ProductVariationId.yaml'
+    - $ref: '../../../../../parameters/ImageId.yaml'
+      description: The unique identifier for a the Image to be unlinked
+
+  responses:
+    '204':
+      description: 'Successfully'
+    '404':
+      description: 'Not found'
+

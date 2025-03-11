@@ -1,0 +1,11 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  title:
+    type: string
+    example: Admin
+  description:
+    type: string
+    example: Highest role

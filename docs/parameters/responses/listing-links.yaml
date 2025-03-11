@@ -1,0 +1,15 @@
+type: object
+description: pagination links according to current page and per_page value
+properties:
+  first:
+    type: string
+    description: the url of the first page according to current base url
+  last:
+    type: string
+    description: the url of the last page according to current `per_page` value
+  prev:
+    type: string
+    description: the url of the previous page of the current `page`, NULL if not exists
+  next:
+    type: string
+    description: the url of the next page of the current `page`, NULL if not exists

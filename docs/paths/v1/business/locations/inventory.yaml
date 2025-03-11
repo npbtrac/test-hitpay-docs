@@ -1,0 +1,65 @@
+put:
+  tags:
+    - Location
+  summary: Update inventory settings
+  description: Update inventory settings
+  operationId: UpdateInventorySettings
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            main_location_id:
+              type: string
+              description: Main location id
+              format: uuid
+              example: 9ad4789a-52c4-4efa-a7ed-1f99cb7b6633
+            back_order_location_id:
+              type: string
+              description: Back order location id
+              format: uuid
+              example: 9ad4789a-52c4-4efa-a7ed-1f99cb7b6633
+          required:
+            - main_location_id
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              main_location:
+                $ref: '../../../../schemas/Location.yaml'
+              back_order_location:
+                $ref: '../../../../schemas/Location.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+get:
+  tags:
+    - Location
+  summary: Get inventory settings
+  description: Get inventory settings
+  operationId: GetInventorySettings
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              main_location:
+                $ref: '../../../../schemas/Location.yaml'
+              back_order_location:
+                $ref: '../../../../schemas/Location.yaml'

@@ -1,0 +1,34 @@
+post:
+  tags:
+    - Customer Display
+  summary: Create token
+  description: Create new customer display token
+  operationId: CreateCustomerDisplayToken
+  security: []
+  parameters:
+    - name: device_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token_type:
+                type: string
+                example: Bearer
+              access_token:
+                type: string
+                example: 39428f9df47d2e6239ee1e92b61c8337b909db76c0f6b44137f653b19e44283e
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../schemas/Error.yaml'

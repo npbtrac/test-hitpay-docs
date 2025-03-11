@@ -1,0 +1,6 @@
+name: payment_provider
+in: path
+description: Payment Provider Code
+required: true
+schema:
+  type: string

@@ -1,0 +1,48 @@
+post:
+  tags:
+    - Product
+  summary: Products bulk assign categories
+  description: Products bulk assign categories
+  operationId: ProductBulkAssignCategories
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            product_ids:
+              type: array
+              minItems: 1
+              maxItems: 100
+              items:
+                type: string
+                format: uuid
+                description: Product ID (UUID)
+            category_ids:
+              type: array
+              minItems: 1
+              maxItems: 100
+              items:
+                type: string
+                format: uuid
+                description: Category ID (UUID)
+          required:
+            - product_ids
+            - category_ids
+  responses:
+    '204':
+      description: 'Successfully'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

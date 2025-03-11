@@ -1,0 +1,28 @@
+get:
+  tags:
+    - Feature
+  summary: Get access by feature id
+  description: Get feature access by feature id
+  operationId: GetFeatureAccessByFeatureId
+  parameters:
+    - name: feature_id
+      in: path
+      schema:
+        type: string
+        format: uuid
+      required: true
+  responses:
+    '200':
+      description: 'Feature'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/FeatureAccess.yaml'
+    '404':
+      description: 'Not Found'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

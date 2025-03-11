@@ -1,0 +1,34 @@
+get:
+  tags:
+    - Wallet Balances
+  summary: Export wallet transactions list
+  description: Export wallet transactions list between the dates and send it to the email
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            created_at_from:
+              type: [string, "null"]
+              format: date
+              example: "2023-11-07"
+            created_at_to:
+              type: [string, "null"]
+              format: date
+              example: "2023-11-10"
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+

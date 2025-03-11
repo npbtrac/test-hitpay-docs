@@ -1,0 +1,41 @@
+post:
+  tags:
+    - Customer Display
+  summary: Send the order receipt
+  description: Send the order receipt from customer device
+  operationId: SendTheOrderReceiptFromCustomerDevice
+  security:
+    - cdmAuth: []
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              description: Email address to send the receipt.
+            phone:
+              type: string
+              format: phone
+              description: Phone number to send the receipt.
+              example: 6567463879
+  responses:
+    '204':
+      description: 'Successfully'
+    '400':
+      description: 'Bad Request'

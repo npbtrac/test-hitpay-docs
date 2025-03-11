@@ -1,0 +1,31 @@
+post:
+  summary: Create a customer by email
+  description: Creates a new customer by email address.
+  tags:
+    - Customers
+  operationId: createCustomerByEmail
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              description: Customer email address
+              example: hello@example.com
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Customer.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

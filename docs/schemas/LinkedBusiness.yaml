@@ -1,0 +1,15 @@
+type: object
+properties:
+  id: 
+    type: string
+    format: uuid
+  name:
+    type: string
+    example: "Store"
+  email: 
+    type: string
+    example: "store@gmail.com"
+  linked_at:
+    type: string
+    format: date-time
+    example: "2021-01-01T00:00:00Z"

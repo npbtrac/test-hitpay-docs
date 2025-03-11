@@ -1,0 +1,4 @@
+type: string
+format: json
+description: 'The value for the option, in json format, nullable. Must have the data format of the array of {"option_value": "White", "option_price": nullable_price_value}'
+example: '[{"option_value": "White", "option_price": "1.43"}, {"option_value": "Red", "option_price": null}]'

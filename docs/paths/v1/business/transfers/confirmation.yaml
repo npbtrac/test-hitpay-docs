@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Transfers
+  summary: Download transfer confirmation
+  description: Download the business transfer confirmation (as PDF)
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: transfer_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary
+    404:
+      description: Not found

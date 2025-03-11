@@ -1,0 +1,27 @@
+post:
+  tags:
+    - Product
+  summary: Duplicate product
+  description: Upload product images
+  operationId: DuplicateProduct
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: product_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '201':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Product.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

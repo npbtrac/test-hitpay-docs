@@ -1,0 +1,25 @@
+type: array
+items:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      example: "9c5408fa-ba77-4e74-adc7-6b48029809f4"
+    name:
+      type: string
+      example: "A product name"
+    pivot:
+      type: object
+      properties:
+        business_add_on_id:
+          type: string
+          format: uuid
+          example: "9d76e15d-c632-45a7-99d4-3d9c690e4f77"
+        business_product_id:
+          type: string
+          format: uuid
+          example: "9c5408fa-ba77-4e74-adc7-6b48029809f4"
+        order_weight:
+          type: integer
+          example: 12

@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Order
+  summary: Create payment intent and generate QR for order
+  description: Create payment intent and generate QR for order
+  operationId: CreateOrderWithQR
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/OrderId.yaml'
+    - $ref: '../../../../parameters/PaymentMethodQRCode.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'
+
+delete:
+  tags:
+    - Order
+  summary: Cancel QR code for order
+  description: Cancel QR code for order
+  operationId: CancelQRCode
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/OrderId.yaml'
+    - $ref: '../../../../parameters/PaymentMethodQRCode.yaml'
+  responses:
+    '204':
+      description: 'Successfully'
+    '404':
+      description: 'Not found'

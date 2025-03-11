@@ -1,0 +1,76 @@
+post:
+  tags:
+    - Wallet Balances
+  summary: Get Available Top Up Methods
+  description: Get Available Top Up Methods with their fees
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            amount:
+              type: [number, "null"]
+              example: 100
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                method:
+                  type: string
+                  example: "paynow_online"
+                title:
+                  type: string
+                  example: "PayNow Online"
+                logos:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      sm:
+                        type: string
+                        format: uri
+                        example: "https://api.hit-pay.com/icons/methods/sm/paynow.png"
+                      md:
+                        type: string
+                        format: uri
+                        example: "https://api.hit-pay.com/icons/methods/md/paynow.png"
+                      lg:
+                        type: string
+                        format: uri
+                        example: "https://api.hit-pay.com/icons/methods/lg/paynow.png"
+                      svg:
+                        type: string
+                        format: uri
+                        example: "https://api.hit-pay.com/icons/methods/sm/paynow.svg"
+                      method:
+                        type: string
+                        format: uri
+                        example: "paynow_online"
+                settlement_time:
+                  type: string
+                  enum: [
+                    "instant",
+                    "T+1",
+                    "T+2",
+                    "T+3"
+                  ]
+                  example: "instant"
+                fee:
+                  type: number
+                  example: 0
+                minimum_amount:
+                  type: number
+                  example: 0.5
+#                additional_fields:
+#                  type: array

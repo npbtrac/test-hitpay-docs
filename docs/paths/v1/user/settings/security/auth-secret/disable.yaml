@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Security
+  summary: Disable Two Factor Authentication
+  description: Disable Two Factor Authentication
+  operationId: DisableTwoFactorAuthentication
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            password:
+              type: string
+              example: password
+            auth_code:
+              type: string
+              example: 123456
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  message:
+                    type: string
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../../schemas/Error.yaml'

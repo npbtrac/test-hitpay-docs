@@ -1,0 +1,39 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+    description: Name of the location
+    example: Main Store
+  street:
+    type: string
+    description: Street of the location
+    example: 123 Main St
+  city:
+    type: string
+    description: City of the location
+    example: San Francisco
+  state:
+    type: string
+    description: State of the location
+    example: CA
+  country:
+    type: string
+    description: Country of the location
+    example: US
+  postal_code:
+    type: string
+    description: Postal code of the location
+    example: 94105
+  active:
+    type: boolean
+    description: Is the location active
+    example: true
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time

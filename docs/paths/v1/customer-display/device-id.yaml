@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Customer Display
+  summary: Get device details
+  description: Get the customer display device details
+  operationId: GetCustomerDisplayDeviceDetails
+  security: []
+  parameters:
+    - name: device_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../schemas/CustomerDisplayDevice.yaml'
+    '404':
+      description: 'Not Found'
+
+delete:
+  tags:
+    - Customer Display
+  summary: Forget device
+  description: Forget the customer display device
+  operationId: ForgetCustomerDisplayDevice
+  parameters:
+    - name: device_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: 'Successfully'
+    '400':
+      description: 'Bad Request'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../schemas/Error.yaml'

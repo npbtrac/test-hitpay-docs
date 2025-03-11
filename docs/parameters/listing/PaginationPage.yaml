@@ -1,0 +1,7 @@
+name: page
+in: query
+example: 3
+description: The pagination page number that should be retrieved
+schema:
+  type: number
+  default: 1

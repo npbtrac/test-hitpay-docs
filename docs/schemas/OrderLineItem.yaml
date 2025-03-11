@@ -1,0 +1,68 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  related_id:
+    type: string
+    format: uuid
+    description: Can be product_id, discount_id, surcharge_id, tax_id, tip_id, quick_sale_id, shipping_id
+  name:
+    type: string
+    description: Name of the order line item
+    example: Product 1
+  item_type:
+    type: string
+    enum:
+      - product
+      - discount
+      - surcharge
+      - tax
+      - tip
+      - quick_sale
+      - shipping
+  quantity:
+    type: integer
+    description: Inclusive tax quantity will be zero
+    example: 1
+  unit_price:
+    type: number
+    format: float
+    example: 10.00
+  line_item_amount:
+    type: number
+    format: float
+    example: 10.00
+  chidren:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        related_id:
+          type: string
+          format: uuid
+          description: Can be discount_id, tax_id
+        name:
+          type: string
+          description: Name of the order line item
+          example: Discount 30%
+        item_type:
+          type: string
+          enum:
+            - discount
+            - tax
+        quantity:
+          type: integer
+          description: Inclusive tax quantity will be zero
+          example: 1
+        unit_price:
+          type: number
+          format: float
+          example: -3.00
+        line_item_amount:
+          type: number
+          format: float
+          example: -3.00

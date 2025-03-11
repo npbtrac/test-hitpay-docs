@@ -1,0 +1,22 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "9ad4789a-52c4-4efa-a7ed-1f99cb7b6633"
+  sync_start_at:
+    type: string
+    format: date-time
+    example: "2021-01-01T00:00:00Z"
+  sftp_directory_path:
+    type: string
+    example: "/path/to/file"
+  generated_file_path:
+    type: string
+    example: "/path/to/file"
+  status:
+    type: string
+    enum: ["success", "failed"]
+    example: "success"
+  integration:
+    $ref: "./GtoIntegration.yaml"

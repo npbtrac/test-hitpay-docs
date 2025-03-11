@@ -1,0 +1,53 @@
+get:
+  tags:
+    - SubscriptionPaymentMethods
+  summary: Get subscription payment methods
+  description: Get subscription payment methods
+  operationId: GetBusinessSubscriptionPaymentMethods
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: A list of payment methods.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../../../../schemas/SubscriptionPaymentMethod.yaml'
+    '404':
+      description: 'Not Found'
+
+post:
+  tags:
+    - SubscriptionPaymentMethods
+  summary: Create a subscription payment method
+  description: Creates a new subscription payment method for the business
+  operationId: CreateBusinessSubscriptionPaymentMethods
+  parameters:
+    - $ref: '../../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required: 
+            - checkout_session_id
+          properties:
+            checkout_session_id:
+              type: string
+              description: Stripe CHECKOUT_SESSION_ID
+              example: "cs_test_MlZAaTXUMHjWZ7DcXjusJnDU4MxPalbtL5eYrmS2GKxqscDtpJq8QM0k"
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/SubscriptionPaymentMethod.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../schemas/Error.yaml'

@@ -1,0 +1,13 @@
+get:
+  tags:
+    - Store Design
+  summary: Get list of Themes
+  description: Get list of Themes
+  operationId: GetListThemes
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+    '404':
+      description: 'Not Found'

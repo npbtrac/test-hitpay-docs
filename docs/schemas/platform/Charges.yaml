@@ -1,0 +1,139 @@
+type: object
+properties:
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Charge id
+        business_id:
+          type: string
+          format: uuid
+          description: Business id
+        channel:
+          type: string
+          description: Channel type
+        customer_id:
+          type: string
+          format: uuid
+          description: Customer id
+        status:
+          type: string
+          description: The current status of the charge
+        customer:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+              format: email
+            phone_number:
+              type: [string, "null"]
+            address:
+              type: object
+              properties:
+                street:
+                  type: [string, "null"]
+                city:
+                  type: [string, "null"]
+                state:
+                  type: [string, "null"]
+                postal_code:
+                  type: [string, "null"]
+                country:
+                  type: [string, "null"]
+        currency:
+          type: string
+          description: Currency used for payment
+        balance:
+          type: [string, "null"]
+        target:
+          type: object
+        cashback:
+          type: [string, "null"]
+        cashback_amount:
+          type: string
+          description: Cashback amount string (with currency)
+        payment_request_amount:
+          type: string
+          description: Payment request amount string (with currency)
+        all_inclusive_fee:
+          type: string
+          description: Total fee including charges
+        fixed_fee:
+          type: number
+          description: Fixed fee value
+        discount_fee:
+          type: number
+          description: Discount applied to the fee
+        discount_fee_rate:
+          type: number
+          description: Discount rate on fee (percentage)
+        payment_methods:
+          type: array
+          items:
+            type: string
+          description: List of available payment methods
+        isRefunded:
+          type: boolean
+          description: Whether the charge is refunded
+        isPartialRefunded:
+          type: boolean
+          description: Whether the charge is partially refunded
+        refunds:
+          type: array
+          items:
+            type: object
+          description: List of refund objects
+        collected_at:
+          type: string
+          format: date-time
+          description: Timestamp of when the charge was collected
+        amount:
+          type: number
+          format: float
+          description: Total charged amount
+        refunded_amount:
+          type: number
+          description: Refunded amount
+        refunded_at:
+          type: [string, "null"]
+          description: Timestamp of refund
+  meta:
+    type: object
+    properties:
+      current_page:
+        type: integer
+        description: The current page index
+      total:
+        type: integer
+        description: Total number of results
+      per_page:
+        type: integer
+        description: Number of results per page
+      last_page:
+        type: integer
+        description: Last page index
+  links:
+    type: object
+    properties:
+      first:
+        type: string
+        format: uri
+        description: URL of the first page
+      last:
+        type: string
+        format: uri
+        description: URL of the last page
+      prev:
+        type: [string, "null"]
+        format: uri
+        description: URL of the previous page
+      next:
+        type: [string, "null"]
+        format: uri
+        description: URL of the next page

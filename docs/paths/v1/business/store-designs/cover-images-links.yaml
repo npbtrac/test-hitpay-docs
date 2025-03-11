@@ -1,0 +1,75 @@
+post:
+  tags:
+    - Store Design Theme
+  summary: Link more images to business
+  description: Link more images to business as cover images
+  operationId: LinkMoreCoverImagesToBusiness
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            images:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    example: "98d71139-07f1-4e7d-8178-ccf278d25f36"
+                  order_weight:
+                    type: integer
+                    example: -1
+  responses:
+    '204':
+      description: 'Successfully'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+delete:
+  tags:
+    - Store Design Theme
+  summary: Unlink images from business
+  description: Unlink images from the business as cover images
+  operationId: UnlinkCoverImagesFromBusiness
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            image_ids:
+              type: array
+              items:
+                type: string
+                format: uuid
+                example: "98d71139-07f1-4e7d-8178-ccf278d25f36"
+  responses:
+    '204':
+      description: 'Successfully'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

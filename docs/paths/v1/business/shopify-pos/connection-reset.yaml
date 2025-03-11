@@ -1,0 +1,26 @@
+put:
+  tags:
+    - Shopify POS
+  summary: Reset Shopify POS connection
+  description: Reset Shopify POS connection
+  operationId: ResetShopifyPOSConnection
+  parameters:
+    - name: business_id
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: connection_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/IntegrationConnection.yaml'
+    '404':
+      description: 'Not Found'

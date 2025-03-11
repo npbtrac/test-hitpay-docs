@@ -1,0 +1,48 @@
+get:
+  tags:
+    - Order Logs
+  summary: Order timeline
+  description: Get list of order logs notes
+  operationId: ListOrderLog
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/OrderId.yaml'
+    - name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    - name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../../../../schemas/OrderLog.yaml'
+              per_page:
+                type: integer
+                example: 10
+              to:
+                type: integer
+                description: the index that is fetched to
+                example: 30
+              total:
+                type: integer
+                description: total number of the items
+                example: 55
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

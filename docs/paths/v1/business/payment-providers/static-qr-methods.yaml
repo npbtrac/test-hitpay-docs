@@ -1,0 +1,82 @@
+get:
+  tags:
+    - Payment Providers
+  summary: Check and Get list static qr payment methods
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              static_qr_methods:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    logos:
+                      type: object
+                      required:
+                        - sm
+                        - md
+                        - lg
+                        - svg
+                        - svg_square
+                        - png_square
+                      properties:
+                        sm:
+                          type: string
+                        md:
+                          type: string
+                        lg:
+                          type: string
+                        svg:
+                          type: string
+                        svg_square:
+                          type: string
+                        png_square:
+                          type: string
+                    method:
+                      type: string
+                    iconName:
+                      type: string
+                    displayName:
+                      type: string
+              support_static_qr:
+                type: boolean
+            example:
+              static_qr_methods:
+                - logos:
+                    sm: "https://api.src.test/icons/methods/sm/alipay.png"
+                    md: "https://api.src.test/icons/methods/md/alipay.png"
+                    lg: "https://api.src.test/icons/methods/lg/alipay.png"
+                    svg: "https://api.src.test/icons/methods/svg/alipay.svg"
+                    svg_square: "https://api.src.test/icons/methods/svg_square/alipay.svg"
+                    png_square: "https://api.src.test/icons/methods/png_square/alipay.png"
+                  method: "qfpay_alipay"
+                  iconName: "alipay"
+                  displayName: "Alipay"
+                - logos:
+                    sm: "https://api.src.test/icons/methods/sm/wechat.png"
+                    md: "https://api.src.test/icons/methods/md/wechat.png"
+                    lg: "https://api.src.test/icons/methods/lg/wechat.png"
+                    svg: "https://api.src.test/icons/methods/svg/wechat.svg"
+                    svg_square: "https://api.src.test/icons/methods/svg_square/wechat.svg"
+                    png_square: "https://api.src.test/icons/methods/png_square/wechat.png"
+                  method: "qfpay_wechat"
+                  iconName: "wechat"
+                  displayName: "WeChat"
+                - logos:
+                    sm: "https://api.src.test/icons/methods/sm/atome.png"
+                    md: "https://api.src.test/icons/methods/md/atome.png"
+                    lg: "https://api.src.test/icons/methods/lg/atome.png"
+                    svg: "https://api.src.test/icons/methods/svg/atome.svg"
+                    svg_square: "https://api.src.test/icons/methods/svg_square/atome.svg"
+                    png_square: "https://api.src.test/icons/methods/png_square/atome.png"
+                  method: "atome"
+                  iconName: "atome"
+                  displayName: "Atome"
+              support_static_qr: true

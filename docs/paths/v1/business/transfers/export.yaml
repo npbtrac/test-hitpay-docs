@@ -1,0 +1,46 @@
+get:
+  tags:
+    - Transfers
+  summary: Export transfers as CSV
+  description: Exports the business transfers and sends to the admin via e-mail
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: status
+      in: query
+      schema:
+        type: [string, "null"]
+        enum: [
+          'request_pending',
+          'paused',
+          'processing',
+          'requires_merchant_action',
+          'requires_admin_action',
+          'reverted',
+          'requires_manual_review',
+          'succeeded',
+          'succeeded_manually',
+          'to_be_processed',
+          'paid',
+        ]
+    - name: created_at_from
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+    - name: created_at_to
+      in: query
+      schema:
+        type: [string, "null"]
+        format: date
+        example: "2023-11-07"
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean

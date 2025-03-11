@@ -1,0 +1,63 @@
+get:
+  tags:
+    - Wallet Balances
+  summary: View Top Up Intent
+  description: View existing Top Up Intent
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/PaymentProvider.yaml'
+    - $ref: '../../../../parameters/Currency.yaml'
+    - $ref: '../../../../parameters/Id.yaml'
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              payment_provider:
+                type: string
+                example: "dbs_sg"
+              payment_provider_method:
+                type: string
+                example: "paynow_online"
+              currency:
+                type: string
+                example: "sgd"
+              amount:
+                type: number
+                example: 100
+              status:
+                type: string
+                enum: [
+                  "pending",
+                  "failed",
+                  "succeeded"
+                ]
+                example: "pending"
+              failed_reason:
+                description: "Only applicable for 'failed' status"
+                type: [string, "null"]
+              payment:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: "qr_code"
+                  qr_code_data:
+                    type: [string, "null"]
+                    example: "https://securecheckout.hit-pay.com/"
+              created_at:
+                type: string
+                format: date-time
+              updated_at:
+                type: string
+                format: date-time
+              expires_at:
+                type: string
+                format: date-time
+

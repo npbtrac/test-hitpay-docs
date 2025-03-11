@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Security
+  summary: Enable Two Factor Authentication
+  description: Enable Two Factor Authentication
+  operationId: EnableTwoFactorAuthentication
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            secret:
+              type: string
+              example: 'QWERTYUIJHGFGHJ'
+            auth_code:
+              type: string
+              example: '123456'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  message:
+                    type: string
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../../../schemas/Error.yaml'

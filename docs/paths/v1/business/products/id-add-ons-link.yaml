@@ -1,0 +1,58 @@
+post:
+  tags:
+    - Product
+  summary: Link a Business Add-on to a Product
+  description: Link a Business Add-on to a Product
+  operationId: LinkAddOnProduct
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - $ref: '../../../../parameters/ProductId.yaml'
+      description: The unique identifier of the Product that Add-ons in the payload would be linked to
+
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            pivot:
+              type: object
+              properties:
+                business_add_on_id:
+                  $ref: '../../../../schemas/common/Id.yaml'
+                  description: The Id of the Existing Add On to be linked to the Product. If this is in-use, the below params would be ignored.
+                order_weight:
+                  $ref: '../../../../schemas/business-add-on/OrderWeight.yaml'
+                  description: for ordering weight of the add-on
+            name:
+              $ref: '../../../../schemas/business-add-on/Name.yaml'
+              description: The Name of the Add-on, required if `pivot.business_add_on_id` not exists
+            option_type:
+              $ref: '../../../../schemas/business-add-on/OptionType.yaml'
+              description: The Type of the Add-on, required if `pivot.business_add_on_id` not exists
+            option_values:
+              $ref: '../../../../schemas/business-add-on/OptionValues.yaml'
+              description: 'The value for the option, in json format, nullable. Must have the data format of the array of {"option_value": "White", "option_price": nullable_price_value}. Required if `pivot.business_add_on_id` not exists'
+            min_selection:
+              $ref: '../../../../schemas/business-add-on/MinSelection.yaml'
+            max_selection:
+              $ref: '../../../../schemas/business-add-on/MaxSelection.yaml'
+            is_required:
+              $ref: '../../../../schemas/business-add-on/IsRequired.yaml'
+
+  responses:
+    '200':
+      description: 'Successfully done'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/ProductAddOnRelation.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+    '404':
+      description: 'Not found'
+

@@ -1,0 +1,96 @@
+put:
+  tags:
+    - Role
+  summary: Update role restrictions
+  description: Update role restrictions
+  operationId: UpdateRoleRestrictions
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            cashier:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Restriction name
+                    enum:
+                      - view_transactions
+                      - refund
+                  restricted:
+                    type: boolean
+                    description: Is restricted
+                    example: true
+                  limit:
+                    type: number
+                    description: Limit
+                    example: 15
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                role:
+                  type: string
+                  description: Role name
+                  example: cashier
+                restriction:
+                  type: string
+                  description: Restriction name
+                  enum:
+                    - view_transactions
+                    - refund
+                limit:
+                  type: number
+                  description: Limit
+                  example: 15
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+get:
+  tags:
+    - Role
+  summary: Get role restrictions
+  description: Get role restrictions
+  operationId: GetRoleRestrictions
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                role:
+                  type: string
+                  description: Role name
+                  example: cashier
+                restriction:
+                  type: string
+                  description: Restriction name
+                  enum:
+                    - view_transactions
+                    - refund
+                limit:
+                  type: number
+                  description: Limit
+                  example: 15

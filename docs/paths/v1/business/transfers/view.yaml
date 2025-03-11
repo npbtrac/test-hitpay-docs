@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Transfers
+  summary: View transfer
+  description: Retrieve the business transfer.
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: transfer_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Transfer.yaml'

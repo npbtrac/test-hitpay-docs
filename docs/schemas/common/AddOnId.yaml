@@ -1,0 +1,4 @@
+type: string
+format: uuid
+description: The AddOn Id the record belongs to
+example: "9526ee0d-f347-4622-8871-9661ead81a8e"

@@ -1,0 +1,13 @@
+type: object
+properties:
+  method:
+    type: string
+    description: Method slug
+  sm:
+    type: string
+    description: Small method logo in PNG
+  md:
+    type: string
+    description: Medium method logo in PNG
+
+

@@ -1,0 +1,36 @@
+get:
+  summary: Get Channel Summary by Period
+  operationId: getChannelByPeriod
+  tags:
+    - Business data aggregation
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: period
+      in: query
+      description: The time period for the summary
+      required: true
+      schema:
+        type: string
+        enum: [past_7_days, this_week, this_month, this_year]
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                plugin_provider:
+                  type: string
+                  example: 'api_link'
+                home_currency:
+                  type: string
+                  example: 'sgd'
+                total_amount:
+                  type: number
+                usd_amount:
+                  type: number
+                number_transactions:
+                  type: number

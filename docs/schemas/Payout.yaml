@@ -1,0 +1,36 @@
+type: object
+properties:
+  id:
+    type: string
+  status:
+    type: string
+    enum: [
+      'request_pending',
+      'paused',
+      'processing',
+      'requires_merchant_action',
+      'requires_admin_action',
+      'reverted',
+      'requires_manual_review',
+      'succeeded',
+      'succeeded_manually',
+      'to_be_processed',
+      'paid',
+    ]
+  currency:
+    type: string
+    pattern: '^([a-z]{3})$'
+    example: 'sgd'
+  amount:
+    type: number
+    example: 100.50
+  bank_name:
+    type: string
+  bank_account:
+    type: string
+  created_at:
+    type: string
+    format: date-time
+  arrive_at:
+    type: string
+    format: date-time

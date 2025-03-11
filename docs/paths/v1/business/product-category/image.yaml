@@ -1,0 +1,63 @@
+post:
+  tags:
+    - Product Category
+  summary: Update product category image
+  description: Update product category image
+  operationId: UpdateProductCategoryImage
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: category_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            image:
+              type: string
+              description: Product category image (binary)
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/ProductCategory.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+delete:
+  tags:
+    - Product Category
+  summary: Delete product category image
+  description: Delete product category image
+  operationId: DeleteProductCategoryImage
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: category_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/ProductCategory.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Business
+  summary: Get Business Details
+  description: Get Business Details
+  operationId: GetBusinessDetails
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Business.yaml'
+    '404':
+      description: 'Not Found'

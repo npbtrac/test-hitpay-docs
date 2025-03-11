@@ -1,0 +1,12 @@
+id:
+  type: string
+  description: Id of the cart
+business_id:
+  type: string
+  format: uuid
+  description: Id of the business that the cart is working on
+products:
+  type: object
+  additionalProperties:
+    $ref: "./CartProductItem.yaml"
+  description: List of products/variations in the cart in the format `cart_product_item_id` => `CartProductItem`

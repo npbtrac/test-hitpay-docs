@@ -1,0 +1,24 @@
+post:
+  tags:
+    - Support
+  summary: Feedback
+  description: Send Feedback
+  operationId: feedback
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            description:
+              type: string
+              example: 'test description'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/support/SupportReport.yaml'

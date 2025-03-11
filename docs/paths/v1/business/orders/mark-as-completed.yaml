@@ -1,0 +1,21 @@
+put:
+  tags:
+    - Order
+  summary: Mark order as completed
+  description: Mark order as completed
+  operationId: MarkOrderAsCompleted
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+    - name: order_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Order.yaml'

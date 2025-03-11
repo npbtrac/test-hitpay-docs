@@ -1,0 +1,60 @@
+get:
+  tags:
+    - Account Details
+  summary: Get account details
+  description: Get account details
+  operationId: GetAccountDetails
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../../../schemas/AccountDetails.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+put:
+  tags:
+    - Account Details
+  summary: Update account details
+  description: Update account details
+  operationId: UpdateAccountDetails
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            first_name:
+              type: string
+              example: John
+            last_name:
+              type: string
+              example: Doe
+            display_name:
+              type: string
+              example: John Doe
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '../../../../schemas/AccountDetails.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'

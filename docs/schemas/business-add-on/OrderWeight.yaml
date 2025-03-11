@@ -1,0 +1,3 @@
+type: integer
+description: The ordering weight for sorting the list of AddOns when retrieving, ASC sorting by default.
+example: 100

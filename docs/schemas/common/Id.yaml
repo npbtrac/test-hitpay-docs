@@ -1,0 +1,4 @@
+type: string
+format: uuid
+description: The Id of the record
+example: "9d136dea-eb8b-43be-8c18-302cd3534979"

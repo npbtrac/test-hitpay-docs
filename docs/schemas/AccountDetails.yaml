@@ -1,0 +1,26 @@
+type: object
+properties:
+  first_name:
+    type: string
+    example: John
+  last_name:
+    type: string
+    example: Doe
+  email:
+    type: string
+    example: john@example.com
+  display_name:
+    type: string
+    example: John Doe
+  password_updated_at:
+    type: string
+    format: date-time
+    example: '2021-01-01T00:00:00Z'
+  is_authentication_secret_enabled:
+    type: boolean
+    example: true
+  locale:
+    type: string
+    enum:
+      - en_US
+      - th_TH

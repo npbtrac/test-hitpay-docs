@@ -1,0 +1,27 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: 9b868785-4024-44ed-aa1f-21b6e9ac92b5
+  business_id:
+    type: string
+    format: uuid
+    description: Business ID
+    example: 9b100ee9-f363-4284-93ec-103243609cca
+  device_sn:
+    type: string
+    description: Device Serial Number
+    example: 2321A3249SDF932
+  label:
+    type: string
+    description: Label (optional)
+    example: Downturn High Street Store
+  created_at:
+    type: string
+    format: date-time
+    example: "2024-01-01T00:00:00Z"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2024-01-01T00:00:00Z"

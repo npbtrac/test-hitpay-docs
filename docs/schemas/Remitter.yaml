@@ -1,0 +1,93 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "9ad4789a-c864-48a6-a657-7fdfc57ba1fc"
+  entity_type:
+    type: string
+    enum:
+      - individual
+      - company
+    example: "company"
+  full_name:
+    type: string
+    maxLength: 255
+    example: "John Doe"
+  id_number:
+    type: string
+    maxLength: 255
+    example: "A1234567Z"
+  id_type:
+    type: string
+    enum:
+      - national_id
+      - passport
+      - driving_license
+    example: "passport"
+  date_of_birth:
+    type: string
+    format: date
+    example: "1990-01-01"
+  place_of_birth:
+    type: string
+    maxLength: 255
+    nullable: true
+    example: "Singapore"
+  nationality:
+    type: string
+    description: |
+      ISO 3166-1 alpha-2 country code.
+      Example: "sg"
+    example: "sg"
+    nullable: true
+  contact_number:
+    type: string
+    maxLength: 100
+    nullable: true
+    example: "+6591234567"
+  email:
+    type: string
+    format: email
+    maxLength: 255
+    nullable: true
+    example: "johndoe@example.com"
+  address:
+    type: object
+    required:
+      - street_address
+      - city
+      - state
+      - postal_code
+      - country
+    properties:
+      street_address:
+        type: string
+        maxLength: 255
+        example: "123 Orchard Rd"
+      city:
+        type: string
+        maxLength: 100
+        example: "Singapore"
+      state:
+        type: string
+        maxLength: 100
+        example: "Singapore"
+      postal_code:
+        type: string
+        maxLength: 30
+        example: "238888"
+      country:
+        type: string
+        description: |
+          ISO 3166-1 alpha-2 country code.
+          Example: "sg"
+        example: "sg"
+  company_name:
+    type: string
+    maxLength: 255
+    nullable: true
+    required: false
+    example: "Acme Corporation"
+    description: |
+      This field is required if the entity type is 'company'.
+      It represents the name of the company.

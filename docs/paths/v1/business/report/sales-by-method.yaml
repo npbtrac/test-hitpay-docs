@@ -1,0 +1,103 @@
+get:
+  tags:
+    - Report
+  summary: Get sales by method report
+  description: Get sales by method report
+  operationId: GetSalesByMethodReport
+  parameters:
+    - $ref: "../../../../parameters/BusinessId.yaml"
+    - name: from_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date from
+    - name: to_date
+      in: query
+      schema:
+        type: string
+        format: date
+        description: Filter by date to
+    - name: plugin_providers
+      in: query
+      schema:
+        type: array
+        description: Filter by plugin_provider
+        items:
+          type: string
+          enum:
+            - api_store
+            - point_of_sale
+            - quick_sale
+    - name: plugin_provider
+      in: query
+      schema:
+        type: string
+        description: Filter by a single plugin_provider
+        enum:
+          - api_store
+          - point_of_sale
+          - quick_sale
+    - name: location_id
+      in: query
+      schema:
+        type: string
+        format: uuid
+        description: Filter by location
+    - name: user_id
+      in: query
+      schema:
+        type: string
+        format: int
+        description: Filter by business user
+    - name: currency
+      in: query
+      schema:
+        type: string
+        description: Filter by currency
+        enum:
+          - sgd
+          - myr
+  responses:
+    "200":
+      description: "Successfully"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    method:
+                      type: string
+                      example: "card"
+                    currency:
+                      type: string
+                      example: "sgd"
+                    payments:
+                      type: number
+                      format: float
+                      example: 30.0
+                    refunds:
+                      type: number
+                      format: float
+                      example: -20.0
+                    gross_sales:
+                      type: number
+                      format: float
+                      example: 310.0
+                    total_fees:
+                      type: number
+                      format: float
+                      example: 10.0
+                    net_sales:
+                      type: number
+                      format: float
+                      example: 10.0
+                    net_collected:
+                      type: number
+                      format: float
+                      example: 10.0

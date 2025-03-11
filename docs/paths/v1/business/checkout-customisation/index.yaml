@@ -1,0 +1,42 @@
+get:
+  summary: Get checkout customisation
+  operationId: getCheckoutCustomisation
+  tags:
+    - Checkout Customisation
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/CheckoutCustomisation.yaml'
+
+patch:
+  summary: Update checkout customisation
+  operationId: updateCheckoutCustomisation
+  tags:
+    - Checkout Customisation
+  parameters:
+    - $ref: '../../../../parameters/BusinessId.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../schemas/CheckoutCustomisation.yaml'
+  responses:
+    '200':
+      description: 'Successfully'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/CheckoutCustomisation.yaml'
+    '422':
+      description: 'Unprocessable Entity'
+      content:
+        application/json:
+          schema:
+            $ref: '../../../../schemas/Error.yaml'
+
+
